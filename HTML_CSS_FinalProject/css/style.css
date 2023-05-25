@@ -1,0 +1,477 @@
+/* Reset CSS開始 */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Reset CSS結束 */
+
+/* debug時使用的outline */
+/* * {
+	outline: 1px solid #000;
+} */
+
+:root {
+	--Turquoise: #00cc99;
+	--Go-top-icon: #2dc45fb1;
+	--Social-media-banner: #f6f6f6;
+	--Social-media-dividing-line: #cccccc;
+	--FB-blue: #4460a0;
+	--Twitter-blue: #00aaec;
+	--Card-border: #f1f1f1;
+	--Card-shadow: #d6d6d6;
+	--White: #ffffff;
+	--Table-gray-banner: #f7f7f7;
+	--Table-gray-line: #dddddd;
+	--Table-light-green: #effaf8;
+	--Table-green-text: #11ac86;
+	--Form-head-green: #00644b;
+	--Form-foot-green: #009872;
+	--Peach: #eb73aa;
+	--Black: #000000;
+}
+
+body {
+	font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wrap {
+	margin: 0 auto;
+	width: 1000px;
+}
+
+
+.social-media {
+	background-color: black;
+}
+
+.social-media ul{
+	display: flex;
+	justify-content: flex-end;
+	background-color: var(--Social-media-banner);
+	padding: 10px 5px 10px 0px;
+}
+
+.social-media a {
+	display: block;
+	position: relative;
+	text-decoration: none;
+	font-size: 14px;
+	padding-bottom: 5px;
+}
+
+/* 詢問ChatGPT後的筆記: 如果是在a標籤後方直接加上:hover擬態選擇器, 則會造成該元素的padding或margin產生改變, 進而導致網頁內容出現些微推擠的狀況; 因此建議改使用::after偽元素搭配position屬性來達成hover的效果, 即可解決此問題; 在此就像是使用::after偽元素為a標籤製作一個裝飾的框架, 下方的a:hover::after則是為裝飾框架加上一個hover, 因此不會影響到原本a標籤, 故不會造成出現些微的padding或margin的推擠效果, 但是又能夠實現劃出底部邊框的效果 */
+.social-media a::after {
+	content: "";
+	display: block;
+	position: absolute;
+	/* bottom: 0;和left: 0;表示在::after的偽元素中, 將該元素的底部與父元素(.fb-link)的底部對齊, 並將該元素的左側與父元素的左側對齊, 因為該元素的定位為absolute。這將使偽元素::after覆蓋整個<a>元素的底部，並且可以在<a>元素上創建底部邊框的樣式。 */
+	bottom: 0;
+	left: 0;
+	/* width: 100%;是使.fb-link a::after偽元素的寬度與它的父元素.fb-link a的寬度相同, 也就是覆蓋整個.fb-link a的區域。
+	因為.fb-link a::after偽元素是使用position: absolute;定位到父元素.fb-link a的底部和左側, 故設定width: 100%;會讓.fb-link a::after偽元素的寬度擴展到與父元素相同的寬度, 因此能夠完全覆蓋.fb-link a的底部, 從而實現下方劃線效果。 */
+	width: 100%;
+}
+
+.social-media a:hover::after{
+	/* 在此不需為hover的下底線個別設定顏色, 讓兩者(FB, Twitter)的hover各自繼承自身超連結文字的顏色即可 */
+	border-bottom: 2px solid;
+}
+
+.fb-link a {
+	color: var(--FB-blue);
+	padding-right: 10px;
+	border-right: 1px solid var(--Social-media-dividing-line);
+}
+
+.twitter-link a {
+	padding-left: 10px;
+	color: var(--Twitter-blue);
+}
+
+.title {
+	display: flex;
+	justify-content: space-between;
+	padding-top: 7px;
+}
+
+.hex-logo {
+	background-image: url(./images/HEX_logo.png);
+	width: 170px;
+	height: 36px;
+	/* 因為a標籤是inline(行內元素), 故需要改成block(區塊元素)才能將圖片正常顯示出來 */
+	display: block;
+	/* 業界常用作法為以下三行一併使用: 目的是將超連結文字縮排移至圖片之外, 且將多餘的部分隱藏起來, 並且控制該超連結文字不要換行, 藉此將整個超連結文字隱藏起來, 讓網頁爬蟲可以爬到這段文字, 但又具有圖片超連結的效果 */
+	text-indent: 101%;
+	overflow: hidden;
+	/* 讓該超連結文字不進行換行 */
+	white-space: nowrap;
+}
+
+.menu {
+	display: flex;
+	font-weight: bold;
+}
+
+.menu li {
+	padding: 0px 10px;
+	text-align: center;
+}
+
+.menu li a {
+	/* 使a標籤變成區塊元素, 使其能自適應父元素li, 因此能夠滿版 */
+	display: block;
+	position: relative;
+	padding: 15px;
+	color: var(--Turquoise);
+	text-decoration: none;
+}
+
+.menu li a::after {
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
+.menu li a:hover::after {
+	border-bottom: 3px solid;
+}
+
+.banner {
+	background-image: url(./images/banner.png);
+	height: 345px;
+	color:var(--White);
+	display: flex;
+	align-items: center;
+}
+
+.banner h2 {
+	font-size: 32px;
+	line-height: 1.5;
+	padding: 37px 22px;
+	background-color: rgb(0, 0, 0, 0.5);
+	width: 100%;
+}
+
+.course {
+	display: flex;
+	justify-content: space-around;
+	padding-top: 63px;
+}
+
+.course-item {
+	/* 參考自: https://stackoverflow.com/questions/3126995/combining-border-top-border-right-border-left-border-bottom-in-css */
+	border: 1px solid var(--Card-border);
+	border-width: 0px 1px 1px 1px;
+	/* 將順時針方向(左上, 右上, 右下, 左下)設為圓弧狀(單位請用px) */
+	/* 參考自: https://developer.mozilla.org/en-US/docs/Web/CSS/border-radius */
+	border-radius: 0px 0px 5px 5px;
+	/* box-shadow: x軸位移值 y軸位移值 擴散效果數值 陰影顏色 */
+	box-shadow: 0px 4px 3px var(--Card-border);
+	width: 300px;
+	display: flex;
+	flex-direction: column;
+	/* font-family:Verdana, Geneva, Tahoma, sans-serif; */
+}
+
+.course-item img {
+	/* 透過以下兩行使圖片左右等距 */
+	display: block;
+	margin: 0 auto;
+	padding: 24px 0px 12px 0px;
+}
+
+.course-item h2 {
+	text-align: center;
+	font-size: 20px;
+}
+
+.course-item p {
+	padding: 10px 20px 0px 20px;
+	/* 字與字之間的距離 */
+	letter-spacing: 1px;
+	line-height: 1.5;
+	/*  使文字能夠左右等距  */
+	text-align:justify;
+}
+
+.course-item ul {
+	list-style-type: disc;
+	padding-left: 35px;
+	letter-spacing: 1px;
+	line-height: 1.5;
+}
+
+.description {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-left: 50px;
+	border: 3px solid var(--Black);
+}
+
+.difference-title {
+	/* 依助教批改建議: 此處可不設定 flex，透過設定 text-align: center; 即能將文字「線上及實體課程的差異」水平置中。 */
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 30px;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.difference-table {
+	/* 依助教批改建議: 此處可不設定 flex，透過設定 margin: 0 auto; 即能表格水平置中, 且上方為0px 左右為auto, 下方為70px */
+	margin: 0 auto 70px;
+}
+
+.difference-table th, .difference-table td{
+	border-top: 1px solid var(--Table-gray-line);
+	border-bottom: 1px solid var(--Table-gray-line);
+	padding: 10px 110px 10px 10px;
+}
+
+.difference-table th {
+	background-color: var(--Table-gray-banner);
+	color: var(--Black);
+	font-weight: bold;
+}
+
+.difference-table tr:hover {
+	background-color: var(--Table-light-green);
+}
+
+.greenText {
+	color: var(--Table-green-text);
+	font-weight: bold;
+}
+
+form {
+	width: 1002px;
+	/* 原本是background: linear-gradient(var(--Form-head-green), var(--Form-foot-green));, 而-webkit-為前綴詞, 每種瀏覽器需使用的前綴詞不同, 且第一個參數為角度或者方向 參考資料: https://developer.mozilla.org/zh-CN/docs/Web/CSS/gradient/linear-gradient#%E8%B7%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%9E%E6%96%BD%E6%B8%90%E5%8F%98 */
+	background: -webkit-linear-gradient(var(--Form-head-green), var(--Form-foot-green));
+	padding-bottom: 30px;
+}
+
+.form-title {
+	font-size: 22px;
+	font-weight: bold;
+	line-height: 1.5;
+	color: var(--White);
+	text-align: center;
+	padding: 40px 0px 33px 0px;
+}
+
+.form-content {
+	display: flex;
+	justify-content: space-around;
+}
+
+.form-content textarea {
+	display: flex;
+	flex-wrap: wrap;
+	resize: none;
+	font-size: 18px;
+	width: 500px;
+	height: 250px;
+}
+
+.form-personal-info label {
+	color: var(--White);
+}
+
+.form-personal-info input {
+	margin: 10px 0px 20px 0px;
+	font-size: 16px;
+}
+
+.submit {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.submit-btn {
+	background-color: var(--Turquoise);
+	padding: 10px 30px;
+	border-radius: 5px;
+	color: var(--White);
+	font-size: 16px;
+	font-weight: bold;
+	border: none;
+}
+
+.submit-btn:hover {
+	background-color: var(--White);
+	color: var(--Turquoise);
+	font-weight: bold;
+}
+
+/* 當滑鼠點擊時的狀態 */
+.submit-btn:active {
+	transform: scale(0.9);
+}
+
+.course-footer {
+	padding: 25px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.footer-logo {
+	background-image: url(./images/HEX_gray_logo.png);
+	width: 170px;
+	height: 36px;
+	display: block;
+	text-indent: 101%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.contact li{
+	padding-bottom: 10px;
+}
+
+.contact a {
+	color: var(--Peach);
+	text-decoration: none;
+	font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.go-top-icon {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	color: var(--Go-top-icon);
+}
