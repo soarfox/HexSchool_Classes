@@ -226,7 +226,7 @@ body {
 }
 
 .hex-logo {
-	background-image: url(./images/HEX_logo.png);
+	background-image: url("../images/HEX_logo.png");
 	width: 170px;
 	height: 36px;
 	/* 因為a標籤是inline(行內元素), 故需要改成block(區塊元素)才能將圖片正常顯示出來 */
@@ -271,7 +271,7 @@ body {
 }
 
 .banner {
-	background-image: url(./images/banner.png);
+	background-image: url("../images/banner.png");
 	height: 345px;
 	color:var(--White);
 	display: flex;
@@ -450,7 +450,7 @@ form {
 }
 
 .footer-logo {
-	background-image: url(./images/HEX_gray_logo.png);
+	background-image: url("../images/HEX_gray_logo.png");
 	width: 170px;
 	height: 36px;
 	display: block;
