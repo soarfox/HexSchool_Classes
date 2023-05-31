@@ -407,6 +407,13 @@ form {
 	height: 250px;
 }
 
+/* 各個輸入欄位的寬度(或size)依父元素此處為主, 故不應把寬度(或size)屬性直接寫在HTML標籤內 */
+.form-personal-info {
+	width: 400px;
+	display: flex;
+	flex-direction: column;
+}
+
 .form-personal-info label {
 	color: var(--White);
 }
