@@ -222,7 +222,8 @@ body {
 .title {
 	display: flex;
 	justify-content: space-between;
-	padding-top: 7px;
+	/* padding-top: 7px; */
+	padding: 7px 0px;
 }
 
 .hex-logo {
@@ -301,7 +302,7 @@ body {
 	border-radius: 0px 0px 5px 5px;
 	/* box-shadow: x軸位移值 y軸位移值 擴散效果數值 陰影顏色 */
 	box-shadow: 0px 4px 3px var(--Card-border);
-	width: 300px;
+	width: 320px;
 	display: flex;
 	flex-direction: column;
 	/* font-family:Verdana, Geneva, Tahoma, sans-serif; */
@@ -321,8 +322,6 @@ body {
 
 .course-item p {
 	padding: 10px 20px 0px 20px;
-	/* 字與字之間的距離 */
-	letter-spacing: 1px;
 	line-height: 1.5;
 	/*  使文字能夠左右等距  */
 	text-align:justify;
@@ -413,6 +412,8 @@ form {
 }
 
 .form-personal-info input {
+	/* 依助教批改建: 在此加上display: block; 藉此省略掉原本使用<br>換行的效果 */
+	display: block;
 	margin: 10px 0px 20px 0px;
 	font-size: 16px;
 }
@@ -436,6 +437,7 @@ form {
 	background-color: var(--White);
 	color: var(--Turquoise);
 	font-weight: bold;
+	cursor: pointer;
 }
 
 /* 當滑鼠點擊時的狀態 */
