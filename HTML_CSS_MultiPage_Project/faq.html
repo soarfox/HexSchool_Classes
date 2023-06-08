@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多頁式網站_常見問答</title>
+  <link rel="shortcut icon" href="./images/door_icon.ico">
+  <meta name="author" content="六角學院">
+  <!-- 使用emmet的縮寫, 輸入meta:desc並按下tab鍵自動生出下方語法 -->
+  <meta name="description" content="帶你學到會的線上課程。打破影音課程售後不理，我們在線上等著你。">
+  <!-- 使用emmet的縮寫, 輸入meta:kw並按下tab鍵自動生出下方語法; 關鍵字放在越前面者則權重越高 -->
+  <meta name="keywords" content="線上課程, 網站設計, 前端, HTML, CSS, jQuery, javascript">
+  <!-- 使用emmet的縮寫, 輸入link:css並按下tab鍵自動生出下方語法 -->
+  <!-- 不論對方是使用什麼版本的IE瀏覽器, 一律強制以最新版的IE來渲染; 避免對方明明是IE9, 結果卻因為曾經有改到相容性設定而以IE7呈現, 加上這一行程式碼即可完全避免掉這種狀況 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 社群軟體盛行的現在, 在通訊或社群軟體上分享網址時都會出現該網站的標題, 縮圖與描述, 透過設定og可以更準確的說明網站的內容, 參考資料為六角學院官方網站的<head>標籤內的<meta>內容, https://www.hexschool.com/ -->
+  <meta property="og:title" content="帶你學到會的線上課程  | 六角學院">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.hexschool.com/">
+  <meta property="og:description" content="打破影音課程售後不理，我們在線上等著你。">
+  <meta property="og:image" content="https://i.imgur.com/u6sU0B3.png">
+  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <!-- 建議先引用CSS, 再引入javascript, 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
+  <link rel="stylesheet" href="/css/all.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="faq-page-banner">
+        <div class="navbar">
+          <div class="hex-logo">
+            <a href="#">六角學院</a>
+          </div>
+          <div class="menu">
+            <ul>
+              <li><a href="/index.html">首頁</a></li>
+              <li><a href="/course.html">課程</a></li>
+              <li><a href="/faq.html">問答</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="faq-page-intro">
+          <div class="title">
+            <h1>
+              遇到問題了嗎？
+              <span class="green-title">別擔心，你想找的答案都在這裡！</span>
+            </h1>
+          </div>
+          <div class="search-container">
+            <form action="#">
+              <input type="text" placeholder="請輸入您的問題" name="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="faq-list">
+        <h2>常見問題＃<span class="gray-title">你想問的說不定也在這裡</span></h2>
+        <ul>
+          <li><span class="questions">Q：為什麼你們要用 Udemy 放你們的影音課程，他有什麼好處嗎？</span>
+            A：他除了可上傳影音課程外，同時也能上傳我們設計出來的範例程式碼、設計單選題目，並能在 IOS、Andorid 上面學習，同時也能追蹤每位學生的學習機制，讓我們放心挑選 Udemy 作為我們的教學平台。</li>
+          <li><span class="questions">Q：影片課程有時效性嗎？</span>
+            A：完全沒有，此課程提供終身複習服務，你隨時可聽到我們即時更新的影音課程內容。</li>
+          <li><span class="questions">Q：我很擔心學完後還是學不會網頁設計，有什麼辦法嗎？</span>
+            <!-- 郵件的%0A符號代表換行（LineFeed, LF）, 參考資料: https://blog.xuite.net/tolarku/blog/585922261-->
+            A：課程結束後我們會提供給你網頁設計稿，做完後 mail 給我們，
+            <a
+              href="mailto:service@hexschool.com?subject=申請六角學院的課程作品程式碼檢視服務&body=您好，%0A我想要申請課程作品的程式碼檢視服務，以下是我的詳細資料：%0A%0A課程名稱：%0AUdemy 用戶名稱：%0A購買時間：%0A作品GitHub Repository連結：%0A惠請協助檢視程式碼內容，謝謝您！">
+              service@hexschool.com </a>
+            ，我們會替你進行程式碼檢視，以確保你的觀念吸收正確。
+          </li>
+        </ul>
+        <h2>怎麼付款＃<span class="gray-title">付款方式保證最多元</span></h2>
+        <ul>
+          <li><span class="questions">Q：請問可以分期付款嗎？</span>
+            A：當然沒問題，在本平台購買我們最高提供 6 期分期。
+            <ol class="payment-steps">
+              <li>
+                <p>選擇產品後</p>
+              </li>
+              <li>
+                <p>在進入金流平台付款時可選擇信用卡分期付款</p>
+              </li>
+              <li>
+                <p>選擇期數，旁邊會附註每期應付款項</p>
+              </li>
+            </ol>
+          </li>
+          <li><span class="questions">Q：我沒有信用卡，有沒有其他匯款方案？</span>
+            A：每個課程現在都提供了其它付款方式，在課程連結旁就可以找到這個其他付款方式，而且我們是採用台灣第三方支付，安全又可靠。</li>
+          <li><span class="questions">Q：採用其它付款流程，但還沒有收到課程怎麼辦？</span>
+            A：課程會在 48 小時內寄出，如果沒有收到可以透過右下角的客服，或直接 mail 至我們的信箱
+            <a
+              href="mailto:service@hexschool.com?subject=付款後，尚未收到六角學院的課程開通通知&body=您好，%0A我已經完成付款，但尚未收到課程開通通知，以下是我的詳細資料：%0A%0A付款帳戶：%0A用戶名稱：%0A購買時間：%0A惠請協助，謝謝您！">
+              service@hexschool.com </a>
+            ，我們會盡快處理以保障您的權益。
+          </li>
+        </ul>
+        <h2>我想退款＃<span class="gray-title">期待你再次成為我們的學生</span></h2>
+        <ul>
+          <li><span class="questions">Q：如果怕線上影音課程吸收不好，可以要求退費嗎？</span>
+            A：沒問題！Udemy 在 30 天內都可申請退款！
+          </li>
+          <li><span class="questions">Q：Udemy 如何退款？</span>
+            A：透過 Udemy 的課程頁面的 選項 下即可使用退款功能。</li>
+          <li><span class="questions">Q：其它支付流程如何退款？</span>
+            A：請發信到
+            <a
+              href="mailto:service@hexschool.com?subject=申請六角學院的課程退款&body=您好，%0A我想要申請課程退款，以下是我的詳細資料：%0A%0A退款帳戶：%0AUdemy 用戶名稱：%0A購買時間：%0A退款原因：%0A惠請協助，謝謝您！">
+              service@hexschool.com </a>
+            並詳著以下內容：
+            <ul class="refund">
+              <li>退款帳戶</li>
+              <li>Udemy 用戶名稱</li>
+              <li>購買時間</li>
+              <li>退款原因</li>
+            </ul>
+            <p class="black-graph">接下來，我們會有專人協助退款。退款後請注意：</p>
+            <ul class="refund-notice">
+              <li>
+                <p>退款會酌收第三方支付手續費，信用卡一次付清 2.8%、分三期 3%、分六期 3.5%、分 12 期 7%、ATM為 1%，超商為 28 元。</p>
+              </li>
+              <li>
+                <p>退款後亦不能參與任何線上討論以及每週的線上問答。</p>
+              </li>
+              <li>
+                <p>退款後的學員再下次購買時，我們會先提供測試帳號 7 天再次鑑賞，確認該學員有需上這門課程，才能購買該次課程。</p>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="faq-form-content">
+        <div class="faq-form-intro">
+          <span>找不到你的問題嗎？</span><span>直接寄信給我們解決吧！</span>
+        </div>
+        <form action="#" class="faq-contact-info">
+          <input type="text" id="name" name="name" placeholder="您的名字是？" required>
+          <input type="email" name="email" id="email" placeholder="example@mail.com"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3,}$" title="請提供正確的信箱格式, 如範例example@mail.com" required>
+          <textarea name="faq-message" id="faq-message" placeholder="您遇到什麼困難呢？" required></textarea>
+          <div class="form-btn">
+            <button type="submit" value="submit">送出</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="footer-content">
+      <div class="logo">
+        <a href="#">六角學院</a>
+        <span>© 2018 hexschool</span>
+      </div>
+      <div class="social-media">
+        <ul>
+          <li><a href="#" class="footer-fb">官方Facebook</a></li>
+          <li><a href="#" class="footer-twitter">官方Twitter</a></li>
+          <li><a href="#" class="footer-ig">官方Instagram</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

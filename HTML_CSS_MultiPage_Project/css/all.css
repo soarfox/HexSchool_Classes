@@ -1,0 +1,858 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+body {
+	line-height: 1;
+}
+
+ol,
+ul {
+	list-style: none;
+}
+
+blockquote,
+q {
+	quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+:root {
+	--White: #ffffff;
+	--Black: #4a4a4a;
+	--Turquoise: #00cc99;
+	--Light-Turquoise: #cef1e8;
+	--Gray: #9b9b9b;
+	--Red: #ff003b;
+	--Yellow: #eeff00;
+	--Light-gray: #afafaf;
+	--Deep-gray: #c9c9c9;
+	--Table-gray: #ebebeb;
+	--Deep-black: #323223;
+	--Footer-gray: #323228;
+}
+
+/* layout的共通性布局 */
+.wrap {
+	width: 1025px;
+	margin: 0 auto;
+}
+
+.banner {
+	background-image: url(../images/index/index_banner.png);
+	height: 560px;
+}
+
+.navbar {
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 40px;
+	background-color: rgba(54, 53, 53, 0.5);
+}
+
+.hex-logo {
+	padding: 20px 0px;
+}
+
+.hex-logo a {
+	background-image: url(../images/HexSchool_logo.png);
+	width: 170px;
+	height: 36px;
+	display: block;
+	text-indent: 101%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.menu ul {
+	display: flex;
+	justify-content: space-between;
+}
+
+.menu li {
+	padding: 15px 10px;
+	text-align: center;
+}
+
+.menu a {
+	/* 使a標籤變成區塊元素, 使其能自適應父元素li, 因此能夠滿版 */
+	display: block;
+	position: relative;
+	padding: 15px;
+	color: var(--White);
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.menu a:hover {
+	color: var(--Turquoise);
+}
+
+.menu a::after {
+	/* 偽元素一定要加上這一個content: ""; */
+	content: "";
+	position: absolute;
+	/* 切記是bottom和left */
+	bottom: -15px;
+	left: 0;
+	/* 因為偽元素預設是inline, 故設定為block才能使劃出來的底線能夠滿版 */
+	display: block;
+	width: 0%;
+	height: 8px;
+	background-color: var(--Turquoise);
+	transition: 0.5s;
+}
+
+.menu a:hover::after {
+	width: 100%;
+}
+
+/* index 頁面的CSS */
+.intro {
+	font-size: 46px;
+	color: var(--Turquoise);
+	padding: 100px 0px 0px 40px;
+}
+
+.intro .title {
+	line-height: 1.5;
+}
+
+.white-title {
+	color: var(--White);
+}
+
+.intro .green-text {
+	display: block;
+}
+
+.index-register-btn {
+	padding: 60px 0px;
+}
+
+.register-btn {
+	position: relative;
+	text-decoration: none;
+	padding: 15px 40px;
+	background-color: var(--Turquoise);
+	border-radius: 5px;
+	font-size: 20px;
+	color: var(--White);
+	font-weight: bold;
+	border: 0px;
+	transition: all .35s;
+}
+
+.register-btn span {
+	position: relative;
+	/* 設定其權重為1, 而其餘未設權重, 故此項的權重較其他項更高 */
+	z-index: 1;
+}
+
+.register-btn::after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	border-radius: 5px;
+	background: var(--Red);
+	transition: all .35s;
+}
+
+.register-btn:hover {
+	color: var(--Yellow);
+}
+
+.register-btn:hover::after {
+	cursor: pointer;
+	/* border: 3px solid var(--White); */
+	width: 100%;
+}
+
+.course {
+	display: flex;
+	justify-content: space-between;
+	padding: 60px 30px 0px 30px;
+}
+
+.course-intro h2,
+.differences h2 {
+	font-size: 34px;
+	font-weight: bold;
+	color: var(--Turquoise);
+	padding-bottom: 30px;
+}
+
+.course-intro span,
+.differences span {
+	font-size: 20px;
+	color: var(--Gray);
+	font-weight: normal;
+	padding-left: 13px;
+}
+
+/* "更多課程"按鈕的邊框動畫特效 */
+.more-courses-btn {
+	width: 100px;
+	position: relative;
+}
+
+.more-courses-btn a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.more-courses {
+	text-decoration: none;
+	/* 要將下方border: 2px也納入寬度和高度裡頭, 這樣子邊框線條動畫才會剛好畫在border身上, 因此96px + 2px * 上下2邊 = 100px; 36px + 2px * 左右2邊 = 40px  */
+	width: 96px;
+	height: 36px;
+	cursor: pointer;
+	background: var(--White);
+	border: 2px solid var(--Turquoise);
+	border-radius: 5px;
+	/* 此處的transition代表讓按鈕的背景顏色有動畫逐漸改變顏色的效果, ease-in-out代表"緩慢的開始與結束", 參考資料: https://www.casper.tw/css/2013/08/24/css-transtion-speed/ */
+	transition: 0.5s ease-in-out;
+}
+
+svg {
+	position: absolute;
+	left: 0;
+	top: 0;
+	fill: none;
+	stroke: var(--White);
+	stroke-width: 5px;
+	/* stroke-dasharray: 40 280, 代表是 40px實線 280px空白線, 因為整個矩形的四邊(包含border)總和為280( (96px + 2px) * 上下2邊 = 200px; (36px + 2px) * 左右2邊 = 80px; 200 + 80 = 280px ), 因此等於把整個矩形的白線都先遮蓋掉	 */
+	stroke-dasharray: 40px 280px;
+	/* 筆畫推移多少的位置, 推移40之後, 使得40px的實線變不見了 */
+	stroke-dashoffset: 40px;
+	/* 此處的transition代表讓按鈕的邊框有跑動的效果*/
+	transition: 0.5s ease-in-out;
+}
+
+.more-courses:hover {
+	background: var(--Yellow);
+}
+
+.more-courses:hover svg {
+	/* 當鼠標停在這個按鈕上, 也就是處於hover狀態時, 需將筆畫推移多少的位置, 當推移負值280之後, 帶表示倒著繞完一整個矩形 */
+	stroke-dashoffset: -280px;
+}
+
+.more-courses span {
+	font-weight: bold;
+	color: var(--Turquoise);
+	font-size: 16px;
+}
+
+.course-cards {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.course-cards li {
+	display: flex;
+	width: 300px;
+	flex-direction: column;
+	/* box-shadow: x軸位移值 y軸位移值 擴散效果數值 陰影顏色 */
+	box-shadow: 0px 4px 8px var(--Deep-gray);
+}
+
+.course-cards img {
+	/* 透過以下兩行使圖片左右等距 */
+	display: block;
+	margin: 0 auto;
+	padding-top: 24px;
+}
+
+.course-cards h3 {
+	font-size: 20px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	color: var(--Black);
+	text-decoration: none;
+	padding: 15px 0px;
+}
+
+.course-cards p {
+	color: var(--Light-gray);
+	line-height: 1.5;
+	padding: 0px 15px 27px 15px;
+}
+
+.differences {
+	padding: 60px 42px;
+}
+
+.difference-table {
+	width: 940px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--Deep-black);
+}
+
+.difference-table th {
+	background-color: var(--Table-gray);
+	font-weight: bold;
+	padding: 17px 0px;
+}
+
+.difference-table tr:hover {
+	background-color: var(--Light-Turquoise);
+}
+
+.difference-table td {
+	padding: 17px 0px;
+	font-weight: bold;
+	text-align: center;
+	border-bottom: 1px solid var(--Table-gray);
+}
+
+.green-text {
+	color: var(--Turquoise);
+}
+
+.form-content {
+	display: flex;
+	justify-content: space-around;
+	background-color: var(--Table-gray);
+}
+
+.form-intro {
+	padding: 154px 0px;
+	font-size: 28px;
+	line-height: 1.5;
+	font-weight: bold;
+	color: var(--Deep-black);
+}
+
+.form-intro span {
+	display: block;
+	padding-bottom: 30px;
+}
+
+.contact-info {
+	padding-top: 138px;
+}
+
+.contact-info input {
+	display: block;
+	font-size: 18px;
+	/* 各個輸入欄位的寬度(或size)依父元素此處為主, 故不應把寬度(或size)屬性直接寫在HTML標籤內 */
+	width: 400px;
+	/* 為了要將兩個input元素分隔開來, 故使用了margin */
+	margin: 17px 0px;
+	padding: 17px 10px;
+	border-radius: 5px;
+	border: 0px;
+}
+
+/* 補充: 基本上input元素不支援偽元素, 因為偽元素都是在容器內渲染, 但是input元素內無法容納元素, 故無法進行偽元素的渲染, 如果想要使用::before或::after偽元素, 可在input元素外層套上一個div標籤, 可以調整其外面的樣式, 但仍無法為其加上偽元素, 可參考: https://segmentfault.com/q/1010000019803594 */
+.contact-info input:focus,
+.faq-contact-info input:focus,
+.faq-contact-info textarea:focus {
+	outline: 3px solid var(--Turquoise);
+}
+
+.form-btn {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.contact-info button,
+.faq-contact-info button {
+	font-size: 20px;
+	padding: 15px 40px;
+	background-color: var(--Turquoise);
+	color: var(--White);
+	border-radius: 10px;
+	border: 0px;
+}
+
+.contact-info button:hover,
+.faq-contact-info button:hover {
+	background-color: var(--White);
+	color: var(--Turquoise);
+	cursor: pointer;
+}
+
+.footer-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: var(--Footer-gray);
+	color: var(--White);
+	padding: 36px 40px;
+}
+
+.footer-content .logo a {
+	background-image: url(../images/HexSchool_logo.png);
+	width: 170px;
+	height: 36px;
+	display: block;
+	text-indent: 101%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.footer-content span {
+	display: block;
+	text-align: right;
+	color: var(--Gray);
+}
+
+.social-media ul {
+	display: flex;
+}
+
+.social-media li {
+	padding-left: 22px;
+}
+
+.footer-fb,
+.footer-twitter,
+.footer-ig {
+	width: 32px;
+	height: 32px;
+	display: block;
+	text-indent: 101%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.footer-fb {
+	background-image: url(../images/FB_icon.png);
+}
+
+.footer-twitter {
+	background-image: url(../images/Twitter_icon.png);
+}
+
+.footer-ig {
+	background-image: url(../images/IG_icon.png);
+}
+
+/* course 頁面的CSS */
+.course-page-banner {
+	background-image: url(../images/course/Course_banner.png);
+	height: 560px;
+}
+
+.course-page-intro {
+	display: flex;
+	justify-content: space-between;
+	color: var(--Turquoise);
+	font-size: 24px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.course-page-intro .title {
+	color: var(--White);
+	font-size: 40px;
+	padding: 110px 0px 15px 37px;
+}
+
+.course-page-intro .green-title {
+	display: block;
+	font-size: 24px;
+	color: var(--Turquoise);
+}
+
+/* 先將外層的padding設定好, 下方再針對兩張image做內部padding的設定 */
+.course-page-intro .images {
+	padding: 40px 60px 0px 0px;
+}
+
+.course-page-intro .images img {
+	padding-left: 20px;
+}
+
+.take-a-course-btn {
+	padding: 60px 37px;
+}
+
+.course-info {
+	display: flex;
+	flex-direction: column;
+	padding: 57px 190px 57px 190px;
+}
+
+.teacher-intro {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-bottom: 57px;
+}
+
+.teacher-name {
+	color: var(--Footer-gray);
+	font-size: 34px;
+	font-weight: bold;
+	padding: 0px 35px;
+}
+
+.green-name {
+	color: var(--Turquoise);
+	display: block;
+	padding-bottom: 16px;
+}
+
+.teacher-detail {
+	color: var(--Gray);
+	list-style-type: square;
+	line-height: 1.5;
+	font-weight: bold;
+	padding: 0px 25px;
+	/* em是一個相對長度單位, 它相對於該元素本身字體的大小(font-size)的值 */
+	text-indent: 2em;
+}
+
+.course-feature h2,
+.course-syllabus h2 {
+	font-size: 34px;
+	color: var(--Turquoise);
+	font-weight: bold;
+	letter-spacing: 5px;
+	padding-bottom: 28px;
+}
+
+.gray-title {
+	font-size: 18px;
+	color: var(--Gray);
+	font-weight: bold;
+	letter-spacing: 0px;
+	padding-left: 10px;
+}
+
+.course-feature ol {
+	list-style-type: decimal;
+	font-weight: bold;
+	line-height: 1.5;
+	padding: 0px 20px 55px 20px;
+}
+
+.course-feature p {
+	padding-left: 20px;
+}
+
+.course-syllabus li {
+	padding: 17px 0px 14px 37px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	color: var(--Gray);
+}
+
+.course-syllabus .gray-bg {
+	background-color: var(--Table-gray);
+	color: var(--Deep-black);
+}
+
+.register-content {
+	display: flex;
+	justify-content: space-evenly;
+	padding: 0px 150px;
+	background-color: var(--Table-gray);
+}
+
+.register-intro {
+	padding: 150px 0px;
+	font-size: 30px;
+	line-height: 2;
+	font-weight: bold;
+	color: var(--Deep-black);
+}
+
+.register-intro span {
+	display: block;
+	padding-bottom: 20px;
+}
+
+.course-register-btn {
+	padding-top: 200px;
+}
+
+/* FAQ 頁面的CSS */
+.faq-page-banner {
+	background-image: url(../images/faq/FAQ_banner.png);
+	height: 560px;
+}
+
+.faq-page-intro {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.faq-page-intro h1 {
+	font-size: 44px;
+	font-weight: bold;
+	padding-top: 107px;
+	color: var(--White);
+}
+
+.faq-page-intro .green-title {
+	display: block;
+	font-size: 24px;
+	font-weight: normal;
+	color: var(--Turquoise);
+	padding: 15px 0px 50px 0px;
+}
+
+/* 透過設定display: flex; 使其內的input和button能夠完全緊靠在一起, 不會出現空隙  */
+.search-container form {
+	display: flex;
+}
+
+.search-container input {
+	width: 532px;
+	font-size: 20px;
+	padding: 15px 10px 15px 15px;
+	border: 0px;
+	/* 分別代表著左上, 右上, 右下, 左下這四個方位的效果 */
+	border-radius: 10px 0px 0px 10px;
+}
+
+.search-container button {
+	padding: 15px;
+	font-size: 20px;
+	background-color: var(--White);
+	border: 0px;
+	/* 分別代表著左上, 右上, 右下, 左下這四個方位的效果 */
+	border-radius: 00px 10px 10px 0px;
+}
+
+.search-container input:focus {
+	outline: none;
+	border: 3px solid var(--Turquoise);
+}
+
+.faq-list {
+	display: flex;
+	flex-direction: column;
+	padding: 0px 131px 58px 122px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+
+.faq-list h2 {
+	font-size: 34px;
+	color: var(--Turquoise);
+	font-weight: bold;
+	letter-spacing: 5px;
+	padding-top: 58px;
+}
+
+.faq-list li {
+	color: var(--Gray);
+	padding-top: 34px;
+	line-height: 1.5;
+}
+
+.faq-list .questions {
+	color: var(--Deep-black);
+	font-size: 22px;
+	display: block;
+	padding-bottom: 10px;
+}
+
+.faq-list a {
+	text-decoration: none;
+	color: var(--Turquoise);
+}
+
+.payment-steps {
+	padding-left: 40px;
+}
+
+.payment-steps li {
+	text-indent: 2em;
+	list-style-type: decimal;
+	padding-top: 5px;
+}
+
+.refund {
+	padding-left: 40px;
+}
+
+.refund li {
+	text-indent: 2em;
+	list-style-type: disc;
+	padding-top: 5px;
+}
+
+.black-graph {
+	color: var(--Deep-black);
+	padding-top: 30px;
+}
+
+.refund-notice {
+	padding-left: 38px;
+	text-indent: 2em;
+}
+
+.refund-notice li {
+	list-style-type: disc;
+	padding-top: 5px;
+}
+
+.faq-form-content {
+	display: flex;
+	justify-content: space-around;
+	background-color: var(--Table-gray);
+}
+
+.faq-form-intro {
+	padding-top: 135px;
+	font-size: 30px;
+	line-height: 1.5;
+	font-weight: bold;
+	color: var(--Deep-black);
+}
+
+.faq-form-intro span {
+	display: block;
+	padding-bottom: 30px;
+}
+
+.faq-contact-info {
+	padding: 120px 0px 60px 0px;
+}
+
+.faq-contact-info input,
+.faq-contact-info textarea {
+	display: block;
+	font-size: 18px;
+	/* 各個輸入欄位的寬度(或size)依父元素此處為主, 故不應把寬度(或size)屬性直接寫在HTML標籤內 */
+	width: 460px;
+	/* 為了要將兩個input元素分隔開來, 故使用了margin */
+	margin-bottom: 17px;
+	padding: 17px 10px;
+	border-radius: 5px;
+	border: 0px;
+}
+
+.faq-contact-info textarea {
+	height: 200px;
+	resize: none;
+}

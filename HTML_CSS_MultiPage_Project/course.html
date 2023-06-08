@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多頁式網站_課程介紹</title>
+  <link rel="shortcut icon" href="./images/door_icon.ico">
+  <meta name="author" content="六角學院">
+  <!-- 使用emmet的縮寫, 輸入meta:desc並按下tab鍵自動生出下方語法 -->
+  <meta name="description" content="帶你學到會的線上課程。打破影音課程售後不理，我們在線上等著你。">
+  <!-- 使用emmet的縮寫, 輸入meta:kw並按下tab鍵自動生出下方語法; 關鍵字放在越前面者則權重越高 -->
+  <meta name="keywords" content="線上課程, 網站設計, 前端, HTML, CSS, jQuery, javascript">
+  <!-- 使用emmet的縮寫, 輸入link:css並按下tab鍵自動生出下方語法 -->
+  <!-- 不論對方是使用什麼版本的IE瀏覽器, 一律強制以最新版的IE來渲染; 避免對方明明是IE9, 結果卻因為曾經有改到相容性設定而以IE7呈現, 加上這一行程式碼即可完全避免掉這種狀況 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 社群軟體盛行的現在, 在通訊或社群軟體上分享網址時都會出現該網站的標題, 縮圖與描述, 透過設定og可以更準確的說明網站的內容, 參考資料為六角學院官方網站的<head>標籤內的<meta>內容, https://www.hexschool.com/ -->
+  <meta property="og:title" content="帶你學到會的線上課程  | 六角學院">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.hexschool.com/">
+  <meta property="og:description" content="打破影音課程售後不理，我們在線上等著你。">
+  <meta property="og:image" content="https://i.imgur.com/u6sU0B3.png">
+  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <!-- 建議先引用CSS, 再引入javascript, 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
+  <link rel="stylesheet" href="/css/all.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="course-page-banner">
+        <div class="navbar">
+          <div class="hex-logo">
+            <a href="#">六角學院</a>
+          </div>
+          <div class="menu">
+            <ul>
+              <li><a href="/index.html">首頁</a></li>
+              <li><a href="/course.html">課程</a></li>
+              <li><a href="/faq.html">問答</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="course-page-intro">
+          <div class="title">
+            <h1>
+              HTML、CSS 開發網站
+              <span class="green-title">從無到有學會網頁設計</span>
+            </h1>
+          </div>
+          <div class="images">
+            <img src="../images/course/HTML5_course.png" alt="">
+            <img src="../images/course/CSS_course.png" alt="">
+          </div>
+        </div>
+        <div class="take-a-course-btn">
+          <!-- <button id="take-a-course-btn" name="take-a-course-btn">現在上課去→</button> -->
+          <a href="#" class="register-btn"><span>現在上課去　→</span></a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="course-info">
+        <div class="teacher-intro">
+          <img src="../images/course/teacher.png" alt="廖洧杰老師穿著正式的黑色西裝, 內著是白色襯衫, 領結是一個黑色的蝴蝶結, 戴著黑色長方形的眼鏡">
+          <div class="teacher-name">
+            <h2>
+              <span class="green-name">廖洧杰</span>
+              老師
+            </h2>
+          </div>
+          <ul class="teacher-detail">
+            <li>高雄前端社群發起人</li>
+            <li>中華電信前端講師</li>
+            <li>高雄大學前端講師</li>
+            <li>十年實務經驗</li>
+            <li>授課時數超過一千小時</li>
+          </ul>
+        </div>
+        <div class="course-feature">
+          <h2>這堂課程有什麼特別的？<span class="gray-title">六角課程的四大優點</span></h2>
+          <ol>
+            <li>
+              <p>有能力排出具專業、語意化、美觀的網頁設計。</p>
+            </li>
+            <li>
+              <p>課程結束後，會提供給你一個完整的網頁設計稿，當你實作出網頁後，就可以轉交六角學院的講師們進行程式碼審視，以確保你吸收的網頁排版觀念是正確的。</p>
+            </li>
+            <li>
+              <p>了解設計網頁的脈絡，你隨時可以在社群裡發問問題，我們永遠都會在這裡！</p>
+            </li>
+            <li>
+              <p>獲得持續更新的講義教材，終身複習不會脫離趨勢的現代化線上課程。</p>
+            </li>
+          </ol>
+        </div>
+        <div class="course-syllabus">
+          <h2>課程大綱<span class="gray-title">最扎實的學習內容編排</span></h2>
+          <ul>
+            <li class="gray-bg">章節標題</li>
+            <li>網頁編輯器、HTML基礎教學</li>
+            <li class="gray-bg">CSS 常用語法</li>
+            <li>使用CSS變更HTML標籤特性</li>
+            <li class="gray-bg">網頁排版技巧 Part I</li>
+            <li>網頁排版技巧 Part II</li>
+            <li class="gray-bg">切圖技巧</li>
+            <li>表格與表單設計技巧</li>
+            <li class="gray-bg">CSS3技巧</li>
+            <li>最後，讓你的網頁變得更專業</li>
+            <li class="gray-bg">課程作業</li>
+          </ul>
+        </div>
+      </div>
+      <div class="register-content">
+        <div class="register-intro">
+          <span>心動不如馬上行動！</span><span>現在就成為我們的學生吧！</span>
+        </div>
+        <div class="course-register-btn">
+          <a href="#" class="register-btn"><span>馬上去註冊　→</span></a>
+        </div>
+      </div>
+    </main>
+    <footer class="footer-content">
+      <div class="logo">
+        <a href="#">六角學院</a>
+        <span>© 2018 hexschool</span>
+      </div>
+      <div class="social-media">
+        <ul>
+          <li><a href="#" class="footer-fb">官方Facebook</a></li>
+          <li><a href="#" class="footer-twitter">官方Twitter</a></li>
+          <li><a href="#" class="footer-ig">官方Instagram</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>

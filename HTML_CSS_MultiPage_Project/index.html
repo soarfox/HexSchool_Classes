@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>多頁式網站_首頁</title>
+  <link rel="shortcut icon" href="./images/door_icon.ico">
+  <meta name="author" content="六角學院">
+  <!-- 使用emmet的縮寫, 輸入meta:desc並按下tab鍵自動生出下方語法 -->
+  <meta name="description" content="帶你學到會的線上課程。打破影音課程售後不理，我們在線上等著你。">
+  <!-- 使用emmet的縮寫, 輸入meta:kw並按下tab鍵自動生出下方語法; 關鍵字放在越前面者則權重越高 -->
+  <meta name="keywords" content="線上課程, 網站設計, 前端, HTML, CSS, jQuery, javascript">
+  <!-- 使用emmet的縮寫, 輸入link:css並按下tab鍵自動生出下方語法 -->
+  <!-- 不論對方是使用什麼版本的IE瀏覽器, 一律強制以最新版的IE來渲染; 避免對方明明是IE9, 結果卻因為曾經有改到相容性設定而以IE7呈現, 加上這一行程式碼即可完全避免掉這種狀況 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 社群軟體盛行的現在, 在通訊或社群軟體上分享網址時都會出現該網站的標題, 縮圖與描述, 透過設定og可以更準確的說明網站的內容, 參考資料為六角學院官方網站的<head>標籤內的<meta>內容, https://www.hexschool.com/ -->
+  <meta property="og:title" content="帶你學到會的線上課程  | 六角學院">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.hexschool.com/">
+  <meta property="og:description" content="打破影音課程售後不理，我們在線上等著你。">
+  <meta property="og:image" content="https://i.imgur.com/u6sU0B3.png">
+  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <!-- 建議先引用CSS, 再引入javascript, 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
+  <link rel="stylesheet" href="/css/all.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <div class="banner">
+        <div class="navbar">
+          <div class="hex-logo">
+            <a href="#">六角學院</a>
+          </div>
+          <div class="menu">
+            <ul>
+              <li><a href="/index.html">首頁</a></li>
+              <li><a href="/course.html">課程</a></li>
+              <li><a href="/faq.html">問答</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="intro">
+          <div class="title">
+            <h1>歡迎來到
+              <span class="white-title">六角學院</span>
+              <span class="green-text">帶你一起攻略前端設計</span>
+            </h1>
+          </div>
+          <div class="index-register-btn">
+            <a href="#" class="register-btn"><span>馬上去註冊　→</span></a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="course">
+        <div class="course-intro">
+          <h2>精選課程<span>幫助你拿到前端工程師的門票</span></h2>
+        </div>
+        <div class="more-courses-btn">
+          <a href="#" class="more-courses">
+            <span>更多課程</span>
+            <!-- 為這個按鈕繪製一個可視區塊, 並且加上畫框線的CSS動畫 -->
+            <svg viewBox="0 0 100 40">
+              <!-- 折線(polyline)用於繪製多點的線段, 每一段框線的起訖點在此處; 假設點的位置"100,1", 100代表x，1代表y, 兩個點之間會有一個空格, 參考資料: https://www.casper.tw/d3js/2014/10/02/Ironman-30-days-03/-->
+              <polyline points="100,1 100,40 1,40 1,1 100,1" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <ul class="course-cards">
+        <li><img src="/images/index/HTML5.png" alt="待補">
+          <h3>HTML 5 基礎教學</h3>
+          <p>主流前端網站設計的基礎，透過實際的範例，瞭解正確的網站開發流程。</p>
+        </li>
+        <li><img src="/images/index/RWD.png" alt="待補">
+          <h3>響應式網站設計</h3>
+          <p>六角學院提供業界響應式開發方法，讓學生瞭解完善的行動版開發觀念。</p>
+        </li>
+        <li><img src="/images/index/jQuery.png" alt="待補">
+          <h3>jQuery實戰教學</h3>
+          <p>分為四大主題：變數的使用、操作DOM、基本數學運算和套件運用。</p>
+        </li>
+      </ul>
+      <div class="differences">
+        <h2>課程比較<span class="gray-title">線上課程與實體課程的差異</span></h2>
+        <table class="difference-table">
+          <tr>
+            <th>項目</th>
+            <th>六角學院 線上課程</th>
+            <th>一般線上課程</th>
+            <th>一般實體課程</th>
+          </tr>
+          <tr>
+            <td>費用</td>
+            <td class="green-text">較低</td>
+            <td class="green-text">較低</td>
+            <td>較高</td>
+          </tr>
+          <tr>
+            <td>學習效果</td>
+            <td>一般</td>
+            <td>較低</td>
+            <td class="green-text">很好</td>
+          </tr>
+          <tr>
+            <td>Code review</td>
+            <td class="green-text">有</td>
+            <td>無</td>
+            <td>不一定</td>
+          </tr>
+          <tr>
+            <td>課程更新速度</td>
+            <td class="green-text">普通</td>
+            <td class="green-text">普通</td>
+            <td>較慢</td>
+          </tr>
+          <tr>
+            <td>多次複習</td>
+            <td class="green-text">可</td>
+            <td class="green-text">可</td>
+            <td>不可</td>
+          </tr>
+          <tr>
+            <td>字幕</td>
+            <td class="green-text">有</td>
+            <td>不一定</td>
+            <td>板書</td>
+          </tr>
+        </table>
+      </div>
+      <div class="form-content">
+        <div class="form-intro">
+          <span>你就是六角的下一個學生！</span><span>快留下資料讓我們認識你吧！</span>
+        </div>
+        <form action="#" class="contact-info">
+          <input type="text" id="name" name="name" placeholder="您的名字是？" required>
+          <input type="email" name="email" id="email" placeholder="example@mail.com"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{3,}$" title="請提供正確的信箱格式, 如範例example@mail.com" required>
+          <div class="form-btn">
+            <button type="submit" value="submit">送出</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="footer-content">
+      <div class="logo">
+        <a href="#">六角學院</a>
+        <span>© 2018 hexschool</span>
+      </div>
+      <div class="social-media">
+        <ul>
+          <li><a href="#" class="footer-fb">官方Facebook</a></li>
+          <li><a href="#" class="footer-twitter">官方Twitter</a></li>
+          <li><a href="#" class="footer-ig">官方Instagram</a></li>
+        </ul>
+      </div>
+    </footer>
+  </div>
+</body>
+
+</html>
