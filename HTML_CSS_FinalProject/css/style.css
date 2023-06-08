@@ -246,7 +246,6 @@ body {
 
 .menu li {
 	padding: 0px 10px;
-	text-align: center;
 }
 
 .menu li a {
@@ -260,7 +259,6 @@ body {
 
 .menu li a::after {
 	content: "";
-	display: block;
 	position: absolute;
 	bottom: 0;
 	left: 0;
@@ -419,7 +417,7 @@ form {
 }
 
 .form-personal-info input {
-	/* 依助教批改建: 在此加上display: block; 藉此省略掉原本使用<br>換行的效果 */
+	/* 依助教批改建議: 在此加上display: block; 藉此省略掉原本使用<br>換行的效果 */
 	display: block;
 	margin: 10px 0px 20px 0px;
 	font-size: 16px;
