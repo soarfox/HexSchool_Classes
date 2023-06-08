@@ -156,7 +156,7 @@ table {
 }
 
 .banner {
-	background-image: url(./images/index/index_banner.png);
+	background-image: url(../images/index/index_banner.png);
 	height: 560px;
 }
 
@@ -172,7 +172,7 @@ table {
 }
 
 .hex-logo a {
-	background-image: url(./images/HexSchool_logo.png);
+	background-image: url(../images/HexSchool_logo.png);
 	width: 170px;
 	height: 36px;
 	display: block;
@@ -506,7 +506,7 @@ svg {
 }
 
 .footer-content .logo a {
-	background-image: url(./images/HexSchool_logo.png);
+	background-image: url(../images/HexSchool_logo.png);
 	width: 170px;
 	height: 36px;
 	display: block;
@@ -541,20 +541,20 @@ svg {
 }
 
 .footer-fb {
-	background-image: url(./images/FB_icon.png);
+	background-image: url(../images/FB_icon.png);
 }
 
 .footer-twitter {
-	background-image: url(./images/Twitter_icon.png);
+	background-image: url(../images/Twitter_icon.png);
 }
 
 .footer-ig {
-	background-image: url(./images/IG_icon.png);
+	background-image: url(../images/IG_icon.png);
 }
 
 /* course 頁面的CSS */
 .course-page-banner {
-	background-image: url(./images/course/Course_banner.png);
+	background-image: url(../images/course/Course_banner.png);
 	height: 560px;
 }
 
@@ -693,7 +693,7 @@ svg {
 
 /* FAQ 頁面的CSS */
 .faq-page-banner {
-	background-image: url(./images/faq/FAQ_banner.png);
+	background-image: url(../images/faq/FAQ_banner.png);
 	height: 560px;
 }
 
