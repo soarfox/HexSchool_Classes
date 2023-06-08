@@ -147,12 +147,14 @@ table {
 	--Table-gray: #ebebeb;
 	--Deep-black: #323223;
 	--Footer-gray: #323228;
+	--Go-top-icon: #2dc45fb1;
 }
 
 /* layout的共通性布局 */
 .wrap {
 	width: 1025px;
 	margin: 0 auto;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 .banner {
@@ -388,7 +390,6 @@ svg {
 .course-cards h3 {
 	font-size: 20px;
 	font-weight: bold;
-	font-family: Arial, Helvetica, sans-serif;
 	text-align: center;
 	color: var(--Black);
 	text-decoration: none;
@@ -407,7 +408,6 @@ svg {
 
 .difference-table {
 	width: 940px;
-	font-family: Arial, Helvetica, sans-serif;
 	color: var(--Deep-black);
 }
 
@@ -563,7 +563,6 @@ svg {
 	justify-content: space-between;
 	color: var(--Turquoise);
 	font-size: 24px;
-	font-family: Arial, Helvetica, sans-serif;
 }
 
 .course-page-intro .title {
@@ -657,7 +656,6 @@ svg {
 
 .course-syllabus li {
 	padding: 17px 0px 14px 37px;
-	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 	color: var(--Gray);
 }
@@ -751,7 +749,6 @@ svg {
 	display: flex;
 	flex-direction: column;
 	padding: 0px 131px 58px 122px;
-	font-family: Arial, Helvetica, sans-serif;
 	font-weight: bold;
 }
 
@@ -855,4 +852,11 @@ svg {
 .faq-contact-info textarea {
 	height: 200px;
 	resize: none;
+}
+
+.go-top-icon {
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+	color: var(--Go-top-icon);
 }
