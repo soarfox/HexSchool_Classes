@@ -1,0 +1,419 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+/* CSS Reset finished */
+
+/* 在CSS檔案內引用Google font, 這句必須寫在所有的標籤選擇器之前 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100&display=swap');
+
+:root {
+	--Green: #6E7D60;
+	--Gray: #646464;
+	--Black: #1E1E1E;
+	--White: #FFFFFF;
+	--Yellow: #E0DA48;
+	--White-Gray: #E6E6E6;
+	--LightGray: #646464;
+	--LittleGray: #E5E5E5;
+	--CardBackground: #F9F9F9;
+	--DeepGreen: #7F977B;
+	--OrangeRed: #FF725E;
+	--Footer: #65895F;
+}
+
+body {
+	font-family: 'Noto Sans TC';
+}
+
+.wrap	{
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+}
+
+.walking-man-icon {
+	padding-right: 5px;
+	font-size: 28px;
+}
+
+nav h1 {
+	font-size: 20px;
+	font-weight: bold;
+	color: var(--Green);
+	padding: 24px 45px;
+	letter-spacing: 0.3em;
+}
+
+.menu {
+	display: flex;
+}
+
+.menu li {
+	padding: 27px 20px;
+}
+
+.menu a {
+	font-weight: 400;
+	font-size: 18px;
+	color: var(--Gray);
+	text-decoration: none;
+	/* 下方增加一個偽元素, 藉此做出劃底線的效果, 故在此需要設定相對定位 */
+	position: relative;
+	display: block;
+}
+
+.menu a:hover {
+	color: var(--Green);
+}
+
+.menu a::after {
+	/* 偽元素必定要加一個空的內容 */
+	content: "";
+	position: absolute;
+	bottom: -15px;
+	left: 0px;
+	display: block;
+	width: 0%;
+	height: 8px;
+	background-color: var(--DeepGreen);
+	transition: 0.3s;
+}
+
+.menu a:hover::after {
+	width: 100%;
+}
+
+header {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.intro {
+	padding: 82px 0px 57px 0px;
+}
+
+.intro h2 {
+	font-weight: 300;
+	font-size: 48px;
+	color: var(--Black);
+	line-height: 1.5;
+}
+
+.intro .yellow_border {
+	border-bottom: 3px solid var(--Yellow);
+}
+
+.taiwan-location-icon {
+	color: var(--Yellow);
+	padding-right: 5px;
+}
+
+.intro h3 {
+	color: var(--LightGray);
+	font-size: 20px;
+	font-weight: 400;
+	padding-top: 17px;
+	letter-spacing: 0.03em;
+}
+
+.search {
+	display: flex;
+	flex-direction: column;
+	padding: 101px 0px 0px 0px;
+}
+
+.city-groups, .search-keyword, .search-button {
+	width: 350px;
+	height: 50px;
+	font-size: 16px;
+	margin: 7px 0px;
+	padding: 0px 30px;
+	border: 1px solid var(--White-Gray);
+	color: var(--Green);
+	font-weight: 500;
+	font-weight: bold;
+	border-radius: 5px;
+}
+
+.search-button {
+	background-color: var(--DeepGreen);
+	color: var(--White);
+	padding: 8px 24px;
+	border: 0px;
+	border-radius: 6px;
+	letter-spacing: 1.5em;
+}
+
+.search-button:hover {
+	background-color: var(--Yellow);
+}
+
+.search-button:active {
+	background-color: var(--OrangeRed);
+}
+
+main {
+	max-width: 1110px;
+	margin: 0 auto;
+}
+
+.banner {
+	position: relative;
+	padding: 60px 0px 36px 0px;
+}
+
+.image-container {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.photo-title {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	color: var(--White);
+	font-size: 28px;
+	font-weight: 500;
+}
+
+.left-narrow {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	color: var(--White);
+	font-size: 40px;
+	background: none;
+	border: none;
+	padding-left: 30px;
+}
+
+.left-narrow:hover {
+	color: var(--DeepGreen);
+}
+
+.right-narrow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	color: var(--White);
+	font-size: 40px;
+	background: none;
+	border: none;
+	padding-right: 30px;
+}
+
+.right-narrow:hover {
+	color: var(--DeepGreen);
+}
+
+.banner, .activities, .hot-spots, .delicious-meal {
+	padding-bottom: 36px;
+}
+
+.activity-intro, .hot-spots-intro, .meal-intro {
+	display: flex;
+	justify-content: space-between;
+}
+
+.activity-intro h4, .hot-spots-intro h4, .meal-intro h4 {
+	font-size: 36px;
+	font-weight: 300;
+	padding-bottom: 12px;
+}
+
+.location-icon {
+	padding-right: 5px;
+	color: var(--Gray);
+}
+
+.activity-intro a, .hot-spots-intro a, .meal-intro a {
+	color: var(--OrangeRed);
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.activity-intro a:hover, .hot-spots-intro a:hover, .meal-intro a:hover {
+	color: var(--DeepGreen);
+}
+
+.top-activities, .top-hot-spots, .top-meals {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.top-activities li{
+	background-color: var(--CardBackground);
+	border: 1px solid var(--LittleGray);
+	margin: 12px 0px;
+	border-radius: 12px;
+}
+
+.top-activities li .card {
+	display: flex;
+	width: 540px;
+}
+
+/* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
+.top-activities li .card img{
+	transition: 1s ease-out;
+}
+
+.top-activities li .card img:hover{
+	transform: scale(1.1, 1.1);
+	transition: 1s ease-out;
+}
+
+.activity {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 0px 30px;
+}
+
+.activity .date {
+	display: block;
+	color: var(--LightGray);
+	padding-top: 16px;
+}
+
+.activity .activity-title {
+	display: block;
+	font-size: 22px;
+	line-height: 1.5;
+	font-weight: 700;
+	color: var(--Black);
+	padding-top: 3px;
+}
+
+.top-activities .card .area {
+	display: flex;
+	justify-content: space-between;
+	width: 320px;
+	padding-bottom: 18px;
+}
+
+.top-activities .card .area a {
+	text-decoration: none;
+	color: var(--DeepGreen);
+}
+
+.top-activities .card .area a:hover {
+	color: var(--OrangeRed);
+}
+
+.top-hot-spots li .card, .top-meals li .card {
+	display: flex;
+	flex-direction: column;
+}
+
+/* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
+.top-hot-spots .card img, .top-meals .card img {
+	width: 255px;
+	height: 200px;
+	border-radius: 20px;
+	transition: 1s ease-out;
+}
+
+.top-hot-spots .card img:hover, .top-meals .card img:hover {
+	transform: scale(1.1, 1.1);
+	transition: 1s ease-out;
+}
+
+.top-hot-spots .spot-name, .top-meals .restaurant-name {
+	font-size: 22px;
+	line-height: 1.5;
+	font-weight: 700;
+}
+
+.top-hot-spots .location {
+	color: var(--LightGray);
+}
+
+footer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: var(--Footer);
+	height: 60px;
+}
+
+footer .copyright {
+	text-align: center;
+	color: var(--White);
+}
