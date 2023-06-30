@@ -88,6 +88,7 @@ body {
 nav {
 	display: flex;
 	justify-content: space-between;
+	flex-wrap: wrap;
 }
 
 .walking-man-icon {
@@ -105,6 +106,7 @@ nav h1 {
 
 .menu {
 	display: flex;
+	flex-wrap: wrap;
 }
 
 .menu li {
@@ -116,6 +118,7 @@ nav h1 {
 	font-size: 18px;
 	color: var(--Gray);
 	text-decoration: none;
+	text-align: center;
 	/* 下方增加一個偽元素, 藉此做出劃底線的效果, 故在此需要設定相對定位 */
 	position: relative;
 	display: block;
@@ -142,8 +145,27 @@ nav h1 {
 	width: 100%;
 }
 
+@media (max-width: 767px) {
+	nav {
+		justify-content: center;
+		align-items: center;
+	}
+
+	.menu li {
+		width: 50%;
+	}
+}
+
+@media (max-width: 375px) {
+	.menu li{
+		width: 100%;
+		padding: 15px;
+	}
+}
+
 header {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: space-evenly;
 }
 
@@ -179,10 +201,32 @@ header {
 	display: flex;
 	flex-direction: column;
 	padding: 101px 0px 0px 0px;
+	width: 35%;
+}
+
+@media (max-width: 767px) {
+	.intro {
+		text-align: center;
+		padding: 12px 0px;
+	}
+
+	.intro h2{
+		font-size: 32px;
+	}
+
+	.search {
+			padding-top: 33px;
+			width: 90%;
+	}
+}
+
+@media (max-width: 375px) {
+	.intro h2{
+		font-size: 26px;
+	}
 }
 
 .city-groups, .search-keyword, .search-button {
-	width: 350px;
 	height: 50px;
 	font-size: 16px;
 	margin: 7px 0px;
@@ -190,7 +234,6 @@ header {
 	border: 1px solid var(--White-Gray);
 	color: var(--Green);
 	font-weight: 500;
-	font-weight: bold;
 	border-radius: 5px;
 }
 
@@ -240,7 +283,7 @@ main {
 	text-align: center;
 	color: var(--White);
 	font-size: 28px;
-	font-weight: 500;
+	font-weight: 700;
 }
 
 .left-narrow {
@@ -281,19 +324,30 @@ main {
 	color: var(--DeepGreen);
 }
 
-.banner, .activities, .hot-spots, .delicious-meal {
+@media (max-width: 375px) {
+	.photo-title {
+		font-size: 16px;
+	}
+
+	.left-narrow, .right-narrow {
+		display: none;
+	}
+}
+
+.banner, .recent-activity, .top-hot-spots, .delicious-meal {
 	padding-bottom: 36px;
 }
 
 .activity-intro, .hot-spots-intro, .meal-intro {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .activity-intro h4, .hot-spots-intro h4, .meal-intro h4 {
 	font-size: 36px;
 	font-weight: 300;
-	padding-bottom: 12px;
+	padding: 0px 0px 12px 0px;
 }
 
 .location-icon {
@@ -311,48 +365,47 @@ main {
 	color: var(--DeepGreen);
 }
 
-.top-activities, .top-hot-spots, .top-meals {
+.recent-activity-list, .top-hot-spots, .top-meals {
 	display: flex;
 	justify-content: space-between;
 	flex-wrap: wrap;
 }
 
-.top-activities li{
+.recent-activity-list .card{
 	background-color: var(--CardBackground);
 	border: 1px solid var(--LittleGray);
-	margin: 12px 0px;
+	margin: 1% 0px;
 	border-radius: 12px;
-}
-
-.top-activities li .card {
 	display: flex;
-	width: 540px;
+	width: 47%;
 }
 
 /* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
-.top-activities li .card img{
+.recent-activity-list .card img{
 	transition: 1s ease-out;
 }
 
-.top-activities li .card img:hover{
+.recent-activity-list .card img:hover{
 	transform: scale(1.1, 1.1);
 	transition: 1s ease-out;
 }
 
 .activity {
 	display: flex;
+	flex-wrap: wrap;
 	flex-direction: column;
 	justify-content: space-between;
-	padding: 0px 30px;
+	padding: 0px 15px;
 }
 
 .activity .date {
 	display: block;
 	color: var(--LightGray);
 	padding-top: 16px;
+	font-weight: 400;
 }
 
-.activity .activity-title {
+.activity .title {
 	display: block;
 	font-size: 22px;
 	line-height: 1.5;
@@ -361,31 +414,86 @@ main {
 	padding-top: 3px;
 }
 
-.top-activities .card .area {
+.activity .area .location {
+	font-weight: 400;
+}
+
+.activity .area a {
+	font-weight: 500;
+}
+
+.recent-activity-list .card .area {
 	display: flex;
 	justify-content: space-between;
-	width: 320px;
 	padding-bottom: 18px;
 }
 
-.top-activities .card .area a {
+.recent-activity-list .card .area a {
 	text-decoration: none;
 	color: var(--DeepGreen);
 }
 
-.top-activities .card .area a:hover {
+.recent-activity-list .card .area a:hover {
 	color: var(--OrangeRed);
 }
 
-.top-hot-spots li .card, .top-meals li .card {
+@media (max-width: 767px) {
+	.recent-activity-list, .top-hot-spots, .top-meals {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.recent-activity-list .card{
+		width: 100%;
+	}
+
+	.activity .title {
+		font-size: 18px;
+		padding-bottom: 10%;
+	}
+
+	.recent-activity-list .card .area {
+		font-size: 14px;
+	}
+}
+
+
+@media (max-width: 375px) {
+	.recent-activity-list .card {
+		width: 100%;
+	}
+
+	.activity .date {
+		font-size: 12px;
+	}
+
+	.activity .title {
+		font-size: 16px;
+	}
+
+	.recent-activity-list .card .area {
+		font-size: 12px;
+	}
+
+	/* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
+	.recent-activity-list .card img{
+		transition: 1s ease-out;
+	}
+
+	.recent-activity-list .card img:hover{
+		transform: scale(0.9, 0.9);
+		transition: 1s ease-out;
+	}
+}
+
+.top-hot-spots .card, .top-meals .card {
 	display: flex;
 	flex-direction: column;
 }
 
 /* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
 .top-hot-spots .card img, .top-meals .card img {
-	width: 255px;
-	height: 200px;
+	padding: 0px 10px;
 	border-radius: 20px;
 	transition: 1s ease-out;
 }
@@ -399,14 +507,51 @@ main {
 	font-size: 22px;
 	line-height: 1.5;
 	font-weight: 700;
+	padding-top: 10px;
 }
 
-.top-hot-spots .location {
+.top-hot-spots .location, .delicious-meal .location {
 	color: var(--LightGray);
+	padding-top: 6px;
+	font-weight: 400;
+}
+
+@media (max-width: 767px) {
+	.activity-intro h4, .hot-spots-intro h4, .meal-intro h4 {
+		font-size: 24px;
+	}
+
+	.top-hot-spots .card, .top-meals .card {
+		width: 50%;
+		align-items: center;
+		padding: 1% 0px;
+		margin: 2% 0px;
+		/* box-shadow: x軸位移值 y軸位移值 擴散效果數值 陰影顏色 */
+		box-shadow: 0px 2px 3px var(--Gray);
+		border-radius: 6px;
+	}
+
+	.top-hot-spots .spot-name, .top-meals .restaurant-name {
+		padding-top: 2%;
+		font-size: 16px;
+	}
+
+	/* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
+	.top-hot-spots .card img, .top-meals .card img {
+		transition: 1s ease-out;
+		width: 100%;
+		height: auto;
+	}
+
+	.top-hot-spots .card img:hover, .top-meals .card img:hover {
+		transform: scale(0.9, 0.9);
+		transition: 1s ease-out;
+	}
 }
 
 footer {
 	display: flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
 	background-color: var(--Footer);
@@ -416,4 +561,11 @@ footer {
 footer .copyright {
 	text-align: center;
 	color: var(--White);
+	font-weight: 400;
+}
+
+@media (max-width: 375px) {
+	footer { 
+		font-size: 12px;
+	}
 }
