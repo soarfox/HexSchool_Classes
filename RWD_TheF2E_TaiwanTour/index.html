@@ -4,10 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>台灣走走・Tai Tour</title>
-  <link rel="stylesheet" href="./css/all.css">
-  <!-- 引用Awesone font的圖示 -->
+  <title>各地景點美食住宿-台灣走走・Tai Tour</title>
+  <link rel="shortcut icon" href="./images/icon/web_icon.ico">
+  <meta name="author" content="六角學院">
+  <!-- 使用emmet的縮寫, 輸入meta:desc並按下tab鍵自動生出下方語法 -->
+  <meta name="description" content="各縣市最新的旅遊資訊，包括：旅遊景點、各地活動、私房美食、安心住宿，全部都在這裡了。">
+  <!-- 使用emmet的縮寫, 輸入meta:kw並按下tab鍵自動生出下方語法; 關鍵字放在越前面者則權重越高 -->
+  <meta name="keywords" content="旅遊, 景點, 好玩活動, 美食, 住宿">
+  <!-- 使用emmet的縮寫, 輸入link:css並按下tab鍵自動生出下方語法 -->
+  <!-- 不論對方是使用什麼版本的IE瀏覽器, 一律強制以最新版的IE來渲染; 避免對方明明是IE9, 結果卻因為曾經有改到相容性設定而以IE7呈現, 加上這一行程式碼即可完全避免掉這種狀況 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 社群軟體盛行的現在, 在通訊或社群軟體上分享網址時都會出現該網站的標題, 縮圖與描述, 透過設定og可以更準確的說明網站的內容, 參考資料為六角學院官方網站的<head>標籤內的<meta>內容, https://www.hexschool.com/ -->
+  <meta property="og:title" content="各縣市最新的旅遊/景點/美食/住宿資訊-台灣走走・Tai Tour">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://soarfox.github.io/HexSchool_Classes/RWD_TheF2E_TaiwanTour/">
+  <meta property="og:description" content="各縣市最新的旅遊資訊都在這裡。">
+  <meta property="og:image" content="https://i.imgur.com/7QmdcPa.png">
+  <!-- 引用Font Awesome的圖示 -->
   <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/all.css">
 </head>
 
 <body>
@@ -28,40 +43,12 @@
         <h3><i class="fa-solid fa-location-dot taiwan-location-icon"></i>台灣旅遊景點導覽 Taiwan Travel Guide</h3>
       </div>
       <div class="search">
-        <select class="city-groups" name="city" id="city">
-          <option value="">探索景點</option>
-          <optgroup label="北部地區">
-            <option value="Keelung">基隆市</option>
-            <option value="Taipei">臺北市</option>
-            <option value="NewTaipei">新北市</option>
-            <option value="Taoyuan">桃園市</option>
-            <option value="Hsinchu">新竹市</option>
-            <option value="HsinchuCounty">新竹縣</option>
-            <option value="MiaoliCounty">苗栗縣</option>
-          </optgroup>
-          <optgroup label="中部地區">
-            <option value="Taichung">臺中市</option>
-            <option value="ChanghuaCounty">彰化縣</option>
-            <option value="NantouCounty">南投縣</option>
-            <option value="YunlinCounty">雲林縣</option>
-            <option value="ChiayiCounty">嘉義縣</option>
-            <option value="Chiayi">嘉義市</option>
-          </optgroup>
-          <optgroup label="南部地區">
-            <option value="Tainan">臺南市</option>
-            <option value="Kaohsiung">高雄市</option>
-            <option value="PingtungCounty">屏東縣</option>
-          </optgroup>
-          <optgroup label="東部地區">
-            <option value="YilanCounty">宜蘭縣</option>
-            <option value="HualienCounty">花蓮縣</option>
-            <option value="TaitungCounty">臺東縣</option>
-          </optgroup>
-          <optgroup label="外島地區">
-            <option value="PenghuCounty">澎湖縣</option>
-            <option value="KinmenCounty">金門縣</option>
-            <option value="LienchiangCounty">連江縣</option>
-          </optgroup>
+        <select class="search-category" name="city" id="city">
+          <option value="">請選擇您想找尋的類別</option>
+          <option value="attractions">探索景點</option>
+          <option value="activities">節慶活動</option>
+          <option value="meals">品嚐美食</option>
+          <option value="living">安心旅宿</option>
         </select>
         <input class="search-keyword" type="text" name="keyword" placeholder="您想去哪裡？請輸入關鍵字">
         <button class="search-button" name="search"><i class="fa-solid fa-magnifying-glass"></i>搜尋</button>
