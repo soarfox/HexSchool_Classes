@@ -312,6 +312,7 @@ header {
 	}
 }
 
+/* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
 .search-category,
 .search-keyword,
 .search-button {
@@ -321,8 +322,17 @@ header {
 	padding: 0px 30px;
 	border: 1px solid var(--White-Gray);
 	color: var(--Green);
-	font-weight: 500;
+	/* 此字型源自於index.html的<head>內所引用的字體 */
+	font-family: Noto Sans TC;
 	border-radius: 5px;
+}
+
+.search-category {
+	font-weight: 500;
+}
+
+.search-keyword {
+	font-weight: 400;
 }
 
 .search-button {
@@ -331,6 +341,7 @@ header {
 	padding: 8px 24px;
 	border: 0px;
 	border-radius: 6px;
+	font-weight: 700;
 	letter-spacing: 1.5em;
 }
 
