@@ -1,0 +1,157 @@
+.login {
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  color: $brown;
+  padding-bottom: 50px;
+
+  .title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .logo {
+      padding: 50px 0px 5px 0px;
+    }
+
+    .slogan {
+      padding-bottom: 35px;
+      font-size: 1.25em;
+      font-weight: bold;
+    }
+  }
+
+  .login-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: $middle-gray;
+    border: $middle-gray;
+    border-top: 4px solid $orange;
+    box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
+
+    @include mobile {
+      margin: 15px;
+    }
+
+    .title {
+      font-size: 1.125em;
+      font-weight: bold;
+      padding: 11px 0px 16px 0px;
+    }
+
+    .table {
+      padding: 0px 15px 15px 0px;
+
+      @include mobile {
+        width: 100%;
+        padding: 15px;
+      }
+
+      .email span,
+      .password span {
+        display: block;
+        padding-bottom: 3px;
+      }
+
+      .email input,
+      .password input {
+        width: 100%;
+        font-size: 1.5em;
+        border-radius: 3px;
+        border: 1px solid $gray;
+      }
+
+      .email {
+
+        // 使用相對定位與絕對定位, 將icon挪至input欄位內
+        .input-email {
+          position: relative;
+
+          .mail-icon {
+            position: absolute;
+            top: 17%;
+            left: 2%;
+            color: rgba(61, 17, 0, 0.50);
+          }
+
+          input {
+            margin-bottom: 15px;
+            padding-left: 10%;
+          }
+        }
+
+      }
+
+      .password {
+        .input-password {
+          position: relative;
+
+          .lock-icon1 {
+            position: absolute;
+            color: rgba(61, 17, 0, 0.50);
+          }
+
+          .lock-icon1 {
+            top: 17%;
+            left: 2%;
+          }
+        }
+
+        input {
+          margin-bottom: 15px;
+          padding-left: 10%;
+        }
+
+        .had-account {
+          margin-bottom: 30px;
+
+          a {
+            text-decoration: none;
+            color: $orange;
+            font-size: 0.875em;
+          }
+        }
+      }
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .register-btn,
+        .login-btn {
+          font-size: 1em;
+          color: $white;
+          border-radius: 3px;
+          border: none;
+          padding: 6px 28px;
+          width: 48%;
+        }
+
+        .register-btn {
+          display: block;
+          text-align: center;
+          background-color: $gray;
+          text-decoration: none;
+          padding: 8px 28px;
+        }
+
+        .login-btn {
+          background-color: $orange;
+        }
+
+        .register-btn:hover, .login-btn:hover {
+          background-color: $brown;
+          cursor: pointer;
+        }
+
+        .register-btn:active, .login-btn:active {
+          background-color: $white;
+          color: $brown;
+        }
+      }
+    }
+  }
+}

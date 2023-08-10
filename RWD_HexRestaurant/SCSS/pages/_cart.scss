@@ -1,0 +1,312 @@
+.cart {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  @include mobile () {
+    flex-direction: column;
+  }
+
+  .categories {
+    width: 25%;
+    padding: 48px 20px 0px 42px;
+
+    @include mobile () {
+      width: 100%;
+      padding: 52px 0px 16px 18px;
+    }
+
+
+    .text {
+      font-size: 1.25em;
+      padding-bottom: 16px;
+
+      .leaf {
+        font-size: 1.625em;
+        padding-right: 0.3em;
+      }
+    }
+
+    .meal-menu {
+      display: flex;
+      flex-direction: column;
+
+      li {
+        border-bottom: 1px solid $brown;
+
+        a {
+          color: $brown;
+          display: block;
+          padding: 10px 16px;
+          text-decoration: none;
+        }
+
+        a:hover {
+          background-color: $brown;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  .meals {
+    width: 75%;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 42px 0px 0px;
+
+    @include mobile () {
+      width: 100%;
+      padding: 33px 10px 30px 10px;
+    }
+
+    .search-cart {
+      display: flex;
+      justify-content: space-between;
+
+      @include mobile () {
+        flex-direction: column;
+      }
+
+      .search-magnifying {
+        display: flex;
+
+        .search-bar {
+          width: 440px;
+          border: 2px solid $brown;
+          font-size: 1.5em;
+          background-color: $main-bg;
+
+          // 只要裝置螢幕解析度小於或等於iPad直式大小, 就將搜尋列改成100%
+          @include iPad () {
+            width: 100%;
+          }
+
+        }
+
+        .magnifying {
+          padding: 6px;
+          margin-left: -2px;
+          background-color: $brown;
+          color: $white;
+          font-size: 19px;
+          border: none;
+        }
+
+        .magnifying:hover,
+        .magnifying:active {
+          color: $orange;
+        }
+      }
+
+      .cart {
+        display: flex;
+        // 若沒有指定明確的 flex-direction 屬性, 則預設將會自動繼承父元素的 flex-direction: column; 故在此需要指定為row
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: flex-end;
+        padding-right: 20px;
+
+        @include mobile () {
+          padding: 15px 0px 0px 0px;
+        }
+
+        .checkout {
+          padding: 0px 12px;
+          border-right: 1px solid $brown;
+          text-decoration: none;
+          font-weight: bold;
+        }
+
+        .checkout:hover,
+        .checkout:active {
+          background-color: $orange;
+          color: $white;
+        }
+
+        .shopping-cart {
+          font-size: 1.68em;
+          color: $brown;
+          padding: 0px 8px;
+          position: relative;
+        }
+
+        .shopping-cart:hover,
+        .shopping-cart:active {
+          background-color: $orange;
+          color: $white;
+        }
+
+        .shopping-cart::after {
+          /* 這裡是要顯示的小數字 */
+          content: "5";
+          position: absolute;
+          top: -8px;
+          right: -8px;
+          background-color: $orange;
+          color: $white;
+          border-radius: 50%;
+          border: 1px solid $white;
+          padding: 3px 5px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .meal-cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      li {
+        width: 30%;
+        margin: 26px 10px 30px 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: 3px 4px 5px rgba(0, 0, 0, 0.3);
+        position: relative;
+
+        @include iPad () {
+          width: 46%;
+        }
+
+        @include mobile () {
+          width: 100%;
+        }
+
+        // 位於卡片右上角的緞帶效果
+        .ribbon-wrapper {
+          width: 108px;
+          height: 108px;
+          overflow: hidden;
+          position: absolute;
+          /*  改變緞帶所在的位置  */
+          top: -6px;
+          right: -6px;
+
+          // 緞帶內的文字
+          .tag {
+            font-weight: bold;
+            line-height: 18px;
+            color: #ffffff;
+            text-align: center;
+            text-transform: uppercase;
+            /*  將整個文字往右下方旋轉45度  */
+            transform: rotate(45deg);
+            position: relative;
+            /*  緞帶上下的寬窄度  */
+            padding: 7px 0;
+            left: -4px;
+            top: 26px;
+            /*  緞帶左右的寬度  */
+            width: 150px;
+            background-color: #3eccab;
+            color: #fff;
+            /*  透過兩層陰影, 讓緞帶下方看起來變得更有立體感  */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: -3px 5px 6px -5px rgba(0, 0, 0, 0.5);
+          }
+
+          /* 緞帶左上方的小三角形 */
+          .tag:before {
+            content: "";
+            position: absolute;
+            left: 0px;
+            top: 100%;
+            z-index: -1;
+            border-left: 4px solid #4e7c7d;
+            /*  透過將顏色設為透明色, 藉此打造出正三角形  */
+            border-right: 4px solid transparent;
+            border-bottom: 4px solid transparent;
+            border-top: 4px solid #4e7c7d;
+          }
+
+          /* 緞帶右下方的小三角形 */
+          .tag:after {
+            content: "";
+            position: absolute;
+            right: 7px;
+            top: 100%;
+            z-index: -1;
+            border-left: 4px solid transparent;
+            border-right: 4px solid #4e7c7d;
+            border-bottom: 4px solid transparent;
+            border-top: 4px solid #4e7c7d;
+          }
+        }
+
+        // 讓圖片填滿整個容器, 使得愛心圖案不會跑到圖片之外的地方
+        .meal-img {
+          width: 100%;
+        }
+
+        .heartBtn {
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          font-size: 1.5em;
+          color: $white;
+          background: none;
+          border: none;
+        }
+
+        .heartBtn:hover,
+        .heartBtn:active {
+          cursor: pointer;
+        }
+
+        .title {
+          padding: 11px 50px 0px 50px;
+          font-size: 1.125em;
+          line-height: 1.5em;
+        }
+
+        .eng-title {
+          font-size: 0.75em;
+        }
+
+        .border-line {
+          width: 93px;
+          border-top: 1px solid #000;
+          margin: 8px 0px 20px 0px;
+        }
+
+        .price {
+          font-weight: bold;
+          font-style: italic;
+          font-size: 1.125em;
+
+          .dollar-sign {
+            color: $brown;
+            font-weight: lighter;
+          }
+        }
+
+        .add-cart {
+          color: #FF5E45;
+          border: 2px solid #FF5E45;
+          background-color: $main-bg;
+          padding: 2px;
+          margin: 10px;
+          width: 90%;
+          border-radius: 3px;
+        }
+
+        .add-cart:hover,
+        .add-cart:active {
+          cursor: pointer;
+          color: $white;
+          border: 2px solid $brown;
+          background-color: $brown;
+        }
+
+        .add-cart:active {
+          border: 2px solid $orange;
+          background-color: $orange;
+        }
+      }
+    }
+  }
+}

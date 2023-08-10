@@ -1,0 +1,169 @@
+body {
+  font-family: 'Microsoft JhengHei', sans-serif;
+}
+
+.wrap {
+  max-width: 1024px;
+  margin: 0 auto;
+  background-color: $main-bg;
+
+  .go-top {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-size: 2em;
+
+    @include mobile () {
+      font-size: 1.5em;
+    }
+
+    a {
+      color: $brown;
+    }
+  }
+}
+
+.navbar {
+  // 因為設定了position: fixed; 因此在水平方向上的寬度將不再自動撐開至整行, 而只會根據內容的寬度進行調整, 故為了佔滿一整行, 需要撰寫寬度設定width: 100%;
+  position: fixed;
+  // 當設定了寬度之後, 因為它會超出祖先元素.wrap的寬度限制, 直接與視窗寬度對齊, 造成半透明背景超出.wrap範圍, 故在此設定一個最大寬度, 藉此限制其不超出.wrap範圍
+  width: 100%;
+  max-width: 1024px;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $white;
+  // 設定圖層屬性為2以上, 使得其他引用layout.scss的各個分頁的內容將不會疊加在導覽列之上
+  z-index: 2;
+  
+  @include mobile () {
+    position: fixed;
+    padding: 16px 14px;
+    background-color: $black;
+  }
+
+  .title {
+    background-image: url(../images/index/logo_w@svg.svg);
+    background-repeat: no-repeat;
+    width: 120px;
+    height: 24px;
+    text-indent: 101%;
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0px 16px;
+
+    @include mobile () {
+      margin: 0px;
+    }
+  }
+
+  .m-menu {
+    display: none;
+
+    @include mobile () {
+      display: block;
+      font-size: 1em;
+    }
+  }
+
+  .menu {
+    display: flex;
+    align-items: center;
+  
+    @include mobile () {
+      // 相對於.navbar在mobile解析度時的相對定位, 這裡設定為絕對定位, 以利產生出漢堡選單的效果
+      position: absolute;
+      // 當漢堡選單尚未打開時, 也就是高度尚未從0px變成400px之前, 先將ul選單內的所有內容都隱藏起來, 故使用overflow: hidden;將多餘的資料隱藏起來
+      overflow: hidden;
+      // 設定一個高度, 以避免漢堡選單遮蔽了導覽列
+      top: 56px;
+      // 寬度設為左右均為0px, 如此可讓選單li項目的寬度完整呈現, 如果li項目寬度設定為100%, 則就能完整呈現出100%
+      left: 0;
+      right: 0;
+      text-align: center;
+      display: block;
+      font-size: 1.5em;
+      // 當尚未打開漢堡選單時, 高度設為0px
+      max-height: 0px;
+      // 將高度展開(從0px ~ 400px)的動畫效果設為1秒鐘完成
+      transition: max-height 1s;
+      background-color: $main-bg;
+    }
+  }
+
+  .menu li {
+    @include mobile () {
+      // 將漢堡選單的li項目寬度設定100%
+      width: 100%;
+      background-color: $black;
+    }
+  }
+
+  .menu li a {
+    display: block;
+    padding: 16px 30px;
+    text-decoration: none;
+    color: $white;
+    font-size: 1em;
+  }
+
+  .menu li a:hover {
+    background-color: $main-bg;
+    color: $brown;
+  }
+}
+
+.show-mobile-menu .menu {
+  @include mobile () {
+  // 將漢堡選單的高度設為400px
+    max-height: 400px;
+  }
+}
+
+.banner {
+  background-image: url(../images/index/header_desktop.png);
+  // 務必要設定高度才能讓圖片能夠顯示出來; 且因為只設定高度而不設定寬度, 故不會讓網頁出現x軸
+  height: 420px;
+  // 讓圖片水平及垂直置中
+  background-position: center center;
+  // 透過flexbox可將內容文字排版於正中央
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $white;
+  text-align: center;
+  
+  @include mobile () {
+    background-image: url(../images/index/header_mobile.png);
+  }
+
+  .slogan {
+    background-color: rgba(0, 0, 0, 0.35);
+    padding: 20px 32px 26px 32px;
+    line-height: 1.5;
+  
+    @include mobile () {
+      padding: 20px 6px;
+    }
+  }
+
+  h2 {
+    font-size: 2.25em;
+    padding-bottom: 16px;
+    
+    span {
+      @include mobile () {
+        display: block;
+      }
+    }
+  }
+
+  h3 span {
+    display: block;
+  }
+
+  .fork-icon {
+    color: $white;
+  }
+}

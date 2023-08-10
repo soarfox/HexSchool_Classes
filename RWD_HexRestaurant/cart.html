@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>餐廳菜單 - 六角西餐廳</title>
+  <link rel="shortcut icon" href="./images/door_icon.ico">
+  <meta name="author" content="UI Designer: 六角學院">
+  <meta name="author" content="Website Engineer: Howard">
+  <!-- 使用emmet的縮寫, 輸入meta:desc並按下tab鍵自動生出下方語法 -->
+  <meta name="description" content="品味創意，享受美味，美式漢堡的極致饗宴！">
+  <!-- 使用emmet的縮寫, 輸入meta:kw並按下tab鍵自動生出下方語法; 關鍵字放在越前面者則權重越高 -->
+  <meta name="keywords" content="美式漢堡, 脆薯, 沙拉, 舒適用餐環境, 派對聚會, 團體聚餐">
+  <!-- 使用emmet的縮寫, 輸入link:css並按下tab鍵自動生出下方語法 -->
+  <!-- 不論對方是使用什麼版本的IE瀏覽器, 一律強制以最新版的IE來渲染; 避免對方明明是IE9, 結果卻因為曾經有改到相容性設定而以IE7呈現, 加上這一行程式碼即可完全避免掉這種狀況 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 社群軟體盛行的現在, 在通訊或社群軟體上分享網址時都會出現該網站的標題, 縮圖與描述, 透過設定og可以更準確的說明網站的內容, 參考資料為六角學院官方網站的<head>標籤內的<meta>內容, https://www.hexschool.com/ -->
+  <meta property="og:title" content="品味創意，享受美味  | 六角西餐廳">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.hexschool.com/">
+  <meta property="og:description" content="品味創意，享受美味，美式漢堡的極致饗宴！">
+  <meta property="og:image" content="https://i.imgur.com/NmH0fsD.png">
+  <!-- 引用Font Awesome圖示的kit -->
+  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <!-- 建議先引用CSS, 再引入javascript, 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
+  <link rel="stylesheet" href="./css/all.css">
+  <!-- 引用js -->
+  <script src="./js/hamburger_menu.js"></script>
+  <script src="./js/like_sign.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <header class="header" id="header">
+      <div class="navbar">
+        <a href="index.html">
+          <!--  因為使用圖片取代文字的技巧, 故在畫面上看不到文字, 但這樣對於一些使用螢幕閱讀器的人士來說將無法理解這張圖片的意思, 故使用aria-label屬性並為其加上具體描述, 使螢幕閱讀器能夠閱讀出該段訊息, 有助於相關人士理解這張圖片的意義  -->
+          <h1 class="title" aria-label="桌上有一盤主餐, 裡面是一個牛肉起司漢堡和一些金黃薯條, 漢堡內夾著新鮮蕃茄, 美生菜, 紅洋蔥, 酸黃瓜和兩片濃郁起司, 在這主餐後方是一杯泡沫紅茶">六角西餐廳</h1>
+        </a>
+        <i class="fa-solid fa-bars m-menu"></i>
+        <ul class="menu">
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="cart.html">菜單</a></li>
+          <li><a href="register.html">註冊</a></li>
+          <li><a href="login.html">登入</a></li>
+        </ul>
+      </div>
+      <!--  因為使用圖片取代文字的技巧, 故在畫面上看不到文字, 但這樣對於一些使用螢幕閱讀器的人士來說將無法理解這張圖片的意思, 故使用aria-label屬性並為其加上具體描述, 使螢幕閱讀器能夠閱讀出該段訊息, 有助於相關人士理解這張圖片的意義  -->
+      <div class="banner" aria-label="桌上有一盤主餐, 裡面是一個牛肉起司漢堡和一些金黃薯條, 漢堡內夾著新鮮蕃茄, 美生菜, 紅洋蔥, 酸黃瓜和兩片濃郁起司, 在這主餐後方是一杯泡沫紅茶">
+        <div class="slogan">
+          <h2>
+            <span>咬一口</span><span>就無法忘懷的漢堡</span>
+          </h2>
+          <h3>
+            <span>七夕絕對無法錯過的好滋味</span>
+            <span>
+              <i class="fa-solid fa-utensils fork-icon"></i>
+              六角大漢堡
+              <i class="fa-solid fa-utensils fork-icon"></i>
+            </span>
+          </h3>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="cart">
+        <div class="categories">
+          <div class="text">
+            <i class="fa-solid fa-leaf leaf"></i>
+            線上訂購美食
+          </div>
+          <ul class="meal-menu">
+            <li><a href="#">全部(23)</a></li>
+            <li><a href="#">只愛吃薯條(18)</a></li>
+            <li><a href="#">加熱就可食(1)</a></li>
+            <li><a href="#">不敗漢堡系列(4)</a></li>
+          </ul>
+        </div>
+        <div class="meals">
+          <div class="search-cart">
+            <div class="search-magnifying">
+              <input type="text" class="search-bar">
+              <button class="magnifying">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </button>
+            </div>
+            <div class="cart">
+              <a class="checkout" href="#">結帳去</a>
+              <a href="#" class="cart-icon">
+                <i class="fa-solid fa-cart-shopping shopping-cart"></i>
+              </a>
+            </div>
+          </div>
+          <ul class="meal-cards">
+            <li>
+              <button class="heartBtn"><i class="fa-regular fa-heart"></i></button>
+              <img class="meal-img" src="./images/cart/product_1.png" alt="左邊是一大把的美生菜, 右邊是一個雙層牛肉漢堡, 漢堡裡面夾雜著一片起司與幾片新鮮番茄">
+              <div class="ribbon-wrapper">
+                <div class="tag">熱銷美食</div>
+              </div>
+              <div class="title">經典漢堡套餐</div>
+              <div class="eng-title">Classic Hamburger Package</div>
+              <div class="border-line"></div>
+              <div class="price">
+                <i class="fa-solid fa-dollar-sign dollar-sign">
+                </i>
+                120
+              </div>
+              <button name="add-cart" class="add-cart">
+                <i class="fa-solid fa-cart-shopping small-cart-icon"></i>
+                加入購物車
+              </button>
+            </li>
+            <li>
+              <button class="heartBtn"><i class="fa-regular fa-heart"></i></button>
+              <img class="meal-img" src="./images/cart/product_2.png" alt="在一個圓形的黑色烤肉爐上, 裡面正烤著四根香腸, 底下的火焰因著香腸滴下去的油脂而竄升到香腸身上, 此時烤爐內也烤著培根">
+              <div class="title">英俊香腸</div>
+              <div class="eng-title">Handsome Sausage</div>
+              <div class="border-line"></div>
+              <div class="price">
+                <i class="fa-solid fa-dollar-sign dollar-sign">
+                </i>
+                1,024
+              </div>
+              <button name="add-cart" class="add-cart">
+                <i class="fa-solid fa-cart-shopping small-cart-icon"></i>
+                加入購物車
+              </button>
+            </li>
+            <li>
+              <button class="heartBtn"><i class="fa-regular fa-heart"></i></button>
+              <img class="meal-img" src="./images/cart/product_3.png" alt="前景是兩個打開的漢堡皮攤在桌面上, 背景是三個完整的超厚牛肉起司培根漢堡, 每個漢堡內還夾雜著紫色洋蔥">
+              <div class="title">漢堡兄弟</div>
+              <div class="eng-title">Hamburg Brothers</div>
+              <div class="border-line"></div>
+              <div class="price">
+                <i class="fa-solid fa-dollar-sign dollar-sign">
+                </i>
+                792
+              </div>
+              <button name="add-cart" class="add-cart">
+                <i class="fa-solid fa-cart-shopping small-cart-icon"></i>
+                加入購物車
+              </button>
+            </li>
+            <li>
+              <button class="heartBtn"><i class="fa-regular fa-heart"></i></button>
+              <img class="meal-img" src="./images/cart/product_4.png" alt="桌面左側是相當多的炸薯條, 右側則是一個漢堡表皮及大量的美生菜, 中間後方還有一片起司與超厚牛肉一併放在桌面上">
+              <div class="title">完美願望</div>
+              <div class="eng-title">Dragon Ball Package</div>
+              <div class="border-line"></div>
+              <div class="price">
+                <i class="fa-solid fa-dollar-sign dollar-sign">
+                </i>
+                999,999
+              </div>
+              <button name="add-cart" class="add-cart">
+                <i class="fa-solid fa-cart-shopping small-cart-icon"></i>
+                加入購物車
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </main>
+    <footer class="footer">
+      <div class="about-contact">
+        <div class="about">
+          <div class="title">關於 六角西餐廳</div>
+          <p>Curabitur lobortis id lorem id bibndum. Ut id consectetur magna. Quisque volutpat augue enim, pulvinar
+            lobortis nibh lacinia at. </p>
+        </div>
+        <div class="contact">
+          <div class="title">聯絡方式</div>
+          <ul class="info">
+            <li>高雄市中正五路到底</li>
+            <li><a href="tel:+886 886 886">+886 886 886</a></li>
+            <li><a href="mailto:service@hexschool.com?subject=有關六角西餐廳的最終作業">service@hexschool.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="brand-social">
+        <div class="title">
+          <a href="#">
+            <img src="./images/index/logo_l@svg.svg" width="245" height="49" alt="深咖啡色的中文字寫著餐廳的名稱--六角西餐廳">
+          </a>
+        </div>
+        <ul class="social-media">
+          <li>
+            <a href="#">
+              <i class="fa-brands fa-square-google-plus google-plus"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-brands fa-twitter twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <i class="fa-brands fa-square-facebook facebook"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <div class="go-top">
+      <a href="#header">
+        <i class="fa-solid fa-circle-chevron-up arrow"></i>
+      </a>
+    </div>
+  </div>
+</body>
+
+</html>

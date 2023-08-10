@@ -1,0 +1,13 @@
+@mixin iPad {
+  @media (max-width: 768px) {
+    @content
+  }
+};
+
+
+// iPhone SE / 5 的橫向為568px
+@mixin mobile {
+  @media (max-width: 569px){
+    @content
+  }
+};

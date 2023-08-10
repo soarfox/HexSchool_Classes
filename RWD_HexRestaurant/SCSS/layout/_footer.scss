@@ -1,0 +1,87 @@
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  color: $brown;
+  padding: 50px 42px;
+
+  @include mobile () {
+    flex-direction: column;
+    padding: 50px 10px;
+  }
+
+  .about-contact {
+    display: flex;
+  
+    @include mobile () {
+      flex-direction: column;
+    }
+
+    .about, .contact {
+      max-width: 299px;
+      line-height: 1.5;
+    }
+
+    .title {
+      font-size: 1.5em;
+      padding-bottom: 16px;
+    }
+  }
+
+  .contact {
+    margin-left: 21px;
+  
+    @include mobile () {
+      margin: 30px 0px;
+    }
+
+    .info {
+      list-style-type: disc;
+      margin-left: 21px;
+      // 透過下方實現文字超出容器寬度時, 將會自動斷行的效果
+      overflow-wrap: break-word;
+
+      li a {
+        text-decoration: none;
+        color: $brown;
+      }
+    }
+  }
+
+  .brand-social .title {
+    font-size: 3.06em;
+    font-weight: bold;
+  
+    @include mobile () {
+      text-align: right;
+    }
+  }
+
+  .social-media {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding-top: 22px;
+
+    .google-plus, .twitter, .facebook {
+      border-radius: 4px;
+      font-size: 2.25em;
+      margin: 0px 6px;
+    }
+
+    .google-plus {
+      color: $google-red;
+    }
+
+    .twitter {
+      background-color: $twitter-blue;
+      font-size: 1.25em;
+      padding: 6px;
+      color: $white;
+    }
+
+    .facebook {
+      color: $facebook-blue;
+    }
+  }
+}
