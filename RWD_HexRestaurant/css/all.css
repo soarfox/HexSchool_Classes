@@ -486,7 +486,8 @@ body {
   text-align: right;
 }
 
-.reservation, .map-form {
+.reservation,
+.map-form {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
@@ -531,6 +532,7 @@ body {
   .map-form .form {
     width: 100%;
     padding: 0px 11px;
+    font-size: 1.5em;
   }
 }
 .map-form .form span {
@@ -542,8 +544,13 @@ body {
   color: #4A4A4A;
   padding: 5px 14px;
 }
+@media (max-width: 569px) {
+  .map-form .form input {
+    font-size: 1.3em;
+  }
+}
 .map-form .input-field {
-  margin: 6px 0px 12px 0px;
+  margin: 12px 0px 12px 0px;
 }
 .map-form .btns {
   text-align: right;
@@ -565,18 +572,18 @@ body {
   background-color: rgba(0, 0, 0, 0.35);
   margin-right: 11px;
 }
-.map-form .button-cancel:active {
-  color: rgba(0, 0, 0, 0.35);
-  background-color: #ffffff;
-  font-weight: bold;
-}
 .map-form .button-submit {
   background-color: #f56c23;
 }
+.map-form .button-cancel:hover,
+.map-form .button-submit:hover {
+  background-color: #3D1101;
+  cursor: pointer;
+}
+.map-form .button-cancel:active,
 .map-form .button-submit:active {
-  color: #f56c23;
   background-color: #ffffff;
-  font-weight: bold;
+  color: #3D1101;
 }
 
 .cart {
