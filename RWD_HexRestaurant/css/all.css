@@ -155,7 +155,7 @@ body {
 }
 .navbar .menu li a {
   display: block;
-  padding: 16px 30px;
+  padding: 16px 20px;
   text-decoration: none;
   color: #ffffff;
   font-size: 1em;
@@ -163,6 +163,10 @@ body {
 .navbar .menu li a:hover {
   background-color: #efeae7;
   color: #3D1101;
+}
+.navbar .menu li a:active {
+  background-color: #f56c23;
+  color: #ffffff;
 }
 
 @media (max-width: 569px) {
