@@ -544,11 +544,6 @@ body {
   color: #4A4A4A;
   padding: 5px 14px;
 }
-@media (max-width: 569px) {
-  .map-form .form input {
-    font-size: 1.3em;
-  }
-}
 .map-form .input-field {
   margin: 12px 0px 12px 0px;
 }
