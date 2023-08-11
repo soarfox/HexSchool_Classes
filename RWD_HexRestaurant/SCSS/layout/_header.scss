@@ -59,7 +59,7 @@ body {
 
     @include mobile () {
       display: block;
-      font-size: $h5-font-size;
+      font-size: $h2-font-size;
     }
   }
 
@@ -101,7 +101,11 @@ body {
     padding: 16px 20px;
     text-decoration: none;
     color: $white;
-    font-size: $h5-font-size;
+
+    @include mobile () {
+      font-size: $h2-font-size;
+    }
+    
   }
 
   .menu li a:hover {

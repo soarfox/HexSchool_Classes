@@ -5,9 +5,9 @@
 };
 
 
-// iPhone SE / 5 的橫向為568px
+// Apple iPhone 12 Pro Max / iPhone 13 Pro Max / iPhone 14 Plus直式螢幕解析度為428px
 @mixin mobile {
-  @media (max-width: 569px){
+  @media (max-width: 428px){
     @content
   }
 };

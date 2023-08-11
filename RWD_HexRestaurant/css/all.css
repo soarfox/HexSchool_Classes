@@ -92,7 +92,7 @@ body {
   color: #ffffff;
   z-index: 2;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .navbar {
     position: fixed;
     padding: 16px 14px;
@@ -109,7 +109,7 @@ body {
   overflow: hidden;
   margin: 0px 16px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .navbar .title {
     margin: 0px;
   }
@@ -117,17 +117,17 @@ body {
 .navbar .m-menu {
   display: none;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .navbar .m-menu {
     display: block;
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 }
 .navbar .menu {
   display: flex;
   align-items: center;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .navbar .menu {
     position: absolute;
     overflow: hidden;
@@ -142,7 +142,7 @@ body {
     background-color: #efeae7;
   }
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .navbar .menu li {
     width: 100%;
     background-color: #000000;
@@ -153,7 +153,11 @@ body {
   padding: 16px 20px;
   text-decoration: none;
   color: #ffffff;
-  font-size: 1rem;
+}
+@media (max-width: 428px) {
+  .navbar .menu li a {
+    font-size: 1.5rem;
+  }
 }
 .navbar .menu li a:hover {
   background-color: #efeae7;
@@ -164,7 +168,7 @@ body {
   color: #ffffff;
 }
 
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .show-mobile-menu .menu {
     max-height: 400px;
   }
@@ -180,7 +184,7 @@ body {
   color: #ffffff;
   text-align: center;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .banner {
     background-image: url(../images/index/header_mobile.png);
   }
@@ -190,7 +194,7 @@ body {
   padding: 20px 32px 26px 32px;
   line-height: 1.5rem;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .banner .slogan {
     padding: 20px 6px;
   }
@@ -199,7 +203,7 @@ body {
   font-size: 2.25rem;
   padding-bottom: 16px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .banner h2 span {
     display: block;
     padding-bottom: 20px;
@@ -218,7 +222,7 @@ body {
   color: #3D1101;
   padding: 50px 42px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .footer {
     flex-direction: column;
     padding: 50px 10px;
@@ -227,7 +231,7 @@ body {
 .footer .about-contact {
   display: flex;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .footer .about-contact {
     flex-direction: column;
   }
@@ -242,7 +246,7 @@ body {
 .footer .contact {
   margin-left: 21px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .footer .contact {
     margin: 30px 0px;
   }
@@ -259,7 +263,7 @@ body {
 .footer .brand-social .title {
   font-weight: bold;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .footer .brand-social .title {
     text-align: right;
   }
@@ -312,7 +316,7 @@ body {
   width: 12%;
   border-bottom: 1px solid #979797;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .why-delicious .middle-line::before {
     display: none;
   }
@@ -326,7 +330,7 @@ body {
   width: 12%;
   border-bottom: 1px solid #979797;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .why-delicious .middle-line::after {
     display: none;
   }
@@ -336,7 +340,7 @@ body {
   display: flex;
   justify-content: space-evenly;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .three-features {
     flex-direction: column;
   }
@@ -354,7 +358,7 @@ body {
     padding: 0% 2%;
   }
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .three-features li {
     width: 100%;
     padding: 10% 2% 15% 2%;
@@ -378,7 +382,7 @@ body {
   background-color: #3D1101;
   margin: 50px 0px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .chef {
     flex-direction: column;
   }
@@ -387,7 +391,7 @@ body {
   width: 50%;
   padding-left: 10px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .chef .chef-photo {
     width: 100%;
     padding-left: 0px;
@@ -408,7 +412,7 @@ body {
     padding-right: 30px;
   }
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .chef .chef-intro {
     width: 100%;
     padding: 30px;
@@ -445,7 +449,7 @@ body {
     padding: 32px 10px;
   }
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .customers {
     flex-direction: column;
   }
@@ -500,7 +504,7 @@ body {
   display: flex;
   padding: 38px 42px 50px 42px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .map-form {
     padding: 0px;
     flex-direction: column;
@@ -509,7 +513,7 @@ body {
 .map-form .map-photo {
   width: 50%;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .map-form .map-photo {
     width: 100%;
     padding: 30px 11px;
@@ -522,7 +526,7 @@ body {
   width: 50%;
   padding-left: 20px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .map-form .form {
     width: 90%;
     padding: 0px 11px;
@@ -534,7 +538,7 @@ body {
   padding: 12px 0px 6px 0px;
   color: #3D1101;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .map-form .form span {
     font-size: 1.5rem;
   }
@@ -543,12 +547,12 @@ body {
   color: #4A4A4A;
   padding: 5px 14px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .map-form .form input {
     font-size: 1.5rem;
   }
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .map-form .form .vegetarian {
     font-size: 1.5rem;
   }
@@ -560,7 +564,7 @@ body {
   padding-top: 30px;
   text-align: right;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .map-form .form .btns {
     padding: 30px 0px 50px 0px;
   }
@@ -592,7 +596,7 @@ body {
   justify-content: center;
   align-items: flex-start;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart {
     flex-direction: column;
   }
@@ -601,7 +605,7 @@ body {
   width: 25%;
   padding: 48px 20px 0px 42px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart .categories {
     width: 100%;
     padding: 52px 0px 16px 18px;
@@ -628,7 +632,7 @@ body {
   padding: 10px 16px;
   text-decoration: none;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart .categories .meal-menu li a {
     font-size: 1.5rem;
   }
@@ -643,7 +647,7 @@ body {
   flex-direction: column;
   padding: 48px 42px 0px 0px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart .meals {
     width: 100%;
     padding: 33px 10px 30px 10px;
@@ -653,7 +657,7 @@ body {
   display: flex;
   justify-content: space-between;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart .meals .search-cart {
     flex-direction: column;
   }
@@ -691,7 +695,7 @@ body {
   align-items: flex-end;
   padding-right: 20px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart .meals .search-cart .cart {
     padding: 15px 0px 0px 0px;
     font-size: 1.5rem;
@@ -752,7 +756,7 @@ body {
     width: 46%;
   }
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart .meals .meal-cards li {
     width: 100%;
   }
@@ -859,7 +863,7 @@ body {
   width: 90%;
   border-radius: 3px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .cart .meals .meal-cards li .add-cart {
     font-size: 1.5rem;
   }
@@ -884,7 +888,7 @@ body {
   color: #3D1101;
   padding-bottom: 50px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .login {
     max-width: 569px;
   }
@@ -911,7 +915,7 @@ body {
   border-top: 4px solid #f56c23;
   box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .login .login-field {
     margin: 15px;
   }
@@ -924,7 +928,7 @@ body {
 .login .login-field .table {
   padding: 0px 15px 15px 0px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .login .login-field .table {
     width: 100%;
     padding: 15px;
@@ -1040,7 +1044,7 @@ body {
   border-top: 4px solid #f56c23;
   box-shadow: 3px 3px 4px 0px rgba(0, 0, 0, 0.16);
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .register .register-field {
     margin: 15px;
   }
@@ -1058,7 +1062,7 @@ body {
   width: 50%;
   padding: 0px 20px 0px 15px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .register .register-field .content .terms {
     width: 100%;
     padding: 15px;
@@ -1076,7 +1080,7 @@ body {
   width: 50%;
   padding: 0px 15px 15px 0px;
 }
-@media (max-width: 569px) {
+@media (max-width: 428px) {
   .register .register-field .content .table {
     width: 100%;
     padding: 15px;
