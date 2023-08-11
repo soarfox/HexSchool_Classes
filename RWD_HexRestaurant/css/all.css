@@ -577,6 +577,7 @@ body {
   .map-form .btns input {
     width: 80px;
     height: 50px;
+    text-align: center;
   }
 }
 .map-form .button-cancel {

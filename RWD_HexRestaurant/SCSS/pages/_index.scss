@@ -299,6 +299,8 @@
       @include mobile () {
         width: 80px;
         height: 50px;
+        // 因為iPhone14在此處的"按鈕內的文字"會靠右對齊, 可能是受到祖先層有設定 text-align: right;的影響, 故在此設定將文字"置中對齊"
+        text-align: center;
       }
     }
   }
