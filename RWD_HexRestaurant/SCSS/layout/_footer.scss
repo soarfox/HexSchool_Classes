@@ -19,12 +19,11 @@
 
     .about, .contact {
       max-width: 299px;
-      line-height: 1.5;
-    }
+      line-height: 1.5rem;
 
-    .title {
-      font-size: 1.5em;
-      padding-bottom: 16px;
+      .title {
+        font-size: $h2-font-size;
+      }
     }
   }
 
@@ -49,9 +48,8 @@
   }
 
   .brand-social .title {
-    font-size: 3.06em;
     font-weight: bold;
-  
+
     @include mobile () {
       text-align: right;
     }
@@ -65,23 +63,24 @@
 
     .google-plus, .twitter, .facebook {
       border-radius: 4px;
-      font-size: 2.25em;
       margin: 0px 6px;
     }
 
     .google-plus {
       color: $google-red;
+      font-size: $h1-font-size;
     }
 
     .twitter {
       background-color: $twitter-blue;
-      font-size: 1.25em;
       padding: 6px;
       color: $white;
+      font-size: $h3-font-size;
     }
 
     .facebook {
       color: $facebook-blue;
+      font-size: $h1-font-size;
     }
   }
 }

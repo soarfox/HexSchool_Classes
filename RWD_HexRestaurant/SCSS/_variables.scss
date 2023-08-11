@@ -10,3 +10,27 @@ $orange: #f56c23;
 $google-red: #d64433;
 $twitter-blue: #41ABE1;
 $facebook-blue: #3a5795;
+
+// font-sizes(將以下變數以class name包裝後, 放在_text-styles.scss內, 以利直接套用文字樣式名稱來使用), 單位rem是以網頁基本元素的大小(16px)為準, 且rem不像處於巢狀內的em一般會產生累積效應, 而是單純依據16px來進行設定
+$font-size-base: 1rem;
+
+// 49px (ex. footer內的logo svg)
+$logo-font-size: $font-size-base * 3.06;
+
+// 36px (ex. header內的slogan)
+$h1-font-size: $font-size-base * 2.25;
+
+// 24px (ex. footer內的餐廳聯絡方式)
+$h2-font-size: $font-size-base * 1.5;
+
+// 20px (ex. 首頁的客人總是在詢問 這麼好吃的秘訣是什麼)
+$h3-font-size: $font-size-base * 1.25;
+
+// 18px (ex. 登入頁的login標題, 註冊頁的register標題)
+$h4-font-size: $font-size-base * 1.125;
+
+// 16px (ex. 登入頁的Email Address*)
+$h5-font-size: $font-size-base;
+
+// 14px (ex. 登入頁的忘記密碼?)
+$h6-font-size: $font-size-base * 0.875;

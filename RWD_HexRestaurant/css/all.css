@@ -75,12 +75,7 @@ body {
   position: fixed;
   right: 20px;
   bottom: 20px;
-  font-size: 2em;
-}
-@media (max-width: 569px) {
-  .wrap .go-top {
-    font-size: 1.5em;
-  }
+  font-size: 2.25rem;
 }
 .wrap .go-top a {
   color: #3D1101;
@@ -125,7 +120,7 @@ body {
 @media (max-width: 569px) {
   .navbar .m-menu {
     display: block;
-    font-size: 1em;
+    font-size: 1rem;
   }
 }
 .navbar .menu {
@@ -141,7 +136,7 @@ body {
     right: 0;
     text-align: center;
     display: block;
-    font-size: 1.5em;
+    font-size: 1.5rem;
     max-height: 0px;
     transition: max-height 1s;
     background-color: #efeae7;
@@ -158,7 +153,7 @@ body {
   padding: 16px 20px;
   text-decoration: none;
   color: #ffffff;
-  font-size: 1em;
+  font-size: 1rem;
 }
 .navbar .menu li a:hover {
   background-color: #efeae7;
@@ -193,7 +188,7 @@ body {
 .banner .slogan {
   background-color: rgba(0, 0, 0, 0.35);
   padding: 20px 32px 26px 32px;
-  line-height: 1.5;
+  line-height: 1.5rem;
 }
 @media (max-width: 569px) {
   .banner .slogan {
@@ -201,12 +196,13 @@ body {
   }
 }
 .banner h2 {
-  font-size: 2.25em;
+  font-size: 2.25rem;
   padding-bottom: 16px;
 }
 @media (max-width: 569px) {
   .banner h2 span {
     display: block;
+    padding-bottom: 20px;
   }
 }
 .banner h3 span {
@@ -238,11 +234,10 @@ body {
 }
 .footer .about-contact .about, .footer .about-contact .contact {
   max-width: 299px;
-  line-height: 1.5;
+  line-height: 1.5rem;
 }
-.footer .about-contact .title {
-  font-size: 1.5em;
-  padding-bottom: 16px;
+.footer .about-contact .about .title, .footer .about-contact .contact .title {
+  font-size: 1.5rem;
 }
 .footer .contact {
   margin-left: 21px;
@@ -262,7 +257,6 @@ body {
   color: #3D1101;
 }
 .footer .brand-social .title {
-  font-size: 3.06em;
   font-weight: bold;
 }
 @media (max-width: 569px) {
@@ -278,20 +272,21 @@ body {
 }
 .footer .social-media .google-plus, .footer .social-media .twitter, .footer .social-media .facebook {
   border-radius: 4px;
-  font-size: 2.25em;
   margin: 0px 6px;
 }
 .footer .social-media .google-plus {
   color: #d64433;
+  font-size: 2.25rem;
 }
 .footer .social-media .twitter {
   background-color: #41ABE1;
-  font-size: 1.25em;
   padding: 6px;
   color: #ffffff;
+  font-size: 1.25rem;
 }
 .footer .social-media .facebook {
   color: #3a5795;
+  font-size: 2.25rem;
 }
 
 .why-delicious {
@@ -304,8 +299,8 @@ body {
 .why-delicious .text {
   position: relative;
   text-align: center;
-  line-height: 1.5;
-  font-size: 1.25em;
+  line-height: 1.5rem;
+  font-size: 1.25rem;
   color: #3D1101;
 }
 .why-delicious .middle-line::before {
@@ -420,14 +415,14 @@ body {
   }
 }
 .chef .chef-intro .chef-name {
-  font-size: 1.25em;
-  line-height: 1.3em;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
 }
 .chef .chef-english-name {
   padding-bottom: 16px;
 }
 .chef p {
-  line-height: 1.5em;
+  line-height: 1.5rem;
 }
 
 .responses {
@@ -435,7 +430,7 @@ body {
   flex-direction: column;
 }
 .responses .title {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: #3D1101;
   text-align: center;
 }
@@ -461,7 +456,7 @@ body {
 }
 .customers .avatar {
   width: 30%;
-  padding-right: 1em;
+  padding-right: 16px;
   text-align: center;
 }
 .customers .avatar img {
@@ -473,7 +468,7 @@ body {
   flex-direction: column;
 }
 .customers .name {
-  font-size: 1.125em;
+  font-size: 1.125rem;
   color: #3D1101;
   padding: 22px 0px;
 }
@@ -486,8 +481,7 @@ body {
   text-align: right;
 }
 
-.reservation,
-.map-form {
+.reservation, .map-form {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
@@ -497,8 +491,8 @@ body {
 .reservation span {
   display: block;
   text-align: center;
-  font-size: 1.5em;
-  line-height: 1.5em;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
   color: #3D1101;
 }
 
@@ -530,19 +524,34 @@ body {
 }
 @media (max-width: 569px) {
   .map-form .form {
-    width: 100%;
+    width: 90%;
     padding: 0px 11px;
-    font-size: 1.5em;
+    margin: 0 auto;
   }
 }
 .map-form .form span {
-  font-size: 0.875em;
+  font-size: 0.875rem;
   padding: 12px 0px 6px 0px;
   color: #3D1101;
+}
+@media (max-width: 569px) {
+  .map-form .form span {
+    font-size: 1.5rem;
+  }
 }
 .map-form .form input {
   color: #4A4A4A;
   padding: 5px 14px;
+}
+@media (max-width: 569px) {
+  .map-form .form input {
+    font-size: 1.5rem;
+  }
+}
+@media (max-width: 569px) {
+  .map-form .form .vegetarian {
+    font-size: 1.5rem;
+  }
 }
 .map-form .input-field {
   margin: 12px 0px 12px 0px;
@@ -556,12 +565,19 @@ body {
   }
 }
 .map-form .btns input {
-  font-size: 0.875em;
+  font-size: 1.5rem;
+  text-align: center;
   border-radius: 3px;
   border: 0px;
   color: #ffffff;
   width: 70px;
-  height: 32px;
+  height: 40px;
+}
+@media (max-width: 569px) {
+  .map-form .btns input {
+    width: 80px;
+    height: 50px;
+  }
 }
 .map-form .button-cancel {
   background-color: rgba(0, 0, 0, 0.35);
@@ -570,13 +586,11 @@ body {
 .map-form .button-submit {
   background-color: #f56c23;
 }
-.map-form .button-cancel:hover,
-.map-form .button-submit:hover {
+.map-form .button-cancel:hover, .map-form .button-submit:hover {
   background-color: #3D1101;
   cursor: pointer;
 }
-.map-form .button-cancel:active,
-.map-form .button-submit:active {
+.map-form .button-cancel:active, .map-form .button-submit:active {
   background-color: #ffffff;
   color: #3D1101;
 }
@@ -602,12 +616,12 @@ body {
   }
 }
 .cart .categories .text {
-  font-size: 1.25em;
+  font-size: 1.25rem;
   padding-bottom: 16px;
 }
 .cart .categories .text .leaf {
-  font-size: 1.625em;
-  padding-right: 0.3em;
+  font-size: 1.5rem;
+  padding-right: 5px;
 }
 .cart .categories .meal-menu {
   display: flex;
@@ -621,6 +635,11 @@ body {
   display: block;
   padding: 10px 16px;
   text-decoration: none;
+}
+@media (max-width: 569px) {
+  .cart .categories .meal-menu li a {
+    font-size: 1.5rem;
+  }
 }
 .cart .categories .meal-menu li a:hover {
   background-color: #3D1101;
@@ -653,7 +672,7 @@ body {
 .cart .meals .search-cart .search-magnifying .search-bar {
   width: 440px;
   border: 2px solid #3D1101;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   background-color: #efeae7;
 }
 @media (max-width: 768px) {
@@ -666,7 +685,7 @@ body {
   margin-left: -2px;
   background-color: #3D1101;
   color: #ffffff;
-  font-size: 19px;
+  font-size: 1.25rem;
   border: none;
 }
 .cart .meals .search-cart .search-magnifying .magnifying:hover,
@@ -683,6 +702,7 @@ body {
 @media (max-width: 569px) {
   .cart .meals .search-cart .cart {
     padding: 15px 0px 0px 0px;
+    font-size: 1.5rem;
   }
 }
 .cart .meals .search-cart .cart .checkout {
@@ -697,7 +717,7 @@ body {
   color: #ffffff;
 }
 .cart .meals .search-cart .cart .shopping-cart {
-  font-size: 1.68em;
+  font-size: 1.5rem;
   color: #3D1101;
   padding: 0px 8px;
   position: relative;
@@ -718,7 +738,7 @@ body {
   border-radius: 50%;
   border: 1px solid #ffffff;
   padding: 3px 5px;
-  font-size: 12px;
+  font-size: 0.875rem;
 }
 .cart .meals .meal-cards {
   display: flex;
@@ -758,7 +778,7 @@ body {
 }
 .cart .meals .meal-cards li .ribbon-wrapper .tag {
   font-weight: bold;
-  line-height: 18px;
+  line-height: 1rem;
   color: #ffffff;
   text-align: center;
   text-transform: uppercase;
@@ -807,7 +827,7 @@ body {
   position: absolute;
   top: 0px;
   left: 0px;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   color: #ffffff;
   background: none;
   border: none;
@@ -818,11 +838,11 @@ body {
 }
 .cart .meals .meal-cards li .title {
   padding: 11px 50px 0px 50px;
-  font-size: 1.125em;
-  line-height: 1.5em;
+  font-size: 1.125rem;
+  line-height: 1.5rem;
 }
 .cart .meals .meal-cards li .eng-title {
-  font-size: 0.75em;
+  font-size: 0.875rem;
 }
 .cart .meals .meal-cards li .border-line {
   width: 93px;
@@ -832,7 +852,7 @@ body {
 .cart .meals .meal-cards li .price {
   font-weight: bold;
   font-style: italic;
-  font-size: 1.125em;
+  font-size: 1.125rem;
 }
 .cart .meals .meal-cards li .price .dollar-sign {
   color: #3D1101;
@@ -846,6 +866,11 @@ body {
   margin: 10px;
   width: 90%;
   border-radius: 3px;
+}
+@media (max-width: 569px) {
+  .cart .meals .meal-cards li .add-cart {
+    font-size: 1.5rem;
+  }
 }
 .cart .meals .meal-cards li .add-cart:hover,
 .cart .meals .meal-cards li .add-cart:active {
@@ -867,6 +892,11 @@ body {
   color: #3D1101;
   padding-bottom: 50px;
 }
+@media (max-width: 569px) {
+  .login {
+    max-width: 569px;
+  }
+}
 .login .title {
   display: flex;
   flex-direction: column;
@@ -877,7 +907,7 @@ body {
 }
 .login .title .slogan {
   padding-bottom: 35px;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 .login .login-field {
@@ -895,7 +925,7 @@ body {
   }
 }
 .login .login-field .title {
-  font-size: 1.125em;
+  font-size: 1.125rem;
   font-weight: bold;
   padding: 11px 0px 16px 0px;
 }
@@ -916,7 +946,7 @@ body {
 .login .login-field .table .email input,
 .login .login-field .table .password input {
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   border-radius: 3px;
   border: 1px solid #979797;
 }
@@ -954,37 +984,37 @@ body {
 .login .login-field .table .password .had-account a {
   text-decoration: none;
   color: #f56c23;
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 .login .login-field .table .buttons {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.login .login-field .table .buttons .register-btn,
-.login .login-field .table .buttons .login-btn {
-  font-size: 1em;
+.login .login-field .table .buttons .button-register,
+.login .login-field .table .buttons .button-login {
+  font-size: 1rem;
   color: #ffffff;
   border-radius: 3px;
   border: none;
   padding: 6px 28px;
   width: 48%;
 }
-.login .login-field .table .buttons .register-btn {
+.login .login-field .table .buttons .button-register {
   display: block;
   text-align: center;
   background-color: #979797;
   text-decoration: none;
   padding: 8px 28px;
 }
-.login .login-field .table .buttons .login-btn {
+.login .login-field .table .buttons .button-login {
   background-color: #f56c23;
 }
-.login .login-field .table .buttons .register-btn:hover, .login .login-field .table .buttons .login-btn:hover {
+.login .login-field .table .buttons .button-register:hover, .login .login-field .table .buttons .button-login:hover {
   background-color: #3D1101;
   cursor: pointer;
 }
-.login .login-field .table .buttons .register-btn:active, .login .login-field .table .buttons .login-btn:active {
+.login .login-field .table .buttons .button-register:active, .login .login-field .table .buttons .button-login:active {
   background-color: #ffffff;
   color: #3D1101;
 }
@@ -1007,7 +1037,7 @@ body {
 }
 .register .title .slogan {
   padding-bottom: 35px;
-  font-size: 1.25em;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 .register .register-field {
@@ -1024,7 +1054,7 @@ body {
   }
 }
 .register .register-field .title {
-  font-size: 1.125em;
+  font-size: 1.125rem;
   font-weight: bold;
   padding: 11px 0px 16px 0px;
 }
@@ -1044,10 +1074,10 @@ body {
 }
 .register .register-field .content .terms span,
 .register .register-field .content .terms p {
-  line-height: 1.25em;
+  line-height: 1.25rem;
 }
 .register .register-field .content .terms span {
-  font-size: 1.125em;
+  font-size: 1.125rem;
   display: block;
 }
 .register .register-field .content .table {
@@ -1068,7 +1098,7 @@ body {
 .register .register-field .content .table .email input,
 .register .register-field .content .table .password input {
   width: 100%;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   border-radius: 3px;
   border: 1px solid #979797;
 }
@@ -1114,25 +1144,25 @@ body {
 .register .register-field .content .table .password .had-account a {
   text-decoration: none;
   color: #f56c23;
-  font-size: 0.875em;
+  font-size: 0.875rem;
 }
 .register .register-field .content .table .register-btn {
   text-align: right;
 }
-.register .register-field .content .table .register-btn .submit {
+.register .register-field .content .table .register-btn .button-register {
   background-color: #f56c23;
-  font-size: 0.875em;
+  font-size: 0.875rem;
   color: #ffffff;
   border-radius: 3px;
   border: none;
   padding: 6px 28px;
   width: 45%;
 }
-.register .register-field .content .table .register-btn .submit:hover {
+.register .register-field .content .table .register-btn .button-register:hover {
   background-color: #3D1101;
   cursor: pointer;
 }
-.register .register-field .content .table .register-btn .submit:active {
+.register .register-field .content .table .register-btn .button-register:active {
   background-color: #ffffff;
   color: #3D1101;
 }

@@ -8,8 +8,8 @@
   .text {
     position: relative;
     text-align: center;
-    line-height: 1.5;
-    font-size: 1.25em;
+    line-height: 1.5rem;
+    font-size: $h3-font-size;
     color: $brown;
   }
 
@@ -22,7 +22,7 @@
     transform: translateY(-50%);
     width: 12%;
     border-bottom: 1px solid $gray;
-
+  
     @include mobile () {
       display: none;
     }
@@ -36,7 +36,7 @@
     transform: translateY(-50%);
     width: 12%;
     border-bottom: 1px solid $gray;
-
+  
     @include mobile () {
       display: none;
     }
@@ -57,12 +57,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+  
     @include iPad () {
       width: 31%;
       padding: 0% 2%;
     }
-
+  
     @include mobile () {
       width: 100%;
       padding: 10% 2% 15% 2%;
@@ -98,7 +98,7 @@
   .chef-photo {
     width: 50%;
     padding-left: 10px;
-
+  
     @include mobile () {
       width: 100%;
       padding-left: 0px;
@@ -106,7 +106,7 @@
       object-fit: contain;
     }
   }
-
+  
   .chef-intro {
     width: 50%;
     display: flex;
@@ -114,28 +114,28 @@
     justify-content: center;
     color: $middle-gray;
     padding: 81px 77px 81px 25px;
-
+  
     @include iPad () {
       padding-right: 30px;
     }
-
+  
     @include mobile () {
       width: 100%;
       padding: 30px;
     }
 
     .chef-name {
-      font-size: 1.25em;
-      line-height: 1.3em;
+      font-size: $h3-font-size;
+      line-height: 1.5rem;
     }
   }
 
   .chef-english-name {
     padding-bottom: 16px;
   }
-
+  
   p {
-    line-height: 1.5em;
+    line-height: 1.5rem;
   }
 }
 
@@ -144,7 +144,7 @@
   flex-direction: column;
 
   .title {
-    font-size: 1.5em;
+    font-size: $h2-font-size;
     color: $brown;
     text-align: center;
   }
@@ -171,7 +171,7 @@
   .avatar {
     // 將.customers分成30%和70%
     width: 30%;
-    padding-right: 1em;
+    padding-right: 16px;
     text-align: center;
 
     img {
@@ -186,7 +186,7 @@
   }
 
   .name {
-    font-size: 1.125em;
+    font-size: $h4-font-size;
     color: $brown;
     padding: 22px 0px;
   }
@@ -202,8 +202,7 @@
   }
 }
 
-.reservation,
-.map-form {
+.reservation, .map-form {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
@@ -213,8 +212,8 @@
   span {
     display: block;
     text-align: center;
-    font-size: 1.5em;
-    line-height: 1.5em;
+    font-size: $h2-font-size;
+    line-height: 1.5rem;
     color: $brown;
   }
 }
@@ -244,43 +243,63 @@
     flex-wrap: wrap;
     width: 50%;
     padding-left: 20px;
-
+  
     @include mobile () {
-      width: 100%;
+      width: 90%;
       padding: 0px 11px;
-      font-size: 1.5em;
+      margin: 0 auto;
     }
 
     span {
-      font-size: 0.875em;
+      font-size: $h6-font-size;
       padding: 12px 0px 6px 0px;
       color: $brown;
+
+      @include mobile () {
+        font-size: $h2-font-size;
+      }
     }
 
     input {
       color: $deep-gray;
       padding: 5px 14px;
+
+      @include mobile () {
+        font-size: $h2-font-size;
+      }
+    }
+
+    .vegetarian {
+      @include mobile () {
+        font-size: $h2-font-size;
+      }
     }
   }
-
+  
   .input-field {
     margin: 12px 0px 12px 0px;
   }
 
   .btns {
     text-align: right;
-
+  
     @include mobile () {
       padding: 30px 0px 50px 0px;
     }
 
     input {
-      font-size: 0.875em;
+      font-size: $h2-font-size;
+      text-align: center;
       border-radius: 3px;
       border: 0px;
       color: $white;
       width: 70px;
-      height: 32px;
+      height: 40px;
+
+      @include mobile () {
+        width: 80px;
+        height: 50px;
+      }
     }
   }
 
@@ -293,14 +312,12 @@
     background-color: $orange;
   }
 
-  .button-cancel:hover,
-  .button-submit:hover {
+  .button-cancel:hover, .button-submit:hover {
     background-color: $brown;
     cursor: pointer;
   }
 
-  .button-cancel:active,
-  .button-submit:active {
+  .button-cancel:active, .button-submit:active  {
     background-color: $white;
     color: $brown;
   }

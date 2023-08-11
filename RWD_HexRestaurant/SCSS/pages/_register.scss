@@ -17,7 +17,7 @@
 
     .slogan {
       padding-bottom: 35px;
-      font-size: 1.25em;
+      font-size: $h3-font-size;
       font-weight: bold;
     }
   }
@@ -35,7 +35,7 @@
     }
 
     .title {
-      font-size: 1.125em;
+      font-size: $h4-font-size;
       font-weight: bold;
       padding: 11px 0px 16px 0px;
     }
@@ -55,11 +55,11 @@
 
         span,
         p {
-          line-height: 1.25em;
+          line-height: 1.25rem;
         }
 
         span {
-          font-size: 1.125em;
+          font-size: $h4-font-size;
           display: block;
         }
       }
@@ -82,13 +82,12 @@
         .email input,
         .password input {
           width: 100%;
-          font-size: 1.5em;
+          font-size: $h2-font-size;
           border-radius: 3px;
           border: 1px solid $gray;
         }
 
         .email {
-
           // 使用相對定位與絕對定位, 將icon挪至input欄位內
           .input-email {
             position: relative;
@@ -145,7 +144,7 @@
             a {
               text-decoration: none;
               color: $orange;
-              font-size: 0.875em;
+              font-size: $h6-font-size;
             }
           }
         }
@@ -153,9 +152,9 @@
         .register-btn {
           text-align: right;
 
-          .submit {
+          .button-register {
             background-color: $orange;
-            font-size: 0.875em;
+            font-size: $h6-font-size;
             color: $white;
             border-radius: 3px;
             border: none;
@@ -163,12 +162,12 @@
             width: 45%;
           }
 
-          .submit:hover {
+          .button-register:hover {
             background-color: $brown;
             cursor: pointer;
           }
 
-          .submit:active {
+          .button-register:active {
             background-color: $white;
             color: $brown;
           }
