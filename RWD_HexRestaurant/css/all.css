@@ -242,6 +242,7 @@ body {
 }
 .footer .about-contact .about .title, .footer .about-contact .contact .title {
   font-size: 1.5rem;
+  padding-bottom: 1rem;
 }
 .footer .contact {
   margin-left: 21px;
