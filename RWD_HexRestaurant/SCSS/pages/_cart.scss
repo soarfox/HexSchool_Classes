@@ -68,37 +68,31 @@
       display: flex;
       justify-content: space-between;
 
-      @include mobile {
+      @include tablet {
         flex-direction: column;
       }
 
-      .search-magnifying {
-        // display: flex;
-
-        .search-bar {
-          width: 70%;
-          border: 3px solid $brown;
-          border-right: none;
-          font-size: $h2-font-size;
-          background-color: $main-bg;
-          // display: inline-block;
-        }
-
-        .magnifying {
-          padding: 2px;
-          margin-left: -4px;
-          background-color: $brown;
-          color: $white;
-          font-size: $h2-font-size;
-          // border: none;
-          // display: inline-block;
-        }
-
-        .magnifying:hover,
-        .magnifying:active {
-          color: $orange;
-        }
+      .search-bar {
+        width: 75%;
+        border: 3px solid $brown;
+        font-size: $h2-font-size;
+        background-color: $main-bg;
       }
+
+      .magnifying {
+        padding: 2px;
+        // 讓搜尋的放大鏡圖示跟搜尋欄之間沒有空隙
+        margin: -10px;
+        background-color: $brown;
+        color: $white;
+        font-size: $h2-font-size;
+      }
+
+      .magnifying:hover,
+      .magnifying:active {
+        color: $orange;
+      }
+      
 
       .cart {
         display: flex;
@@ -108,7 +102,7 @@
         align-items: flex-end;
         padding-right: 20px;
 
-        @include mobile {
+        @include tablet {
           padding: 15px 0px 0px 0px;
           font-size: $h2-font-size;
         }

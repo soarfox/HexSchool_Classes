@@ -671,27 +671,26 @@ body {
   display: flex;
   justify-content: space-between;
 }
-@media (max-width: 428px) {
+@media (max-width: 767px) {
   .cart .meals .search-cart {
     flex-direction: column;
   }
 }
-.cart .meals .search-cart .search-magnifying .search-bar {
-  width: 70%;
+.cart .meals .search-cart .search-bar {
+  width: 75%;
   border: 3px solid #3D1101;
-  border-right: none;
   font-size: 1.5rem;
   background-color: #efeae7;
 }
-.cart .meals .search-cart .search-magnifying .magnifying {
+.cart .meals .search-cart .magnifying {
   padding: 2px;
-  margin-left: -4px;
+  margin: -10px;
   background-color: #3D1101;
   color: #ffffff;
   font-size: 1.5rem;
 }
-.cart .meals .search-cart .search-magnifying .magnifying:hover,
-.cart .meals .search-cart .search-magnifying .magnifying:active {
+.cart .meals .search-cart .magnifying:hover,
+.cart .meals .search-cart .magnifying:active {
   color: #f56c23;
 }
 .cart .meals .search-cart .cart {
@@ -701,7 +700,7 @@ body {
   align-items: flex-end;
   padding-right: 20px;
 }
-@media (max-width: 428px) {
+@media (max-width: 767px) {
   .cart .meals .search-cart .cart {
     padding: 15px 0px 0px 0px;
     font-size: 1.5rem;
