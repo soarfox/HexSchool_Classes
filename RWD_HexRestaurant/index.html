@@ -21,11 +21,8 @@
   <meta property="og:url" content="https://www.hexschool.com/">
   <meta property="og:description" content="品味創意，享受美味，美式漢堡的極致饗宴！">
   <meta property="og:image" content="https://i.imgur.com/NmH0fsD.png">
-  <!-- 引用Font Awesome圖示的kit -->
-  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
-  <!-- 建議先引用CSS, 再引入javascript, 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
+  <!-- 建議先引用CSS, 再引入javascript(Script的載入建議放在</body>之前), 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
   <link rel="stylesheet" href="./css/all.css">
-  <script src="./js/hamburger_menu.js"></script>
 </head>
 
 <body>
@@ -34,7 +31,8 @@
       <div class="navbar">
         <a href="index.html">
           <!--  因為使用圖片取代文字的技巧, 故在畫面上看不到文字, 但這樣對於一些使用螢幕閱讀器的人士來說將無法理解這張圖片的意思, 故使用aria-label屬性並為其加上具體描述, 使螢幕閱讀器能夠閱讀出該段訊息, 有助於相關人士理解這張圖片的意義  -->
-          <h1 class="title" aria-label="桌上有一盤主餐, 裡面是一個牛肉起司漢堡和一些金黃薯條, 漢堡內夾著新鮮蕃茄, 美生菜, 紅洋蔥, 酸黃瓜和兩片濃郁起司, 在這主餐後方是一杯泡沫紅茶">六角西餐廳</h1>
+          <h1 class="title" aria-label="桌上有一盤主餐, 裡面是一個牛肉起司漢堡和一些金黃薯條, 漢堡內夾著新鮮蕃茄, 美生菜, 紅洋蔥, 酸黃瓜和兩片濃郁起司, 在這主餐後方是一杯泡沫紅茶">
+            六角西餐廳</h1>
         </a>
         <i class="fa-solid fa-bars m-menu"></i>
         <ul class="menu">
@@ -147,28 +145,29 @@
         <span>要不要先定位呢？</span>
       </div>
       <div class="map-form" id="map">
-        <img class="map-photo" src="./images/index/Map.png" width="460" height="388" alt="餐廳的Google map畫面, 座標約略位於高雄市前鎮區的高雄展覽廣旁邊, 餐廳位於高雄軟體園區內">
-        <div class="form">
-          <span>姓名</span>
+        <img class="map-photo" src="./images/index/Map.png" width="460" height="388"
+          alt="餐廳的Google map畫面, 座標約略位於高雄市前鎮區的高雄展覽廣旁邊, 餐廳位於高雄軟體園區內">
+        <form class="form">
+          <label for="name">姓名</label for="">
           <input class="input-field" type="text" name="name" id="name" placeholder="六角講師吃尾牙">
-          <span>電話</span>
+          <label for="phone">電話</label>
           <input class="input-field" type="tel" name="phone" id="phone" placeholder="02-1234567">
-          <span>信箱</span>
+          <label for="email">信箱</label>
           <input class="input-field" type="email" name="email" id="email" placeholder="test@gmail.com">
-          <span>人數</span>
+          <label for="people">人數</label>
           <input class="input-field" type="number" name="people" id="people">
-          <span>是否需要素食</span>
+          <label>是否需要素食</label>
           <div class="vegetarian">
-            <input type="radio" id="vegetarianChoice1" name="vegetarian" value="true" checked />
-            <label for="vegetarianChoice1">是</label>
-            <input type="radio" id="vegetarianChoice2" name="vegetarian" value="false" />
-            <label for="vegetarianChoice2">否</label>
+            <label for="yes">是</label>
+            <input type="radio" id="yes" name="vegetarian" value="true" checked />
+            <label for="no">否</label>
+            <input type="radio" id="no" name="vegetarian" value="false" />
           </div>
           <div class="btns">
             <input class="button-cancel" name="button-cancel" type="reset" value="取消">
             <input class="button-submit" name="button-submit" type="submit" value="送出">
           </div>
-        </div>
+        </form>
       </div>
     </main>
     <footer class="footer">
@@ -221,6 +220,9 @@
       </a>
     </div>
   </div>
+  <!-- 引用Font Awesome圖示的kit -->
+  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <script src="./js/hamburger_menu.js"></script>
 </body>
 
 </html>

@@ -5,21 +5,30 @@
   color: $brown;
   padding: 50px 42px;
 
-  @include mobile () {
+  @include tablet {
     flex-direction: column;
-    padding: 50px 10px;
+    flex-wrap: wrap;
   }
 
   .about-contact {
     display: flex;
-  
-    @include mobile () {
+
+    @include tablet {
       flex-direction: column;
     }
-
+  
     .about, .contact {
-      max-width: 299px;
+      max-width: 250px;
       line-height: 1.5rem;
+      padding-bottom: 30px;
+
+      @include iPad {
+        padding:0px 30px 30px 0px;
+      }
+
+      @include tablet {
+        padding:0px 0px 30px 0px;
+      }
 
       .title {
         font-size: $h2-font-size;
@@ -29,12 +38,6 @@
   }
 
   .contact {
-    margin-left: 21px;
-  
-    @include mobile () {
-      margin: 30px 0px;
-    }
-
     .info {
       list-style-type: disc;
       margin-left: 21px;
@@ -51,16 +54,22 @@
   .brand-social .title {
     font-weight: bold;
 
-    @include mobile () {
-      text-align: right;
+    img {
+      @include tablet {
+        max-width: 50%;
+      }
     }
   }
 
   .social-media {
     display: flex;
-    justify-content: right;
+    justify-content: flex-end;
     align-items: center;
     padding-top: 22px;
+
+    @include tablet {
+      justify-content:flex-start;
+    }
 
     .google-plus, .twitter, .facebook {
       border-radius: 4px;

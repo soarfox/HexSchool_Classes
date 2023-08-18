@@ -21,13 +21,8 @@
   <meta property="og:url" content="https://www.hexschool.com/">
   <meta property="og:description" content="品味創意，享受美味，美式漢堡的極致饗宴！">
   <meta property="og:image" content="https://i.imgur.com/NmH0fsD.png">
-  <!-- 引用Font Awesome圖示的kit -->
-  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
-  <!-- 建議先引用CSS, 再引入javascript, 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
+  <!-- 建議先引用CSS, 再引入javascript(Script的載入建議放在</body>之前), 也就是讓CSS先進行渲染, 因為如果CSS有設定寬高度, 則後續javascript再對其做操作, 則這樣子順序上比較不容易有問題 -->
   <link rel="stylesheet" href="./css/all.css">
-  <!-- 引用js -->
-  <script src="./js/hamburger_menu.js"></script>
-  <script src="./js/like_sign.js"></script>
 </head>
 
 <body>
@@ -36,7 +31,8 @@
       <div class="navbar">
         <a href="index.html">
           <!--  因為使用圖片取代文字的技巧, 故在畫面上看不到文字, 但這樣對於一些使用螢幕閱讀器的人士來說將無法理解這張圖片的意思, 故使用aria-label屬性並為其加上具體描述, 使螢幕閱讀器能夠閱讀出該段訊息, 有助於相關人士理解這張圖片的意義  -->
-          <h1 class="title" aria-label="桌上有一盤主餐, 裡面是一個牛肉起司漢堡和一些金黃薯條, 漢堡內夾著新鮮蕃茄, 美生菜, 紅洋蔥, 酸黃瓜和兩片濃郁起司, 在這主餐後方是一杯泡沫紅茶">六角西餐廳</h1>
+          <h1 class="title" aria-label="桌上有一盤主餐, 裡面是一個牛肉起司漢堡和一些金黃薯條, 漢堡內夾著新鮮蕃茄, 美生菜, 紅洋蔥, 酸黃瓜和兩片濃郁起司, 在這主餐後方是一杯泡沫紅茶">
+            六角西餐廳</h1>
         </a>
         <i class="fa-solid fa-bars m-menu"></i>
         <ul class="menu">
@@ -80,7 +76,7 @@
         <div class="meals">
           <div class="search-cart">
             <div class="search-magnifying">
-              <input type="text" class="search-bar">
+              <input type="search" class="search-bar">
               <button class="magnifying">
                 <i class="fa-solid fa-magnifying-glass"></i>
               </button>
@@ -114,7 +110,8 @@
             </li>
             <li>
               <button class="heartBtn"><i class="fa-regular fa-heart"></i></button>
-              <img class="meal-img" src="./images/cart/product_2.png" alt="在一個圓形的黑色烤肉爐上, 裡面正烤著四根香腸, 底下的火焰因著香腸滴下去的油脂而竄升到香腸身上, 此時烤爐內也烤著培根">
+              <img class="meal-img" src="./images/cart/product_2.png"
+                alt="在一個圓形的黑色烤肉爐上, 裡面正烤著四根香腸, 底下的火焰因著香腸滴下去的油脂而竄升到香腸身上, 此時烤爐內也烤著培根">
               <div class="title">英俊香腸</div>
               <div class="eng-title">Handsome Sausage</div>
               <div class="border-line"></div>
@@ -130,7 +127,8 @@
             </li>
             <li>
               <button class="heartBtn"><i class="fa-regular fa-heart"></i></button>
-              <img class="meal-img" src="./images/cart/product_3.png" alt="前景是兩個打開的漢堡皮攤在桌面上, 背景是三個完整的超厚牛肉起司培根漢堡, 每個漢堡內還夾雜著紫色洋蔥">
+              <img class="meal-img" src="./images/cart/product_3.png"
+                alt="前景是兩個打開的漢堡皮攤在桌面上, 背景是三個完整的超厚牛肉起司培根漢堡, 每個漢堡內還夾雜著紫色洋蔥">
               <div class="title">漢堡兄弟</div>
               <div class="eng-title">Hamburg Brothers</div>
               <div class="border-line"></div>
@@ -146,7 +144,8 @@
             </li>
             <li>
               <button class="heartBtn"><i class="fa-regular fa-heart"></i></button>
-              <img class="meal-img" src="./images/cart/product_4.png" alt="桌面左側是相當多的炸薯條, 右側則是一個漢堡表皮及大量的美生菜, 中間後方還有一片起司與超厚牛肉一併放在桌面上">
+              <img class="meal-img" src="./images/cart/product_4.png"
+                alt="桌面左側是相當多的炸薯條, 右側則是一個漢堡表皮及大量的美生菜, 中間後方還有一片起司與超厚牛肉一併放在桌面上">
               <div class="title">完美願望</div>
               <div class="eng-title">Dragon Ball Package</div>
               <div class="border-line"></div>
@@ -211,6 +210,10 @@
       </a>
     </div>
   </div>
+  <!-- 引用Font Awesome圖示的kit -->
+  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <script src="./js/hamburger_menu.js"></script>
+  <script src="./js/like_sign.js"></script>
 </body>
 
 </html>

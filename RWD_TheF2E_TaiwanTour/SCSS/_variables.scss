@@ -1,0 +1,40 @@
+// Colors
+$Green: #6E7D60;
+$Gray: #646464;
+$Black: #1E1E1E;
+$White: #FFFFFF;
+$Yellow: #E0DA48;
+$White-Gray: #E6E6E6;
+$LightGray: #646464;
+$LittleGray: #E5E5E5;
+$CardBackground: #F9F9F9;
+$DeepGreen: #7F977B;
+$OrangeRed: #FF725E;
+$Footer: #65895F;
+
+
+// Font-sizes
+
+// font-sizes(將以下變數以class name包裝後, 放在_text-styles.scss內, 以利直接套用文字樣式名稱來使用), 單位rem是以網頁基本元素的大小(16px)為準, 且rem不像處於巢狀內的em一般會產生累積效應, 而是單純依據16px來進行設定
+$font-size-base: 1rem;
+
+// 49px (ex.)
+$logo-font-size: $font-size-base * 3.06;
+
+// 36px (ex.)
+$h1-font-size: $font-size-base * 2.25;
+
+// 24px (ex.)
+$h2-font-size: $font-size-base * 1.5;
+
+// 20px (ex.)
+$h3-font-size: $font-size-base * 1.25;
+
+// 18px (ex.)
+$h4-font-size: $font-size-base * 1.125;
+
+// 16px (ex.)
+$h5-font-size: $font-size-base;
+
+// 14px (ex.)
+$h6-font-size: $font-size-base * 0.875;

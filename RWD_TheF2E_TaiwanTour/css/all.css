@@ -1,8 +1,8 @@
+@charset "UTF-8";
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html,
 body,
 div,
@@ -84,12 +84,12 @@ time,
 mark,
 audio,
 video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -104,616 +104,574 @@ hgroup,
 menu,
 nav,
 section {
-	display: block;
+  display: block;
 }
 
 body {
-	line-height: 1;
+  line-height: 1;
 }
 
 ol,
 ul {
-	list-style: none;
+  list-style: none;
 }
 
 blockquote,
 q {
-	quotes: none;
+  quotes: none;
 }
 
 blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-	content: '';
-	content: none;
+  content: "";
+  content: none;
 }
 
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 img {
-	max-width: 100%;
-	height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 *,
 *:before,
 *:after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* CSS Reset over */
-
-:root {
-	--Green: #6E7D60;
-	--Gray: #646464;
-	--Black: #1E1E1E;
-	--White: #FFFFFF;
-	--Yellow: #E0DA48;
-	--White-Gray: #E6E6E6;
-	--LightGray: #646464;
-	--LittleGray: #E5E5E5;
-	--CardBackground: #F9F9F9;
-	--DeepGreen: #7F977B;
-	--OrangeRed: #FF725E;
-	--Footer: #65895F;
-}
-
 body {
-	font-family: 'Noto Sans TC';
+  font-family: "Noto Sans TC";
 }
 
 .wrap {
-	max-width: 1200px;
-	margin: 0 auto;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 nav {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .walking-man-icon {
-	padding-right: 5px;
-	font-size: 28px;
+  padding-right: 5px;
+  font-size: 28px;
 }
 
 nav h1 {
-	font-size: 20px;
-	font-weight: bold;
-	color: var(--Green);
-	padding: 24px 45px;
-	letter-spacing: 0.3em;
+  font-size: 20px;
+  font-weight: bold;
+  color: #6E7D60;
+  padding: 24px 45px;
+  letter-spacing: 0.3em;
 }
 
 .menu {
-	display: flex;
-	flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .menu li {
-	padding: 27px 20px;
+  padding: 27px 20px;
 }
 
 .menu a {
-	font-weight: 400;
-	font-size: 18px;
-	color: var(--Gray);
-	text-decoration: none;
-	text-align: center;
-	/* 下方增加一個偽元素, 藉此做出劃底線的效果, 故在此需要設定相對定位 */
-	position: relative;
-	display: block;
+  font-weight: 400;
+  font-size: 18px;
+  color: #646464;
+  text-decoration: none;
+  text-align: center;
+  /* 下方增加一個偽元素, 藉此做出劃底線的效果, 故在此需要設定相對定位 */
+  position: relative;
+  display: block;
 }
 
 .menu a:hover {
-	color: var(--Green);
+  color: #6E7D60;
 }
 
 .menu a::after {
-	/* 偽元素必定要加一個空的內容 */
-	content: "";
-	position: absolute;
-	bottom: -15px;
-	left: 0px;
-	display: block;
-	width: 0%;
-	height: 8px;
-	background-color: var(--DeepGreen);
-	transition: 0.3s;
+  /* 偽元素必定要加一個空的內容 */
+  content: "";
+  position: absolute;
+  bottom: -15px;
+  left: 0px;
+  display: block;
+  width: 0%;
+  height: 8px;
+  background-color: #7F977B;
+  transition: 0.3s;
 }
 
 .menu a:hover::after {
-	width: 100%;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
-	nav {
-		justify-content: center;
-		align-items: center;
-	}
+  nav {
+    justify-content: center;
+    align-items: center;
+  }
+  .menu li {
+    width: 50%;
+  }
+}
+@media (max-width: 375px) {
+  .menu li {
+    width: 100%;
+    padding: 15px;
+  }
+}
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background-color: #65895F;
+  height: 60px;
+}
 
-	.menu li {
-		width: 50%;
-	}
+footer .copyright {
+  display: block;
+  text-align: center;
+  color: #FFFFFF;
+  font-weight: 400;
 }
 
 @media (max-width: 375px) {
-	.menu li {
-		width: 100%;
-		padding: 15px;
-	}
+  footer .copyright {
+    font-size: 12px;
+  }
 }
-
 header {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .intro {
-	padding: 82px 0px 57px 0px;
+  padding: 82px 0px 57px 0px;
 }
 
 .intro h2 {
-	font-weight: 300;
-	font-size: 48px;
-	color: var(--Black);
-	line-height: 1.5;
+  font-weight: 300;
+  font-size: 48px;
+  color: #1E1E1E;
+  line-height: 1.5;
 }
 
 .intro .yellow_border {
-	border-bottom: 3px solid var(--Yellow);
+  border-bottom: 3px solid #E0DA48;
 }
 
 .taiwan-location-icon {
-	color: var(--Yellow);
-	padding-right: 5px;
+  color: #E0DA48;
+  padding-right: 5px;
 }
 
 .intro h3 {
-	color: var(--LightGray);
-	font-size: 20px;
-	font-weight: 400;
-	padding-top: 17px;
-	letter-spacing: 0.03em;
+  color: #646464;
+  font-size: 20px;
+  font-weight: 400;
+  padding-top: 17px;
+  letter-spacing: 0.03em;
 }
 
 .search {
-	display: flex;
-	flex-direction: column;
-	padding: 101px 0px 0px 0px;
-	width: 35%;
+  display: flex;
+  flex-direction: column;
+  padding: 101px 0px 0px 0px;
+  width: 35%;
 }
 
 @media (max-width: 767px) {
-	.intro {
-		text-align: center;
-		padding: 12px 0px;
-	}
-
-	.intro h2 {
-		font-size: 32px;
-	}
-
-	.search {
-		padding-top: 33px;
-		width: 90%;
-	}
+  .intro {
+    text-align: center;
+    padding: 12px 0px;
+  }
+  .intro h2 {
+    font-size: 32px;
+  }
+  .search {
+    padding-top: 33px;
+    width: 90%;
+  }
 }
-
 @media (max-width: 375px) {
-	.intro h2 {
-		font-size: 26px;
-	}
+  .intro h2 {
+    font-size: 26px;
+  }
 }
-
 /* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
 .search-category,
 .search-keyword,
 .search-button {
-	height: 50px;
-	font-size: 16px;
-	margin: 7px 0px;
-	padding: 0px 30px;
-	border: 1px solid var(--White-Gray);
-	color: var(--Green);
-	/* 此字型源自於index.html的<head>內所引用的字體 */
-	font-family: Noto Sans TC;
-	border-radius: 5px;
+  height: 50px;
+  font-size: 16px;
+  margin: 7px 0px;
+  padding: 0px 30px;
+  border: 1px solid #E6E6E6;
+  color: #6E7D60;
+  /* 此字型源自於index.html的<head>內所引用的字體 */
+  font-family: Noto Sans TC;
+  border-radius: 5px;
 }
 
 .search-category {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .search-keyword {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .search-button {
-	background-color: var(--DeepGreen);
-	color: var(--White);
-	padding: 8px 24px;
-	border: 0px;
-	border-radius: 6px;
-	font-weight: 700;
-	letter-spacing: 1.5em;
+  background-color: #7F977B;
+  color: #FFFFFF;
+  padding: 8px 24px;
+  border: 0px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 1.5em;
 }
 
 .search-button:hover {
-	background-color: var(--Yellow);
+  background-color: #E0DA48;
 }
 
 .search-button:active {
-	background-color: var(--OrangeRed);
+  background-color: #FF725E;
 }
 
 main {
-	max-width: 1110px;
-	margin: 0 auto;
+  max-width: 1110px;
+  margin: 0 auto;
 }
 
 .banner {
-	position: relative;
-	padding: 60px 0px 36px 0px;
+  position: relative;
+  padding: 60px 0px 36px 0px;
 }
 
 .image-container {
-	position: relative;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .photo-title {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	text-align: center;
-	color: var(--White);
-	font-size: 28px;
-	font-weight: 700;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 28px;
+  font-weight: 700;
 }
 
 .left-narrow {
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	display: flex;
-	justify-content: end;
-	align-items: center;
-	color: var(--White);
-	font-size: 40px;
-	background: none;
-	border: none;
-	padding-left: 30px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 40px;
+  background: none;
+  border: none;
+  padding-left: 30px;
 }
 
 .left-narrow:hover {
-	color: var(--DeepGreen);
+  color: #7F977B;
 }
 
 .right-narrow {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	display: flex;
-	justify-content: end;
-	align-items: center;
-	color: var(--White);
-	font-size: 40px;
-	background: none;
-	border: none;
-	padding-right: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 40px;
+  background: none;
+  border: none;
+  padding-right: 30px;
 }
 
 .right-narrow:hover {
-	color: var(--DeepGreen);
+  color: #7F977B;
 }
 
 @media (max-width: 375px) {
-	.photo-title {
-		font-size: 16px;
-	}
-
-	.left-narrow,
-	.right-narrow {
-		display: none;
-	}
+  .photo-title {
+    font-size: 16px;
+  }
+  .left-narrow,
+  .right-narrow {
+    display: none;
+  }
 }
-
 .banner,
 .recent-activity,
 .hot-spots,
 .delicious-meal {
-	padding-bottom: 36px;
+  padding-bottom: 36px;
 }
 
 .activity-intro,
 .hot-spots-intro,
 .meal-intro {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .activity-intro h4,
 .hot-spots-intro h4,
 .meal-intro h4 {
-	font-size: 36px;
-	font-weight: 300;
-	padding: 0px 0px 12px 0px;
+  font-size: 36px;
+  font-weight: 300;
+  padding: 0px 0px 12px 0px;
 }
 
 .location-icon {
-	padding-right: 5px;
-	color: var(--Gray);
+  padding-right: 5px;
+  color: #646464;
 }
 
 .activity-intro a,
 .hot-spots-intro a,
 .meal-intro a {
-	color: var(--OrangeRed);
-	text-decoration: none;
-	font-weight: bold;
+  color: #FF725E;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .activity-intro a:hover,
 .hot-spots-intro a:hover,
 .meal-intro a:hover {
-	color: var(--DeepGreen);
+  color: #7F977B;
 }
 
 .recent-activity-list {
-	display: flex;
-	justify-content: space-between;
-	flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .recent-activity-list .card {
-	background-color: var(--CardBackground);
-	border: 1px solid var(--LittleGray);
-	margin: 1% 0px;
-	border-radius: 12px;
-	display: flex;
-	width: 47%;
+  background-color: #F9F9F9;
+  border: 1px solid #E5E5E5;
+  margin: 1% 0px;
+  border-radius: 12px;
+  display: flex;
+  width: 47%;
 }
 
 /* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
 .recent-activity-list .card img {
-	transition: 1s ease-out;
+  transition: 1s ease-out;
 }
 
 .recent-activity-list .card img:hover {
-	transform: scale(1.1, 1.1);
-	transition: 1s ease-out;
+  transform: scale(1.1, 1.1);
+  transition: 1s ease-out;
 }
 
 .activity {
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
-	justify-content: space-between;
-	padding: 0px 15px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0px 15px;
 }
 
 .activity .date {
-	display: block;
-	color: var(--LightGray);
-	padding-top: 16px;
-	font-weight: 400;
+  display: block;
+  color: #646464;
+  padding-top: 16px;
+  font-weight: 400;
 }
 
 .activity .title {
-	display: block;
-	font-size: 22px;
-	line-height: 1.5;
-	font-weight: 700;
-	color: var(--Black);
-	padding-top: 3px;
+  display: block;
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: #1E1E1E;
+  padding-top: 3px;
 }
 
 .activity .area .location {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .activity .area a {
-	font-weight: 500;
+  font-weight: 500;
 }
 
 .recent-activity-list .card .area {
-	display: flex;
-	justify-content: space-between;
-	padding-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 18px;
 }
 
 .recent-activity-list .card .area a {
-	text-decoration: none;
-	color: var(--DeepGreen);
+  text-decoration: none;
+  color: #7F977B;
 }
 
 .recent-activity-list .card .area a:hover {
-	color: var(--OrangeRed);
+  color: #FF725E;
 }
 
 @media (max-width: 767px) {
-	.recent-activity-list .card {
-		width: 100%;
-	}
-
-	.activity .title {
-		font-size: 18px;
-		padding-bottom: 10%;
-	}
-
-	.recent-activity-list .card .area {
-		font-size: 14px;
-	}
+  .recent-activity-list .card {
+    width: 100%;
+  }
+  .activity .title {
+    font-size: 18px;
+    padding-bottom: 10%;
+  }
+  .recent-activity-list .card .area {
+    font-size: 14px;
+  }
 }
-
-
 @media (max-width: 375px) {
-	.recent-activity-list .card {
-		width: 100%;
-	}
-
-	.activity .date {
-		font-size: 12px;
-	}
-
-	.activity .title {
-		font-size: 16px;
-	}
-
-	.recent-activity-list .card .area {
-		font-size: 12px;
-	}
-
-	/* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
-	.recent-activity-list .card img {
-		transition: 1s ease-out;
-	}
-
-	.recent-activity-list .card img:hover {
-		transform: scale(0.9, 0.9);
-		transition: 1s ease-out;
-	}
+  .recent-activity-list .card {
+    width: 100%;
+  }
+  .activity .date {
+    font-size: 12px;
+  }
+  .activity .title {
+    font-size: 16px;
+  }
+  .recent-activity-list .card .area {
+    font-size: 12px;
+  }
+  /* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
+  .recent-activity-list .card img {
+    transition: 1s ease-out;
+  }
+  .recent-activity-list .card img:hover {
+    transform: scale(0.9, 0.9);
+    transition: 1s ease-out;
+  }
 }
-
 .top-hot-spots,
 .top-meals {
-	display: flex;
+  display: flex;
 }
 
 .top-hot-spots .card,
 .top-meals .card {
-	display: flex;
-	flex-direction: column;
-	/* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
-	margin:0px 15px;
+  display: flex;
+  flex-direction: column;
+  /* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
+  margin: 0px 15px;
 }
 
 /* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
 .top-hot-spots .card img,
 .top-meals .card img {
-	padding: 0px 10px;
-	border-radius: 20px;
-	transition: 1s ease-out;
+  padding: 0px 10px;
+  border-radius: 20px;
+  transition: 1s ease-out;
 }
 
 .top-hot-spots .card img:hover,
 .top-meals .card img:hover {
-	transform: scale(1.1, 1.1);
-	transition: 1s ease-out;
+  transform: scale(1.1, 1.1);
+  transition: 1s ease-out;
 }
 
 .top-hot-spots .spot-name,
 .top-meals .restaurant-name {
-	font-size: 22px;
-	line-height: 1.5;
-	font-weight: 700;
-	padding-top: 10px;
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 700;
+  padding-top: 10px;
 }
 
 .top-hot-spots .location,
 .delicious-meal .location {
-	color: var(--LightGray);
-	padding-top: 6px;
-	font-weight: 400;
+  color: #646464;
+  padding-top: 6px;
+  font-weight: 400;
 }
 
 @media (max-width: 767px) {
-	.activity-intro h4,
-	.hot-spots-intro h4,
-	.meal-intro h4 {
-		font-size: 24px;
-	}
-
-	.top-hot-spots .card,
-	.top-meals .card {
-		width: 45%;
-		align-items: center;
-		padding: 1% 0px;
-		margin: 2%;
-		/* 使用box-shadow製作出卡片效果, x軸位移值 y軸位移值 擴散效果數值 陰影顏色 */
-		box-shadow: 0px 2px 3px var(--Gray);
-		border-radius: 6px;
-	}
-
-	.top-hot-spots .spot-name,
-	.top-meals .restaurant-name {
-		padding-top: 2%;
-		font-size: 16px;
-		text-align: center;
-	}
-
-	/* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
-	.top-hot-spots .card img,
-	.top-meals .card img {
-		transition: 1s ease-out;
-		width: 100%;
-		height: auto;
-	}
-
-	.top-hot-spots .card img:hover,
-	.top-meals .card img:hover {
-		transform: scale(1.1, 1.1);
-		transition: 1s ease-out;
-	}
+  .activity-intro h4,
+  .hot-spots-intro h4,
+  .meal-intro h4 {
+    font-size: 24px;
+  }
+  .top-hot-spots .card,
+  .top-meals .card {
+    width: 45%;
+    align-items: center;
+    padding: 1% 0px;
+    margin: 2%;
+    /* 使用box-shadow製作出卡片效果, x軸位移值 y軸位移值 擴散效果數值 陰影顏色 */
+    box-shadow: 0px 2px 3px #646464;
+    border-radius: 6px;
+  }
+  .top-hot-spots .spot-name,
+  .top-meals .restaurant-name {
+    padding-top: 2%;
+    font-size: 16px;
+    text-align: center;
+  }
+  /* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
+  .top-hot-spots .card img,
+  .top-meals .card img {
+    transition: 1s ease-out;
+    width: 100%;
+    height: auto;
+  }
+  .top-hot-spots .card img:hover,
+  .top-meals .card img:hover {
+    transform: scale(1.1, 1.1);
+    transition: 1s ease-out;
+  }
 }
-
-@media (max-width:375px) {
-	/* 做出scroll image/card的方式如下 */
-	.top-hot-spots,
-	.top-meals {
-		/* 使內容能夠並排呈現 */
-		display: flex;
-		/* 為了要實現scroll image/card的效果, 故將所有"熱門打卡景點"和"一再回訪美食"的元素都各自於同一行顯示, 即不進行元素的換行 */
-		white-space: nowrap;
-		/* 將超出此容器的內容隱藏起來(overflow-x設為auto, overflow-y設為hidden), 藉此將card的y軸捲軸隱藏起來 */
-		overflow: auto hidden;
-	}
-
-	.top-hot-spots .spot-name,
-	.top-meals .restaurant-name {
-		/* 限定文字寬度, 使得各卡片大小統一 */
-		width: 100px;
-		/* 將超出此容器的文字隱藏起來, 且隱藏的文字使用省略號(ellipsis)表示 */
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-}
-
-footer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-	background-color: var(--Footer);
-	height: 60px;
-}
-
-footer .copyright {
-	display: block;
-	text-align: center;
-	color: var(--White);
-	font-weight: 400;
-}
-
 @media (max-width: 375px) {
-	footer .copyright{
-		font-size: 12px;
-	}
+  /* 做出scroll image/card的方式如下 */
+  .top-hot-spots,
+  .top-meals {
+    /* 使內容能夠並排呈現 */
+    display: flex;
+    /* 為了要實現scroll image/card的效果, 故將所有"熱門打卡景點"和"一再回訪美食"的元素都各自於同一行顯示, 即不進行元素的換行 */
+    white-space: nowrap;
+    /* 將超出此容器的內容隱藏起來(overflow-x設為auto, overflow-y設為hidden), 藉此將card的y軸捲軸隱藏起來 */
+    overflow: auto hidden;
+  }
+  .top-hot-spots .spot-name,
+  .top-meals .restaurant-name {
+    /* 限定文字寬度, 使得各卡片大小統一 */
+    width: 100px;
+    /* 將超出此容器的文字隱藏起來, 且隱藏的文字使用省略號(ellipsis)表示 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

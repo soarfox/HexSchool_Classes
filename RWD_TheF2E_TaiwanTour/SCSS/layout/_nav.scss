@@ -1,0 +1,86 @@
+body {
+	font-family: 'Noto Sans TC';
+}
+
+.wrap {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+nav {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.walking-man-icon {
+	padding-right: 5px;
+	font-size: 28px;
+}
+
+nav h1 {
+	font-size: 20px;
+	font-weight: bold;
+	color: $Green;
+	padding: 24px 45px;
+	letter-spacing: 0.3em;
+}
+
+.menu {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.menu li {
+	padding: 27px 20px;
+}
+
+.menu a {
+	font-weight: 400;
+	font-size: 18px;
+	color: $Gray;
+	text-decoration: none;
+	text-align: center;
+	/* 下方增加一個偽元素, 藉此做出劃底線的效果, 故在此需要設定相對定位 */
+	position: relative;
+	display: block;
+}
+
+.menu a:hover {
+	color: $Green;
+}
+
+.menu a::after {
+	/* 偽元素必定要加一個空的內容 */
+	content: "";
+	position: absolute;
+	bottom: -15px;
+	left: 0px;
+	display: block;
+	width: 0%;
+	height: 8px;
+	background-color: $DeepGreen;
+	transition: 0.3s;
+}
+
+.menu a:hover::after {
+	width: 100%;
+}
+
+@media (max-width: 767px) {
+	nav {
+		justify-content: center;
+		align-items: center;
+	}
+
+	.menu li {
+		width: 50%;
+	}
+}
+
+@media (max-width: 375px) {
+	.menu li {
+		width: 100%;
+		padding: 15px;
+	}
+}

@@ -1,0 +1,21 @@
+footer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	background-color: $Footer;
+	height: 60px;
+}
+
+footer .copyright {
+	display: block;
+	text-align: center;
+	color: $White;
+	font-weight: 400;
+}
+
+@media (max-width: 375px) {
+	footer .copyright{
+		font-size: 12px;
+	}
+}
