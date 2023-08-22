@@ -1,0 +1,20 @@
+.photo {
+  // 將圖片被hover時會放大的效果之超出框框的部分隱藏掉
+  overflow: hidden;
+  width: 45%;
+
+  @include tablet {
+    width: 50%;
+  }
+
+  img {
+    transition: transform 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

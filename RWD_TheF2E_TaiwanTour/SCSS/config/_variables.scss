@@ -14,27 +14,27 @@ $Footer: #65895F;
 
 
 // Font-sizes
-
 // font-sizes(將以下變數以class name包裝後, 放在_text-styles.scss內, 以利直接套用文字樣式名稱來使用), 單位rem是以網頁基本元素的大小(16px)為準, 且rem不像處於巢狀內的em一般會產生累積效應, 而是單純依據16px來進行設定
 $font-size-base: 1rem;
 
-// 49px (ex.)
-$logo-font-size: $font-size-base * 3.06;
+// 48px (ex.index 探索台灣之美)
+$h1-font-size: $font-size-base * 3;
 
-// 36px (ex.)
-$h1-font-size: $font-size-base * 2.25;
+// 36px (ex.index 近期活動)
+$h2-font-size: $font-size-base * 2.25;
 
-// 24px (ex.)
-$h2-font-size: $font-size-base * 1.5;
+// 28px (ex.index 新北市 | 不厭亭)
+$h3-font-size: $font-size-base * 1.75;
 
-// 20px (ex.)
-$h3-font-size: $font-size-base * 1.25;
+// 20px (ex.index 台灣旅遊景點導覽)
+$h4-font-size: $font-size-base * 1.25;
 
-// 18px (ex.)
-$h4-font-size: $font-size-base * 1.125;
+// 18px (ex.nav 探索景點)
+$h5-font-size: $font-size-base * 1.125;
 
-// 16px (ex.)
-$h5-font-size: $font-size-base;
+// 16px (ex.footer designer)
+$h6-font-size: $font-size-base;
 
-// 14px (ex.)
-$h6-font-size: $font-size-base * 0.875;
+
+// Font-families
+$noto-font-family: 'Noto Sans TC';

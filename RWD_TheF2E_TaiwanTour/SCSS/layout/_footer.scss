@@ -1,21 +1,17 @@
-footer {
+.copyright {
 	display: flex;
-	flex-wrap: wrap;
 	justify-content: center;
-	align-items: center;
 	background-color: $Footer;
-	height: 60px;
+	padding: 20px 0px;
+
+	span {
+		color: $White;
+		font-weight: 400;
+	}
 }
 
-footer .copyright {
-	display: block;
-	text-align: center;
-	color: $White;
-	font-weight: 400;
-}
-
-@media (max-width: 375px) {
-	footer .copyright{
-		font-size: 12px;
+@include mobile {
+	.copyright{
+		text-align: center;
 	}
 }

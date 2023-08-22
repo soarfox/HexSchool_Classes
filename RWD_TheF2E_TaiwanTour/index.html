@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>各地景點美食住宿-台灣走走・Tai Tour</title>
+  <title>旅遊景點/活動/美食/住宿-臺灣走走・Tai Tour</title>
   <link rel="shortcut icon" href="./images/icon/web_icon.ico">
   <meta name="author" content="UI Designer: Breakfast">
   <meta name="author" content="Website Engineer: Howard">
   <!-- 使用emmet的縮寫, 輸入meta:desc並按下tab鍵自動生出下方語法 -->
   <meta name="description" content="各縣市最新的旅遊資訊，包括：旅遊景點、各地活動、私房美食、安心住宿，全部都在這裡了。">
   <!-- 使用emmet的縮寫, 輸入meta:kw並按下tab鍵自動生出下方語法; 關鍵字放在越前面者則權重越高 -->
-  <meta name="keywords" content="旅遊, 景點, 好玩活動, 美食, 住宿">
+  <meta name="keywords" content="旅遊, 景點, 活動, 美食, 住宿">
   <!-- 使用emmet的縮寫, 輸入link:css並按下tab鍵自動生出下方語法 -->
   <!-- 不論對方是使用什麼版本的IE瀏覽器, 一律強制以最新版的IE來渲染; 避免對方明明是IE9, 結果卻因為曾經有改到相容性設定而以IE7呈現, 加上這一行程式碼即可完全避免掉這種狀況 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- 社群軟體盛行的現在, 在通訊或社群軟體上分享網址時都會出現該網站的標題, 縮圖與描述, 透過設定og可以更準確的說明網站的內容, 參考資料為六角學院官方網站的<head>標籤內的<meta>內容, https://www.hexschool.com/ -->
-  <meta property="og:title" content="各縣市最新的旅遊/景點/美食/住宿資訊-台灣走走・Tai Tour">
+  <meta property="og:title" content="各縣市最新的旅遊景點/活動/美食/住宿資訊-臺灣走走・Tai Tour">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://soarfox.github.io/HexSchool_Classes/RWD_TheF2E_TaiwanTour/">
   <meta property="og:description" content="各縣市最新的旅遊資訊都在這裡。">
@@ -34,188 +34,233 @@
 <body>
   <div class="wrap">
     <nav>
-      <h1><i class="fa-solid fa-person-walking walking-man-icon"></i>台灣走走・Tai Tour</h1>
+      <a class="logo" href="index.html">
+      <h1>
+        <i class="fa-solid fa-person-walking walking-man-icon"></i>
+        臺灣走走・<span>Taiwan Tour</span>
+      </h1>
+      </a>
       <ul class="menu">
-        <li><a href="#">探索景點</a></li>
-        <li><a href="#">節慶活動</a></li>
-        <li><a href="#">品嚐美食</a></li>
-        <li><a href="#">安心旅宿</a></li>
+        <li><a href="./attractions.html">探索景點</a></li>
+        <li><a href="./activies.html">節慶活動</a></li>
+        <li><a href="./restaurants.html">品嚐美食</a></li>
+        <li><a href="./hotels.html">安心旅宿</a></li>
       </ul>
     </nav>
     <header>
       <div class="intro">
-        <h2>探索<span class="yellow_border">台灣之美</span><br>
+        <h2>探索<span class="yellow_border">臺灣之美</span><br>
           讓我們更親近這片土地</h2>
-        <h3><i class="fa-solid fa-location-dot taiwan-location-icon"></i>台灣旅遊景點導覽 Taiwan Travel Guide</h3>
+        <h3><i class="fa-solid fa-location-dot taiwan-location-icon"></i>臺灣旅遊景點導覽 Taiwan Travel Guide</h3>
       </div>
-      <div class="search">
-        <select class="search-category" name="city" id="city">
+      <label for="category" class="select-category">
+        <select class="category" name="category" id="category" aria-label="category">
           <option value="">請選擇您想找尋的類別</option>
           <option value="attractions">探索景點</option>
           <option value="activities">節慶活動</option>
           <option value="meals">品嚐美食</option>
-          <option value="living">安心旅宿</option>
+          <option value="hotel">安心旅宿</option>
         </select>
         <input class="search-keyword" type="text" name="keyword" placeholder="您想去哪裡？請輸入關鍵字">
-        <button class="search-button" name="search"><i class="fa-solid fa-magnifying-glass"></i>搜尋</button>
-      </div>
+        <button type="submit" class="search-button" name="search"><i class="fa-solid fa-magnifying-glass"></i>搜尋</button>
+      </label>
     </header>
-    <main>
-      <div class="content">
-        <div class="banner">
-          <div class="image-container">
-            <img src="./images/scenicSpotPhoto/新北市不厭亭.png" alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
-            <div class="photo-title">新北市 | 不厭亭</div>
-            <button class="left-narrow">
-              <i class="fa-solid fa-circle-chevron-left"></i>
-            </button>
-            <button class="right-narrow">
-              <i class="fa-solid fa-circle-chevron-right"></i>
-            </button>
-          </div>
-        </div>
-        <div class="recent-activity">
-          <div class="activity-intro">
-            <h4>近期活動</h4>
-            <a href="#">查看更多活動 > </a>
-          </div>
-          <ul class="recent-activity-list">
-            <li class="card">
-              <img src="./images/eventPhotos/2021 日月潭花火音樂嘉年華.png" alt="">
-              <div class="activity">
-                <div class="event">
-                  <div class="date">2021/10/30 - 2021/11/13</div>
-                  <div class="title">2021 日月潭花火音樂嘉年華</div>
-                </div>
-                <div class="area">
-                  <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>南投縣</div>
-                  <a href="#">詳細介紹 > </a>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/eventPhotos/山城花語溫泉系列活動－寶來不老溫泉季.png" alt="">
-              <div class="activity">
-                <div class="event">
-                  <div class="date">2021/10/30 - 2022/02/08</div>
-                  <div class="title">山城花語溫泉系列活動－寶來不老溫泉季</div>
-                </div>
-                <div class="area">
-                  <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>高雄市</div>
-                  <a href="#">詳細介紹 > </a>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/eventPhotos/新北市萬金石馬拉松.png" alt="">
-              <div class="activity">
-                <div class="event">
-                  <div class="date">2021/11/21 - 2021/11/21</div>
-                  <div class="title">新北市萬金石馬拉松</div>
-                </div>
-                <div class="area">
-                  <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>新北市</div>
-                  <a href="#">詳細介紹 > </a>
-                </div>
-              </div>
-            </li>
-            <li class="card">
-              <img src="./images/eventPhotos/2021 金門坑道音樂節.png" alt="">
-              <div class="activity">
-                <div class="event">
-                  <div class="date">2021/11/27 - 2021/11/28</div>
-                  <div class="title">2021 金門坑道音樂節</div>
-                </div>
-                <div class="area">
-                  <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>金門縣</div>
-                  <a href="#">詳細介紹 > </a>
-                </div>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div class="hot-spots">
-          <div class="hot-spots-intro">
-            <h4>熱門打卡景點</h4>
-            <a href="#">查看更多景點 > </a>
-          </div>
-          <ul class="top-hot-spots">
-            <li class="card">
-              <a href="#">
-                <img src="./images/hotspotPhotos/龜山島牛奶海.png" alt="">
-              </a>
-              <span class="spot-name">龜山島牛奶海</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>宜蘭縣</div>
-            </li>
-            <li class="card">
-              <a href="#">
-                <img src="./images/hotspotPhotos/高美濕地.png" alt="">
-              </a>
-              <span class="spot-name">高美濕地(高美野生動...</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>臺中市</div>
-            </li>
-            <li class="card">
-              <a href="#">
-                <img src="./images/hotspotPhotos/溪頭自然教育園區.png" alt="">
-              </a>
-              <span class="spot-name">溪頭自然教育園區</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>南投縣</div>
-            </li>
-            <li class="card">
-              <a href="#">
-                <img src="./images/hotspotPhotos/九份老街.png" alt="">
-              </a>
-              <span class="spot-name">九份老街</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>新北市</div>
-            </li>
-          </ul>
-        </div>
-        <!--  -->
-        <div class="delicious-meal">
-          <div class="meal-intro">
-            <h4>一再回訪美食</h4>
-            <a href="#">查看更多美食 > </a>
-          </div>
-          <ul class="top-meals">
-            <li class="card">
-              <a href="#">
-                <img src="./images/mealPhotos/金都餐廳.png" alt="">
-              </a>
-              <span class="restaurant-name">金都餐廳</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>南投縣</div>
-            </li>
-            <li class="card">
-              <a href="#">
-                <img src="./images/mealPhotos/一中8兩碳烤雞排.png" alt="">
-              </a>
-              <span class="restaurant-name">一中8兩碳烤雞排</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>台中市</div>
-            </li>
-            <li class="card">
-              <a href="#">
-                <img src="./images/mealPhotos/名根烤肉食材宅配外送.png" alt="">
-              </a>
-              <span class="restaurant-name">名根烤肉食材宅配外送</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>新北市</div>
-            </li>
-            <li class="card">
-              <a href="#">
-                <img src="./images/mealPhotos/石桌羊肉店.png" alt="">
-              </a>
-              <span class="restaurant-name">石桌羊肉店</span>
-              <div class="location"><i class="fa-solid fa-location-dot location-icon"></i>嘉義縣</div>
-            </li>
-          </ul>
+    <main class="index-container">
+      <div class="banner">
+        <div class="container">
+          <img src="./images/index/scenicSpotPhoto/cover.png" alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+          <div class="title">新北市 | 不厭亭</div>
+          <button class="narrow-button left-narrow">
+            <i class="fa-solid fa-circle-chevron-left"></i>
+          </button>
+          <button class="narrow-button right-narrow">
+            <i class="fa-solid fa-circle-chevron-right"></i>
+          </button>
         </div>
       </div>
-  </div>
-  </main>
-  <footer>
-    <ul class="copyright">
-      <li>Code:Howard</li>
-      <li>Design:Breakfast</li>
-    </ul>
-  </footer>
+      <div class="recent-activities">
+        <div class="title">
+          <h4>近期活動</h4>
+          <a href="./activies.html">查看更多活動 > </a>
+        </div>
+        <ul class="list">
+          <li class="card">
+            <div class="photo">
+              <img src="./images/index/eventPhotos/2021 日月潭花火音樂嘉年華.png" alt="">
+            </div>
+            <div class="container">
+              <div class="event">
+                <div class="date">2021/10/30 - 2021/11/13</div>
+                <div class="title">2021 日月潭花火音樂嘉年華</div>
+              </div>
+              <div class="location">
+                <div>
+                  <i class="fa-solid fa-location-dot location-icon">南投縣</i>
+                </div>
+                <a href="#">詳細介紹 > </a>
+              </div>
+            </div>
+          </li>
+          <li class="card">
+            <div class="photo">
+              <img src="./images/index/eventPhotos/山城花語溫泉系列活動－寶來不老溫泉季.png" alt="">
+            </div>
+            <div class="container">
+              <div class="event">
+                <div class="date">2021/10/30 - 2022/02/08</div>
+                <div class="title">山城花語溫泉系列活動－寶來不老溫泉季</div>
+              </div>
+              <div class="location">
+                <div>
+                  <i class="fa-solid fa-location-dot location-icon">高雄市</i>
+                </div>
+                <a href="#">詳細介紹 > </a>
+              </div>
+          </li>
+          <li class="card">
+            <div class="photo">
+              <img src="./images/index/eventPhotos/新北市萬金石馬拉松.png" alt="">
+            </div>
+            <div class="container">
+              <div class="event">
+                <div class="date">2021/11/21 - 2021/11/21</div>
+                <div class="title">新北市萬金石馬拉松</div>
+              </div>
+              <div class="location">
+                <div>
+                  <i class="fa-solid fa-location-dot location-icon">新北市</i>
+                </div>
+                <a href="#">詳細介紹 > </a>
+              </div>
+            </div>
+          </li>
+          <li class="card">
+            <div class="photo">
+              <img src="./images/index/eventPhotos/2021 金門坑道音樂節.png" alt="">
+            </div>
+            <div class="container">
+              <div class="event">
+                <div class="date">2021/11/27 - 2021/11/28</div>
+                <div class="title">2021 金門坑道音樂節</div>
+              </div>
+              <div class="location">
+                <div>
+                  <i class="fa-solid fa-location-dot location-icon">金門縣</i>
+                </div>
+                <a href="#">詳細介紹 > </a>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="hot-spots">
+        <div class="title">
+          <h4>熱門打卡景點</h4>
+          <a href="./attractions.html">查看更多景點 > </a>
+        </div>
+        <ul class="list">
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
+              </div>
+            </a>
+            <span class="name">龜山島牛奶海</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/hotspotPhotos/高美濕地.png" alt="">
+              </div>
+            </a>
+            <span class="name">高美濕地(高美野生動...</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">臺中市</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/hotspotPhotos/溪頭自然教育園區.png" alt="">
+              </div>
+            </a>
+            <span class="name">溪頭自然教育園區</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">南投縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/hotspotPhotos/九份老街.png" alt="">
+              </div>
+            </a>
+            <span class="name">九份老街</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">新北市</i>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="delicious-meal">
+        <div class="title">
+          <h4>一再回訪美食</h4>
+          <a href="./restaurants.html">查看更多美食 > </a>
+        </div>
+        <ul class="list">
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/mealPhotos/金都餐廳.png" alt="">
+              </div>
+            </a>
+            <span class="name">金都餐廳</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">南投縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/mealPhotos/一中8兩碳烤雞排.png" alt="">
+              </div>
+            </a>
+            <span class="name">一中8兩碳烤雞排</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">臺中市</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/mealPhotos/名根烤肉食材宅配外送.png" alt="">
+              </div>
+            </a>
+            <span class="name">名根烤肉食材宅配外送</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">新北市</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="./images/index/mealPhotos/石桌羊肉店.png" alt="">
+              </div>
+            </a>
+            <span class="name">石桌羊肉店</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">嘉義縣</i>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </main>
+    <footer class="copyright">
+      <span>臺灣走走・Tai Tour  / Code:Howard  / Design:Breakfast</span>
+    </footer>
   </div>
 </body>
 

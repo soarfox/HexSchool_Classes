@@ -1,0 +1,21 @@
+.breadcrumb {
+  display: flex;
+  padding: 60px 0px 40px 50px;
+
+  li {
+    display: inline;
+    font-size: $h6-font-size;
+    color: $Gray;
+
+    a {
+      text-decoration: none;
+      color: $Green;
+    }
+  }
+
+  li+li:before {
+    padding: 8px;
+    // 使用CSS的content屬性將分隔符的內容設置為/字符，後方接著一個空格（\00a0是Unicode的不間斷空格字元）
+    content: "/\00a0";
+  }
+}

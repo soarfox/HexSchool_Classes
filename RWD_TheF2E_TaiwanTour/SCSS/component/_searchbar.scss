@@ -1,0 +1,47 @@
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  .select-category {
+    width: 20%;
+    padding: 11px 30px;
+    margin-right: 15px;
+    font-weight: 500;
+    font-family: $noto-font-family;
+    color: $Green;
+    font-size: $h6-font-size;
+    border: 1px solid $White-Gray;
+    border-radius: 5px;
+  }
+
+  .keyword {
+    width: 28%;
+    margin-right: 15px;
+
+    input {
+      width: 100%;
+      font-size: $h6-font-size;
+      font-weight: 400;
+      border-radius: 5px;
+      padding: 11px 30px;
+      border: 1px solid $White-Gray;
+      background-color: $CardBackground;
+    }
+  }
+
+  .search-button {
+    width: 17%;
+  }
+
+  .select-category, .keyword, .search-button {
+    @include mobile {
+      width: 90%;
+      margin: 7px 0px;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+.hot-topics {
+  .title {
+    font-size: $h3-font-size;
+    color: $Black;
+    font-weight: 300;
+    padding: 60px 0px 12px 55px;
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 30px 120px 30px;
+
+    @include mobile {
+      padding: 0px 15px 60px 15px;
+    }
+
+    .card {
+      width: 25%;
+      padding: 6px 15px;
+      position: relative;
+      overflow: hidden;
+
+      @include mobile {
+        width: 50%;
+        padding: 5px 7px;
+      }
+
+      .topic-photo {
+        overflow: hidden;
+        border-radius: 24px;
+
+        @include mobile {
+          border-radius: 16px;
+          text-align: center;
+        }
+
+        img {
+          transition: transform 0.3s;
+        }
+
+        &:hover img {
+          transform: scale(1.1);
+        }
+      }
+
+      .subtitle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        // 因為上方寫top和left後, 元素的中心位置本身跟父元素的中心位置不相符, 故可能會有點偏離所想像的中心位置, 故加入下方這行使得能根據元素自身寬度和高度, 將元素的中心點準確地對齊到父元素的中心位置
+        transform: translate(-50%, -50%);
+        color: $White;
+        font-size: $h4-font-size;
+        text-align: center;
+
+        @include mobile {
+          font-size: $h6-font-size;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+}

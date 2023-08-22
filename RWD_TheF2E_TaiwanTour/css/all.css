@@ -154,38 +154,59 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
-
-nav {
+.wrap nav {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  border-bottom: 1px solid #E5E5E5;
 }
-
-.walking-man-icon {
-  padding-right: 5px;
-  font-size: 28px;
+@media (max-width: 768px) {
+  .wrap nav {
+    justify-content: center;
+    align-items: center;
+  }
 }
-
-nav h1 {
+.wrap nav .logo {
+  text-decoration: none;
+}
+.wrap nav .logo h1 {
   font-size: 20px;
   font-weight: bold;
   color: #6E7D60;
   padding: 24px 45px;
   letter-spacing: 0.3em;
+  text-align: center;
 }
-
-.menu {
+.wrap nav .logo h1 .walking-man-icon {
+  padding-right: 5px;
+  font-size: 28px;
+}
+@media (max-width: 428px) {
+  .wrap nav .logo h1 span {
+    display: block;
+  }
+}
+.wrap nav .menu {
   display: flex;
   flex-wrap: wrap;
 }
-
-.menu li {
+.wrap nav .menu li {
   padding: 27px 20px;
 }
-
-.menu a {
+@media (max-width: 768px) {
+  .wrap nav .menu li {
+    width: 50%;
+  }
+}
+@media (max-width: 428px) {
+  .wrap nav .menu li {
+    width: 100%;
+    padding: 15px;
+  }
+}
+.wrap nav .menu li a {
   font-weight: 400;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #646464;
   text-decoration: none;
   text-align: center;
@@ -193,12 +214,10 @@ nav h1 {
   position: relative;
   display: block;
 }
-
-.menu a:hover {
+.wrap nav .menu li a:hover {
   color: #6E7D60;
 }
-
-.menu a::after {
+.wrap nav .menu li a::after {
   /* 偽元素必定要加一個空的內容 */
   content: "";
   position: absolute;
@@ -210,45 +229,166 @@ nav h1 {
   background-color: #7F977B;
   transition: 0.3s;
 }
-
-.menu a:hover::after {
+.wrap nav .menu li a:hover::after {
   width: 100%;
 }
 
-@media (max-width: 767px) {
-  nav {
-    justify-content: center;
-    align-items: center;
+.breadcrumb {
+  display: flex;
+  padding: 60px 0px 40px 50px;
+}
+.breadcrumb li {
+  display: inline;
+  font-size: 1rem;
+  color: #646464;
+}
+.breadcrumb li a {
+  text-decoration: none;
+  color: #6E7D60;
+}
+.breadcrumb li + li:before {
+  padding: 8px;
+  content: "/ ";
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 428px) {
+  .search-bar {
+    flex-direction: column;
   }
-  .menu li {
+}
+.search-bar .select-category {
+  width: 20%;
+  padding: 11px 30px;
+  margin-right: 15px;
+  font-weight: 500;
+  font-family: "Noto Sans TC";
+  color: #6E7D60;
+  font-size: 1rem;
+  border: 1px solid #E6E6E6;
+  border-radius: 5px;
+}
+.search-bar .keyword {
+  width: 28%;
+  margin-right: 15px;
+}
+.search-bar .keyword input {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 400;
+  border-radius: 5px;
+  padding: 11px 30px;
+  border: 1px solid #E6E6E6;
+  background-color: #F9F9F9;
+}
+.search-bar .search-button {
+  width: 17%;
+}
+@media (max-width: 428px) {
+  .search-bar .select-category, .search-bar .keyword, .search-bar .search-button {
+    width: 90%;
+    margin: 7px 0px;
+  }
+}
+
+.photo {
+  overflow: hidden;
+  width: 45%;
+}
+@media (max-width: 767px) {
+  .photo {
     width: 50%;
   }
 }
-@media (max-width: 375px) {
-  .menu li {
-    width: 100%;
-    padding: 15px;
-  }
+.photo img {
+  transition: transform 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  background-color: #65895F;
-  height: 60px;
+.photo img:hover {
+  transform: scale(1.1);
 }
 
-footer .copyright {
-  display: block;
+.hot-topics .title {
+  font-size: 1.75rem;
+  color: #1E1E1E;
+  font-weight: 300;
+  padding: 60px 0px 12px 55px;
+}
+.hot-topics ul {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0px 30px 120px 30px;
+}
+@media (max-width: 428px) {
+  .hot-topics ul {
+    padding: 0px 15px 60px 15px;
+  }
+}
+.hot-topics ul .card {
+  width: 25%;
+  padding: 6px 15px;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 428px) {
+  .hot-topics ul .card {
+    width: 50%;
+    padding: 5px 7px;
+  }
+}
+.hot-topics ul .card .topic-photo {
+  overflow: hidden;
+  border-radius: 24px;
+}
+@media (max-width: 428px) {
+  .hot-topics ul .card .topic-photo {
+    border-radius: 16px;
+    text-align: center;
+  }
+}
+.hot-topics ul .card .topic-photo img {
+  transition: transform 0.3s;
+}
+.hot-topics ul .card .topic-photo:hover img {
+  transform: scale(1.1);
+}
+.hot-topics ul .card .subtitle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #FFFFFF;
+  font-size: 1.25rem;
   text-align: center;
+}
+@media (max-width: 428px) {
+  .hot-topics ul .card .subtitle {
+    font-size: 1rem;
+    font-weight: 700;
+  }
+}
+
+.copyright {
+  display: flex;
+  justify-content: center;
+  background-color: #65895F;
+  padding: 20px 0px;
+}
+.copyright span {
   color: #FFFFFF;
   font-weight: 400;
 }
 
-@media (max-width: 375px) {
-  footer .copyright {
-    font-size: 12px;
+@media (max-width: 428px) {
+  .copyright {
+    text-align: center;
   }
 }
 header {
@@ -260,72 +400,64 @@ header {
 .intro {
   padding: 82px 0px 57px 0px;
 }
-
 .intro h2 {
   font-weight: 300;
-  font-size: 48px;
+  font-size: 3rem;
   color: #1E1E1E;
   line-height: 1.5;
 }
-
-.intro .yellow_border {
+.intro h2 .yellow_border {
   border-bottom: 3px solid #E0DA48;
 }
-
-.taiwan-location-icon {
-  color: #E0DA48;
-  padding-right: 5px;
-}
-
 .intro h3 {
   color: #646464;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 400;
   padding-top: 17px;
   letter-spacing: 0.03em;
 }
-
-.search {
-  display: flex;
-  flex-direction: column;
-  padding: 101px 0px 0px 0px;
-  width: 35%;
+.intro h3 .taiwan-location-icon {
+  color: #E0DA48;
+  padding-right: 5px;
 }
-
 @media (max-width: 767px) {
   .intro {
     text-align: center;
     padding: 12px 0px;
   }
   .intro h2 {
-    font-size: 32px;
+    font-size: 1.75rem;
   }
-  .search {
+}
+
+.select-category {
+  display: flex;
+  flex-direction: column;
+  padding: 101px 0px 0px 0px;
+  width: 35%;
+}
+@media (max-width: 767px) {
+  .select-category {
     padding-top: 33px;
     width: 90%;
   }
 }
-@media (max-width: 375px) {
-  .intro h2 {
-    font-size: 26px;
-  }
-}
+
 /* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
-.search-category,
+.category,
 .search-keyword,
 .search-button {
-  height: 50px;
-  font-size: 16px;
   margin: 7px 0px;
-  padding: 0px 30px;
+  padding: 12px 30px;
   border: 1px solid #E6E6E6;
   color: #6E7D60;
+  font-size: 1.125rem;
   /* 此字型源自於index.html的<head>內所引用的字體 */
   font-family: Noto Sans TC;
   border-radius: 5px;
 }
 
-.search-category {
+.category {
   font-weight: 500;
 }
 
@@ -342,33 +474,28 @@ header {
   font-weight: 700;
   letter-spacing: 1.5em;
 }
-
 .search-button:hover {
   background-color: #E0DA48;
 }
-
 .search-button:active {
   background-color: #FF725E;
 }
 
-main {
+.index-container {
   max-width: 1110px;
   margin: 0 auto;
 }
-
-.banner {
+.index-container .banner {
   position: relative;
   padding: 60px 0px 36px 0px;
 }
-
-.image-container {
+.index-container .banner .container {
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.photo-title {
+.index-container .banner .container .title {
   position: absolute;
   top: 0;
   right: 0;
@@ -379,295 +506,292 @@ main {
   align-items: center;
   text-align: center;
   color: #FFFFFF;
-  font-size: 28px;
+  font-size: 1.75rem;
   font-weight: 700;
 }
-
-.left-narrow {
+@media (max-width: 428px) {
+  .index-container .banner .container .title {
+    font-size: 1rem;
+  }
+}
+.index-container .banner .container .narrow-button {
   position: absolute;
   top: 0;
-  left: 0;
   bottom: 0;
   display: flex;
   justify-content: end;
   align-items: center;
   color: #FFFFFF;
-  font-size: 40px;
+  font-size: 2.25rem;
   background: none;
   border: none;
   padding-left: 30px;
 }
-
-.left-narrow:hover {
+.index-container .banner .container .narrow-button:hover {
   color: #7F977B;
 }
-
-.right-narrow {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  color: #FFFFFF;
-  font-size: 40px;
-  background: none;
-  border: none;
-  padding-right: 30px;
+.index-container .banner .container .narrow-button:active {
+  color: #FF725E;
 }
-
-.right-narrow:hover {
-  color: #7F977B;
-}
-
-@media (max-width: 375px) {
-  .photo-title {
-    font-size: 16px;
-  }
-  .left-narrow,
-  .right-narrow {
+@media (max-width: 428px) {
+  .index-container .banner .container .narrow-button {
     display: none;
   }
 }
-.banner,
-.recent-activity,
-.hot-spots,
-.delicious-meal {
+.index-container .banner .container .left-narrow {
+  left: 0;
+}
+.index-container .banner .container .right-narrow {
+  right: 0;
+}
+.index-container .banner,
+.index-container .recent-activities,
+.index-container .hot-spots,
+.index-container .delicious-meal {
   padding-bottom: 36px;
 }
-
-.activity-intro,
-.hot-spots-intro,
-.meal-intro {
+.index-container .banner .location-icon,
+.index-container .recent-activities .location-icon,
+.index-container .hot-spots .location-icon,
+.index-container .delicious-meal .location-icon {
+  padding-right: 5px;
+  color: #646464;
+}
+.index-container .recent-activities .title,
+.index-container .hot-spots .title,
+.index-container .delicious-meal .title {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-
-.activity-intro h4,
-.hot-spots-intro h4,
-.meal-intro h4 {
-  font-size: 36px;
+.index-container .recent-activities .title h4,
+.index-container .hot-spots .title h4,
+.index-container .delicious-meal .title h4 {
+  font-size: 2.25rem;
   font-weight: 300;
   padding: 0px 0px 12px 0px;
 }
-
-.location-icon {
-  padding-right: 5px;
-  color: #646464;
+@media (max-width: 428px) {
+  .index-container .recent-activities .title h4,
+  .index-container .hot-spots .title h4,
+  .index-container .delicious-meal .title h4 {
+    font-size: 1.25rem;
+  }
 }
-
-.activity-intro a,
-.hot-spots-intro a,
-.meal-intro a {
+.index-container .recent-activities .title a,
+.index-container .hot-spots .title a,
+.index-container .delicious-meal .title a {
   color: #FF725E;
   text-decoration: none;
   font-weight: bold;
 }
-
-.activity-intro a:hover,
-.hot-spots-intro a:hover,
-.meal-intro a:hover {
+.index-container .recent-activities .title a:hover,
+.index-container .hot-spots .title a:hover,
+.index-container .delicious-meal .title a:hover {
   color: #7F977B;
 }
-
-.recent-activity-list {
+.index-container .recent-activities .list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-
-.recent-activity-list .card {
+.index-container .recent-activities .list .card {
   background-color: #F9F9F9;
   border: 1px solid #E5E5E5;
   margin: 1% 0px;
   border-radius: 12px;
   display: flex;
   width: 47%;
+  overflow: hidden;
 }
-
-/* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
-.recent-activity-list .card img {
-  transition: 1s ease-out;
+@media (max-width: 767px) {
+  .index-container .recent-activities .list .card {
+    width: 100%;
+  }
 }
-
-.recent-activity-list .card img:hover {
-  transform: scale(1.1, 1.1);
-  transition: 1s ease-out;
-}
-
-.activity {
+.index-container .recent-activities .list .card .container {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
   flex-direction: column;
   justify-content: space-between;
   padding: 0px 15px;
 }
-
-.activity .date {
+.index-container .recent-activities .list .card .container .date {
   display: block;
   color: #646464;
   padding-top: 16px;
   font-weight: 400;
 }
-
-.activity .title {
+@media (max-width: 428px) {
+  .index-container .recent-activities .list .card .container .date {
+    font-size: 1rem;
+  }
+}
+.index-container .recent-activities .list .card .container .title {
   display: block;
-  font-size: 22px;
+  font-size: 1.25rem;
   line-height: 1.5;
   font-weight: 700;
   color: #1E1E1E;
   padding-top: 3px;
 }
-
-.activity .area .location {
+@media (max-width: 767px) {
+  .index-container .recent-activities .list .card .container .title {
+    font-size: 1rem;
+    padding-bottom: 10%;
+  }
+}
+@media (max-width: 428px) {
+  .index-container .recent-activities .list .card .container .title {
+    font-size: 1rem;
+  }
+}
+.index-container .recent-activities .list .card .container .location {
+  padding-bottom: 18px;
   font-weight: 400;
-}
-
-.activity .area a {
-  font-weight: 500;
-}
-
-.recent-activity-list .card .area {
   display: flex;
   justify-content: space-between;
-  padding-bottom: 18px;
 }
-
-.recent-activity-list .card .area a {
+@media (max-width: 767px) {
+  .index-container .recent-activities .list .card .container .location {
+    font-size: 1rem;
+  }
+}
+.index-container .recent-activities .list .card .container .location a {
+  font-weight: 500;
   text-decoration: none;
   color: #7F977B;
 }
-
-.recent-activity-list .card .area a:hover {
+.index-container .recent-activities .list .card .container .location a:hover {
   color: #FF725E;
 }
-
-@media (max-width: 767px) {
-  .recent-activity-list .card {
-    width: 100%;
-  }
-  .activity .title {
-    font-size: 18px;
-    padding-bottom: 10%;
-  }
-  .recent-activity-list .card .area {
-    font-size: 14px;
-  }
-}
-@media (max-width: 375px) {
-  .recent-activity-list .card {
-    width: 100%;
-  }
-  .activity .date {
-    font-size: 12px;
-  }
-  .activity .title {
-    font-size: 16px;
-  }
-  .recent-activity-list .card .area {
-    font-size: 12px;
-  }
-  /* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
-  .recent-activity-list .card img {
-    transition: 1s ease-out;
-  }
-  .recent-activity-list .card img:hover {
-    transform: scale(0.9, 0.9);
-    transition: 1s ease-out;
-  }
-}
-.top-hot-spots,
-.top-meals {
+.index-container .hot-spots .list,
+.index-container .delicious-meal .list {
   display: flex;
-}
-
-.top-hot-spots .card,
-.top-meals .card {
-  display: flex;
-  flex-direction: column;
-  /* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
-  margin: 0px 15px;
-}
-
-/* 當圖片想要在滑鼠hover時放大1.1倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
-.top-hot-spots .card img,
-.top-meals .card img {
-  padding: 0px 10px;
-  border-radius: 20px;
-  transition: 1s ease-out;
-}
-
-.top-hot-spots .card img:hover,
-.top-meals .card img:hover {
-  transform: scale(1.1, 1.1);
-  transition: 1s ease-out;
-}
-
-.top-hot-spots .spot-name,
-.top-meals .restaurant-name {
-  font-size: 22px;
-  line-height: 1.5;
-  font-weight: 700;
-  padding-top: 10px;
-}
-
-.top-hot-spots .location,
-.delicious-meal .location {
-  color: #646464;
-  padding-top: 6px;
-  font-weight: 400;
-}
-
-@media (max-width: 767px) {
-  .activity-intro h4,
-  .hot-spots-intro h4,
-  .meal-intro h4 {
-    font-size: 24px;
-  }
-  .top-hot-spots .card,
-  .top-meals .card {
-    width: 45%;
-    align-items: center;
-    padding: 1% 0px;
-    margin: 2%;
-    /* 使用box-shadow製作出卡片效果, x軸位移值 y軸位移值 擴散效果數值 陰影顏色 */
-    box-shadow: 0px 2px 3px #646464;
-    border-radius: 6px;
-  }
-  .top-hot-spots .spot-name,
-  .top-meals .restaurant-name {
-    padding-top: 2%;
-    font-size: 16px;
-    text-align: center;
-  }
-  /* 當圖片想要在滑鼠hover時縮小0.9倍, 且當滑鼠游標離開時緩慢恢復原狀, 則需要在原標籤及hover標籤都加上transition屬性 */
-  .top-hot-spots .card img,
-  .top-meals .card img {
-    transition: 1s ease-out;
-    width: 100%;
-    height: auto;
-  }
-  .top-hot-spots .card img:hover,
-  .top-meals .card img:hover {
-    transform: scale(1.1, 1.1);
-    transition: 1s ease-out;
-  }
-}
-@media (max-width: 375px) {
   /* 做出scroll image/card的方式如下 */
-  .top-hot-spots,
-  .top-meals {
-    /* 使內容能夠並排呈現 */
+}
+@media (max-width: 428px) {
+  .index-container .hot-spots .list,
+  .index-container .delicious-meal .list {
     display: flex;
     /* 為了要實現scroll image/card的效果, 故將所有"熱門打卡景點"和"一再回訪美食"的元素都各自於同一行顯示, 即不進行元素的換行 */
     white-space: nowrap;
     /* 將超出此容器的內容隱藏起來(overflow-x設為auto, overflow-y設為hidden), 藉此將card的y軸捲軸隱藏起來 */
     overflow: auto hidden;
   }
-  .top-hot-spots .spot-name,
-  .top-meals .restaurant-name {
+}
+.index-container .hot-spots .list .card,
+.index-container .delicious-meal .list .card {
+  display: flex;
+  flex-direction: column;
+  /* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
+  margin: 0px 15px;
+}
+@media (max-width: 428px) {
+  .index-container .hot-spots .list .card,
+  .index-container .delicious-meal .list .card {
+    width: 45%;
+    align-items: center;
+    padding: 12px 0px;
+    margin: 12px;
+  }
+}
+.index-container .hot-spots .list .card .photo,
+.index-container .delicious-meal .list .card .photo {
+  width: 100%;
+  border-radius: 20px;
+}
+.index-container .hot-spots .list .card .location,
+.index-container .delicious-meal .list .card .location {
+  padding-top: 6px;
+}
+.index-container .hot-spots .list .name,
+.index-container .delicious-meal .list .name {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 700;
+  padding-top: 10px;
+}
+@media (max-width: 767px) {
+  .index-container .hot-spots .list .name,
+  .index-container .delicious-meal .list .name {
+    padding-top: 2%;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+@media (max-width: 428px) {
+  .index-container .hot-spots .list .name,
+  .index-container .delicious-meal .list .name {
+    /* 限定文字寬度, 使得各卡片大小統一 */
+    width: 100px;
+    /* 將超出此容器的文字隱藏起來, 且隱藏的文字使用省略號(ellipsis)表示 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+.search-result {
+  padding: 0px 15px;
+}
+.search-result .title {
+  font-size: 2.25rem;
+  color: #1E1E1E;
+  padding: 60px 6px 12px 55px;
+}
+.search-result .list {
+  display: flex;
+  margin: 0px 30px 100px 30px;
+  flex-wrap: wrap;
+  /* 做出scroll image/card的方式如下 */
+}
+@media (max-width: 428px) {
+  .search-result .list {
+    display: flex;
+    /* 為了要實現scroll image/card的效果, 故將所有"熱門打卡景點"和"一再回訪美食"的元素都各自於同一行顯示, 即不進行元素的換行 */
+    white-space: nowrap;
+    /* 將超出此容器的內容隱藏起來(overflow-x設為auto, overflow-y設為hidden), 藉此將card的y軸捲軸隱藏起來 */
+    overflow: auto hidden;
+  }
+}
+.search-result .list .card {
+  display: flex;
+  flex-direction: column;
+  /* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
+  margin: 18px 15px;
+  width: 22%;
+}
+@media (max-width: 428px) {
+  .search-result .list .card {
+    width: 100%;
+    align-items: center;
+    padding: 6px 0px;
+    margin: 0px;
+  }
+}
+.search-result .list .card .photo {
+  width: 100%;
+  border-radius: 20px;
+}
+.search-result .list .card .location {
+  padding-top: 6px;
+}
+.search-result .list .name {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 700;
+  padding-top: 10px;
+}
+@media (max-width: 767px) {
+  .search-result .list .name {
+    padding-top: 2%;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+@media (max-width: 428px) {
+  .search-result .list .name {
     /* 限定文字寬度, 使得各卡片大小統一 */
     width: 100px;
     /* 將超出此容器的文字隱藏起來, 且隱藏的文字使用省略號(ellipsis)表示 */

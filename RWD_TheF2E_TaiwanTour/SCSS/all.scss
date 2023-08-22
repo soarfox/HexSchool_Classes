@@ -1,6 +1,11 @@
-@import "reset";
-@import "variables";
-@import "mixins/grid";
+@import "config/reset";
+@import "config/variables";
+@import "config/grid";
 @import "layout/nav";
+@import "component/breadcrumb";
+@import "component/searchbar";
+@import "component/photos";
+@import "component/hot_topics";
 @import "layout/footer";
 @import "pages/index";
+@import "pages/searchResult";
