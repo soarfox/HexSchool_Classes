@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
 
-  @include mobile {
+  @include tablet {
     flex-direction: column;
   }
 
@@ -20,7 +20,7 @@
   }
 
   .keyword {
-    width: 28%;
+    width: 30%;
     margin-right: 15px;
 
     input {
@@ -34,12 +34,8 @@
     }
   }
 
-  .search-button {
-    width: 17%;
-  }
-
   .select-category, .keyword, .search-button {
-    @include mobile {
+    @include tablet {
       width: 90%;
       margin: 7px 0px;
     }

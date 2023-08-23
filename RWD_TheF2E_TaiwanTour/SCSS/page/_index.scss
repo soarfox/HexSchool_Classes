@@ -2,6 +2,12 @@ header {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
+	// 因為navbar設為fixed, 故它已脫離正常文件流向, 獨立在另一個圖層上, 因此為了讓主頁面內容不被navbar覆蓋到, 需要設定一定的高度
+	padding-top: 80px;
+
+	@include tablet {
+		padding-top: 100px;
+	}
 }
 
 .intro {
@@ -24,6 +30,10 @@ header {
 		font-weight: 400;
 		padding-top: 17px;
 		letter-spacing: 0.03em;
+
+		@include tablet {
+			font-size: $h6-font-size;
+		}
 
 		.taiwan-location-icon {
 			color: $Yellow;
@@ -82,7 +92,7 @@ header {
 	border: 0px;
 	border-radius: 6px;
 	font-weight: 700;
-	letter-spacing: 1.5em;
+	letter-spacing: 1.5 * $h6-font-size;
 
 	&:hover {
 		background-color: $Yellow;
@@ -203,29 +213,7 @@ header {
 		}
 	}
 
-
-	// .photo {
-	// 	// 將圖片被hover時會放大的效果之超出框框的部分隱藏掉
-	// 	overflow: hidden;
-	// 	width: 45%;
-
-	// 	@include tablet {
-	// 		width: 50%;
-	// 	}
-
-	// 	img {
-	// 		transition: transform 0.3s ease-in-out;
-	// 		width: 100%;
-	// 		height: 100%;
-	// 		object-fit: cover;
-
-	// 		&:hover {
-	// 			transform: scale(1.1);
-	// 		}
-	// 	}
-	// }
-
-	.recent-activities .list {
+	.recent-activities .last-activities-list {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
@@ -305,63 +293,5 @@ header {
 			}
 		}
 	}
-
-	.hot-spots .list,
-	.delicious-meal .list {
-		display: flex;
-
-		/* 做出scroll image/card的方式如下 */
-		@include mobile {
-			display: flex;
-			/* 為了要實現scroll image/card的效果, 故將所有"熱門打卡景點"和"一再回訪美食"的元素都各自於同一行顯示, 即不進行元素的換行 */
-			white-space: nowrap;
-			/* 將超出此容器的內容隱藏起來(overflow-x設為auto, overflow-y設為hidden), 藉此將card的y軸捲軸隱藏起來 */
-			overflow: auto hidden;
-		}
-
-		.card {
-			display: flex;
-			flex-direction: column;
-			/* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
-			margin: 0px 15px;
-
-			@include mobile {
-				width: 45%;
-				align-items: center;
-				padding: 12px 0px;
-				margin: 12px;
-			}
-
-			.photo {
-				width: 100%;
-				// UI稿的圖片本身自己已有border-radius效果, 故為了放大時不要出現邊緣的直角, 此處也需要設定border-radius效果
-				border-radius: 20px;
-			}
-
-			.location {
-				padding-top: 6px;
-			}
-		}
-
-		.name {
-			font-size: $h4-font-size;
-			line-height: 1.5;
-			font-weight: 700;
-			padding-top: 10px;
-
-			@include tablet {
-				padding-top: 2%;
-				font-size: $h6-font-size;
-				text-align: center;
-			}
-
-			@include mobile {
-				/* 限定文字寬度, 使得各卡片大小統一 */
-				width: 100px;
-				/* 將超出此容器的文字隱藏起來, 且隱藏的文字使用省略號(ellipsis)表示 */
-				overflow: hidden;
-				text-overflow: ellipsis;
-			}
-		}
-	}
+	// 首頁內的".hot-spots .list"和".delicious-meal .list"的基礎樣式寫在./SCSS/component/_list_cards.scss內, 該scss與搜尋結果頁的".list .card{...}"共用
 }

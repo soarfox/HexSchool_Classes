@@ -6,45 +6,74 @@ body {
 	max-width: 1200px;
 	margin: 0 auto;
 
-	nav {
+	.navbar {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
 		border-bottom: 1px solid $LittleGray;
+		// 因為設定了position: fixed; 因此在水平方向上的寬度將不再自動撐開至整行, 而只會根據內容的寬度進行調整, 故為了佔滿一整行, 需要撰寫寬度設定(width)
+		position: fixed;
+		// 當設定了寬度之後, 因為它會超出祖先元素.wrap的寬度限制, 直接與視窗寬度對齊, 造成半透明背景超出.wrap範圍, 故在此設定一個最大寬度(max-width), 藉此限制其不超出.wrap範圍
+		width: 100%;
+		max-width: 1200px;
+		background-color: $White;
+		// 設定圖層屬性為2以上, 使得其他內容無法疊加在navbar之上
+		z-index: 2;
 
 		@include iPad {
-			justify-content: center;
 			align-items: center;
+		}
+
+		@include tablet {
+			position: fixed;
+			padding: 16px 14px;
+			border-bottom: 0px;
 		}
 
 		.logo {
 			text-decoration: none;
 
 			h1 {
-				font-size: 20px;
-				font-weight: bold;
-				color: $Green;
-				padding: 24px 45px;
-				letter-spacing: 0.3em;
-				text-align: center;
+				// 透過下方三行將h1文字隱藏起來, 有助於美化版面且方便SEO搜尋
+				text-indent: 101%;
+				white-space: nowrap;
+				overflow: hidden;
+				margin: 24px 0px 24px 45px;
+				background-image: url(../images/icon/logo-desktop.svg);
+				background-repeat: no-repeat;
+				// 請記得寫上寬高, 才能完整顯示圖片
+				width: 240px;
+				height: 32px;
 
-				.walking-man-icon {
-					padding-right: 5px;
-					font-size: 28px;
+				@include tablet {
+					background-image: url(../images/icon/logo-mobile.svg);
+					width: 118px;
+					height: 30px;
 				}
-
-				span {
-					@include mobile {
-						display: block;
-					}
-				}
-
 			}
 		}
 
 		.menu {
 			display: flex;
 			flex-wrap: wrap;
+
+			@include tablet {
+				// 相對於.navbar在tablet解析度時的fixed, 這裡設定為絕對定位, 以利產生出漢堡選單的效果
+				position: absolute;
+				// 當漢堡選單尚未打開時, 也就是高度尚未從0px變成400px之前, 先將ul選單內的所有內容都隱藏起來, 故使用overflow: hidden;將多餘的資料隱藏起來
+				overflow: hidden;
+				// 設定一個高度, 以避免漢堡選單遮蔽了navbar
+				top: 108px;
+				// 寬度設左右均為0px, 如此可讓選單li項目的寬度完整呈現, 假設li項目寬度設定為100%, 則就能完整呈現出100%
+				left: 0;
+				right: 0;
+				text-align: center;
+				display: block;
+				// 當尚未打開漢堡選單時, 高度設為0px
+				max-height: 0px;
+				// 將高度展開(從0px ~ 400px)的動畫效果設為1秒鐘完成
+				transition: max-height 1s;
+			}
 
 			li {
 				padding: 27px 20px;
@@ -53,9 +82,11 @@ body {
 					width: 50%;
 				}
 
-				@include mobile {
+				@include tablet {
+					// 將漢堡選單的li項目寬度設定100%
 					width: 100%;
-					padding: 15px;
+					padding: 0px;
+					background-color: $White;
 				}
 
 				a {
@@ -68,8 +99,19 @@ body {
 					position: relative;
 					display: block;
 
+					// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+					@include tablet {
+						padding: 20px 0px;
+					}
+
 					&:hover {
 						color: $Green;
+
+						// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+						@include tablet {
+							background-color: $Green;
+							color: $White;
+						}
 					}
 
 					&::after {
@@ -83,12 +125,40 @@ body {
 						height: 8px;
 						background-color: $DeepGreen;
 						transition: 0.3s;
+
+						// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+						@include tablet {
+							content: none;
+						}
 					}
 
 					&:hover::after {
 						width: 100%;
+
+						// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+						@include tablet {
+							width: 0;
+						}
 					}
 				}
+			}
+		}
+
+		.mobile-menu-icon {
+			display: none;
+
+			@include tablet {
+				display: block;
+			}
+		}
+	}
+
+	// 在.navbar加上.show-mobile-menu樣式後, 在.navbar內的原有的.menu要加上顯示高度
+	.show-mobile-menu {
+		.menu{
+			@include tablet {
+				// 將漢堡選單的高度設為400px
+				max-height: 400px;
 			}
 		}
 	}

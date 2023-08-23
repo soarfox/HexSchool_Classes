@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>旅遊景點/活動/美食/住宿-臺灣走走・Tai Tour</title>
+  <title>旅遊景點/活動/美食/住宿-台灣走走・Tai Tour</title>
   <link rel="shortcut icon" href="./images/icon/web_icon.ico">
   <meta name="author" content="UI Designer: Breakfast">
   <meta name="author" content="Website Engineer: Howard">
@@ -16,13 +16,12 @@
   <!-- 不論對方是使用什麼版本的IE瀏覽器, 一律強制以最新版的IE來渲染; 避免對方明明是IE9, 結果卻因為曾經有改到相容性設定而以IE7呈現, 加上這一行程式碼即可完全避免掉這種狀況 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- 社群軟體盛行的現在, 在通訊或社群軟體上分享網址時都會出現該網站的標題, 縮圖與描述, 透過設定og可以更準確的說明網站的內容, 參考資料為六角學院官方網站的<head>標籤內的<meta>內容, https://www.hexschool.com/ -->
-  <meta property="og:title" content="各縣市最新的旅遊景點/活動/美食/住宿資訊-臺灣走走・Tai Tour">
+  <meta property="og:title" content="各縣市最新的旅遊景點/活動/美食/住宿資訊-台灣走走・Tai Tour">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://soarfox.github.io/HexSchool_Classes/RWD_TheF2E_TaiwanTour/">
   <meta property="og:description" content="各縣市最新的旅遊資訊都在這裡。">
   <meta property="og:image" content="https://i.imgur.com/7QmdcPa.png">
-  <!-- 引用Font Awesome的圖示 -->
-  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+
   <!-- 引用Google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,13 +32,13 @@
 
 <body>
   <div class="wrap">
-    <nav>
+    <nav class="navbar">
       <a class="logo" href="index.html">
-        <h1>
-          <i class="fa-solid fa-person-walking walking-man-icon"></i>
-          臺灣走走・<span>Taiwan Tour</span>
-        </h1>
+        <h1>台灣走走・Tai Tour</h1>
       </a>
+      <div class="mobile-menu-icon">
+        <img src="./images/icon/menu-mobile.svg" width="50" height="50" alt="背景是淺綠色, 前景是三條白色橫線, 由上至下分別是短、長、短, 代表著menu">
+      </div>
       <ul class="menu">
         <li><a href="./attractions.html">探索景點</a></li>
         <li><a href="./activies.html">節慶活動</a></li>
@@ -47,7 +46,7 @@
         <li><a href="./hotels.html">安心旅宿</a></li>
       </ul>
     </nav>
-    <main class="attraction-container">
+    <main class="container">
       <ul class="breadcrumb">
         <li><a href="./index.html">首頁</a></li>
         <li>安心旅宿</li>
@@ -111,18 +110,21 @@
           <i class="fa-solid fa-magnifying-glass"></i>搜尋
         </button>
       </div>
-      <div class="search-result">
+      <div class="result-container">
         <div class="title">
           <h4>搜尋結果</h4>
+          <div class="result-count">共有
+            <span class="count">123</span> 筆
+          </div>
         </div>
         <ul class="list">
           <li class="card">
             <a href="#">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
               </div>
             </a>
-            <span class="name">龜山島牛奶海</span>
+            <span class="name">超級大漢堡</span>
             <div class="location">
               <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
             </div>
@@ -130,43 +132,10 @@
           <li class="card">
             <a href="#">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/高美濕地.png" alt="">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
               </div>
             </a>
-            <span class="name">高美濕地(高美野生動...</span>
-            <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">臺中市</i>
-            </div>
-          </li>
-          <li class="card">
-            <a href="#">
-              <div class="photo">
-                <img src="./images/index/hotspotPhotos/溪頭自然教育園區.png" alt="">
-              </div>
-            </a>
-            <span class="name">溪頭自然教育園區</span>
-            <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">南投縣</i>
-            </div>
-          </li>
-          <li class="card">
-            <a href="#">
-              <div class="photo">
-                <img src="./images/index/hotspotPhotos/九份老街.png" alt="">
-              </div>
-            </a>
-            <span class="name">九份老街</span>
-            <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">新北市</i>
-            </div>
-          </li>
-          <li class="card">
-            <a href="#">
-              <div class="photo">
-                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
-              </div>
-            </a>
-            <span class="name">龜山島牛奶海</span>
+            <span class="name">超級大漢堡</span>
             <div class="location">
               <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
             </div>
@@ -174,10 +143,10 @@
           <li class="card">
             <a href="#">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
               </div>
             </a>
-            <span class="name">龜山島牛奶海</span>
+            <span class="name">超級大漢堡</span>
             <div class="location">
               <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
             </div>
@@ -185,10 +154,10 @@
           <li class="card">
             <a href="#">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
               </div>
             </a>
-            <span class="name">龜山島牛奶海</span>
+            <span class="name">超級大漢堡</span>
             <div class="location">
               <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
             </div>
@@ -196,10 +165,10 @@
           <li class="card">
             <a href="#">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
               </div>
             </a>
-            <span class="name">龜山島牛奶海</span>
+            <span class="name">超級大漢堡</span>
             <div class="location">
               <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
             </div>
@@ -207,21 +176,86 @@
           <li class="card">
             <a href="#">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
               </div>
             </a>
-            <span class="name">龜山島牛奶海</span>
+            <span class="name">超級大漢堡</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
+              </div>
+            </a>
+            <span class="name">超級大漢堡</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
+              </div>
+            </a>
+            <span class="name">超級大漢堡</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
+              </div>
+            </a>
+            <span class="name">超級大漢堡</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
+              </div>
+            </a>
+            <span class="name">超級大漢堡</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#">
+              <div class="photo">
+                <img src="https://i.imgur.com/NmH0fsD.png" alt="">
+              </div>
+            </a>
+            <span class="name">超級大漢堡</span>
             <div class="location">
               <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
             </div>
           </li>
         </ul>
+        <div class="result-null">
+          <img src="./images/searchResult/search_null.png" alt="背景是一份紙本資料, 前景是一隻放大鏡" width="80" height="80">
+          <div class="null-text">
+            <span>目前查無資料，請重新搜尋</span>
+            <span>Not found, please search again.</span>
+          </div>
+        </div>
       </div>
     </main>
     <footer class="copyright">
-      <span>臺灣走走・Tai Tour　/　Code:Howard　/　Design:Breakfast</span>
+      <span>台灣走走・Tai Tour　/　Code:Howard　/　Design:Breakfast</span>
     </footer>
   </div>
+  <!-- 引用Font Awesome的圖示 -->
+  <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <script src="./js/hamburger_menu.js"></script>
 </body>
 
 </html>

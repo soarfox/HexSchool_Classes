@@ -1,11 +1,13 @@
 @import "config/reset";
 @import "config/variables";
 @import "config/grid";
+@import "config/container";
 @import "layout/nav";
 @import "component/breadcrumb";
 @import "component/searchbar";
 @import "component/photos";
 @import "component/hot_topics";
+@import "component/list_cards";
 @import "layout/footer";
-@import "pages/index";
-@import "pages/searchResult";
+@import "page/index";
+@import "page/searchResult";

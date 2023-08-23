@@ -1,0 +1,4 @@
+// 為了不要讓四個主題分類的麵包屑內容被上方的navbar擋住, 故統一設定padding向上推擠一個高度
+.container {
+  padding-top: 80px;
+}
