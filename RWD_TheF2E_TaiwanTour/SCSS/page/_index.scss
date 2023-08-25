@@ -2,178 +2,102 @@ header {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-evenly;
-	// 因為navbar設為fixed, 故它已脫離正常文件流向, 獨立在另一個圖層上, 因此為了讓主頁面內容不被navbar覆蓋到, 需要設定一定的高度
+	// 因為navbar設為fixed, 故它已脫離正常文件流向, 獨立在另一個圖層上, 因此為了讓主頁面內容不被navbar覆蓋到, 需要設定一定的高度, 故在桌面版解析度時向上推擠80px, 在iPad(含)以下解析度時向上推擠150px
 	padding-top: 80px;
 
 	@include tablet {
 		padding-top: 100px;
 	}
-}
 
-.intro {
-	padding: 82px 0px 57px 0px;
+	.intro {
+		padding: 82px 0px 57px 0px;
+		width: 50%;
 
-	h2 {
-		font-weight: 300;
-		font-size: $h1-font-size;
-		color: $Black;
-		line-height: 1.5;
-
-		.yellow_border {
-			border-bottom: 3px solid $Yellow;
+		@include mobile {
+			width: 100%;
 		}
-	}
-
-	h3 {
-		color: $LightGray;
-		font-size: $h4-font-size;
-		font-weight: 400;
-		padding-top: 17px;
-		letter-spacing: 0.03em;
-
-		@include tablet {
-			font-size: $h6-font-size;
-		}
-
-		.taiwan-location-icon {
-			color: $Yellow;
-			padding-right: 5px;
-		}
-	}
-
-	@include tablet {
-		text-align: center;
-		padding: 12px 0px;
 
 		h2 {
-			font-size: $h3-font-size;
+			font-weight: 300;
+			font-size: $h1-font-size;
+			color: $Black;
+			line-height: 1.5;
+
+			.yellow_border {
+				border-bottom: 3px solid $Yellow;
+			}
 		}
-	}
-}
 
-.select-category {
-	display: flex;
-	flex-direction: column;
-	padding: 101px 0px 0px 0px;
-	width: 35%;
+		h3 {
+			color: $LightGray;
+			font-size: $h4-font-size;
+			font-weight: 400;
+			padding-top: 17px;
+			letter-spacing: 0.03em;
 
-	@include tablet {
-		padding-top: 33px;
-		width: 90%;
-	}
-}
+			@include iPad {
+				font-size: $h5-font-size;
+			}
 
-/* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
-.category,
-.search-keyword,
-.search-button {
-	margin: 7px 0px;
-	padding: 12px 30px;
-	border: 1px solid $White-Gray;
-	color: $Green;
-	font-size: $h5-font-size;
-	/* 此字型源自於index.html的<head>內所引用的字體 */
-	font-family: Noto Sans TC;
-	border-radius: 5px;
-}
+			.taiwan-location-icon {
+				color: $Yellow;
+				padding-right: 5px;
+			}
+		}
 
-.category {
-	font-weight: 500;
-}
+		@include tablet {
+			text-align: center;
+			padding: 12px 0px;
 
-.search-keyword {
-	font-weight: 400;
-}
-
-.search-button {
-	background-color: $DeepGreen;
-	color: $White;
-	padding: 8px 24px;
-	border: 0px;
-	border-radius: 6px;
-	font-weight: 700;
-	letter-spacing: 1.5 * $h6-font-size;
-
-	&:hover {
-		background-color: $Yellow;
-	}
-
-	&:active {
-		background-color: $OrangeRed;
-	}
-}
-
-.index-container {
-	max-width: 1110px;
-	margin: 0 auto;
-
-
-	.banner {
-		position: relative;
-		padding: 60px 0px 36px 0px;
-
-		.container {
-			position: relative;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-
-			.title {
-				position: absolute;
-				top: 0;
-				right: 0;
-				bottom: 0;
-				left: 0;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				text-align: center;
-				color: $White;
+			h2 {
 				font-size: $h3-font-size;
-				font-weight: 700;
-
-				@include mobile {
-					font-size: $h6-font-size;
-				}
-			}
-
-			.narrow-button {
-				position: absolute;
-				top: 0;
-				bottom: 0;
-				display: flex;
-				justify-content: end;
-				align-items: center;
-				color: $White;
-				font-size: $h2-font-size;
-				background: none;
-				border: none;
-				padding-left: 30px;
-
-				&:hover {
-					color: $DeepGreen;
-				}
-
-				&:active {
-					color: $OrangeRed;
-				}
-
-				@include mobile {
-					display: none;
-				}
-			}
-
-			.left-narrow {
-				left: 0;
-			}
-
-			.right-narrow {
-				right: 0;
 			}
 		}
 	}
 
-	.banner,
+	.select-category {
+		display: flex;
+		flex-direction: column;
+		padding: 101px 0px 0px 0px;
+		width: 40%;
+
+		@include tablet {
+			padding: 30px 0px;
+			width: 90%;
+		}
+	}
+
+	/* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
+	.category,
+	.search-keyword {
+		margin: 7px 0px;
+		padding: 12px 30px;
+		border: 1px solid $White-Gray;
+		color: $Green;
+		font-size: $h5-font-size;
+		/* 此字型源自於index.html的<head>內所引用的字體 */
+		font-family: "Noto Sans TC";
+		border-radius: 5px;
+	}
+
+	.category {
+		font-weight: 500;
+	}
+
+	.search-keyword {
+		font-weight: 400;
+	}
+}
+
+// 因為只有index有<header>, 其他分頁沒有, 故navbar遮蓋住網頁內容而需要向上推擠的高度, 在index這一頁會跟其它頁將會有所不同, 故在此另外設立一個div命名為".index-container"並客製化其向上推擠高度 (其餘頁面的.container寫在./config/_container.scss內)
+.index-container {
+  max-width: 1110px;
+  margin: 0 auto;
+
+	@include iPad {
+		padding: 0px 15px;
+  }
+	
 	.recent-activities,
 	.hot-spots,
 	.delicious-meal {
@@ -185,35 +109,7 @@ header {
 		}
 	}
 
-	.recent-activities .title,
-	.hot-spots .title,
-	.delicious-meal .title {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-
-		h4 {
-			font-size: $h2-font-size;
-			font-weight: 300;
-			padding: 0px 0px 12px 0px;
-
-			@include mobile {
-				font-size: $h4-font-size;
-			}
-		}
-
-		a {
-			color: $OrangeRed;
-			text-decoration: none;
-			font-weight: bold;
-
-			&:hover {
-				color: $DeepGreen;
-			}
-		}
-	}
-
-	.recent-activities .last-activities-list {
+	.last-activities-list {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
@@ -293,5 +189,6 @@ header {
 			}
 		}
 	}
+
 	// 首頁內的".hot-spots .list"和".delicious-meal .list"的基礎樣式寫在./SCSS/component/_list_cards.scss內, 該scss與搜尋結果頁的".list .card{...}"共用
 }

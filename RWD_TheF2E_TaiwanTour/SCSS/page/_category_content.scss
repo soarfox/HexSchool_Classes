@@ -1,0 +1,94 @@
+.content {
+  padding-bottom: 120px;
+
+  @include iPad {
+    padding: 0px;
+  }
+
+  .title {
+    padding-bottom: 12px;
+    font-size: $h2-font-size;
+    font-weight: 300;
+  }
+
+  .badge {
+    .badge-class2,
+    .badge-class3 {
+      display: inline-block;
+      font-size: $h4-font-size;
+      font-weight: 400;
+      color: $Badge;
+      border: 1px solid $Badge;
+      border-radius: 20px;
+      padding: 3px 18px;
+      margin-right: 8px;
+    }
+  }
+
+  .description {
+    .title {
+      font-size: $h4-font-size;
+      font-weight: 700;
+      padding: 30px 0px 10px 0px;
+    }
+
+    p {
+      font-size: $h5-font-size;
+      font-weight: 300;
+      line-height: 1.875;
+      padding-bottom: 60px;
+
+      @include iPad {
+        padding-bottom: 30px;
+      }
+    }
+  }
+
+  .information-map {
+    display: flex;
+    justify-content: space-between;
+
+    @include iPad {
+      flex-direction: column;
+    }
+
+    .information {
+      width: 48%;
+      background-color: $CardBackground;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+
+      @include iPad {
+        width: 100%;
+        margin-bottom: 40px;
+      }
+  
+
+      li {
+        padding:12px 0px;
+        font-size: $h4-font-size;
+        font-weight: 700;
+
+        span {
+          font-size: $h5-font-size;
+          font-weight: 400;
+        }
+
+      }
+    }
+
+    .map {
+      width: 48%;
+
+      @include iPad {
+        width: 100%;
+      }
+    }
+
+  }
+
+  .hot-spots {
+    padding: 30px 0px;
+  }
+}

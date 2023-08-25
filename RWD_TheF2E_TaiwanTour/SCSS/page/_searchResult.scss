@@ -3,12 +3,10 @@
   display: flex;
   flex-direction: column;
 
-  .title {
-    font-size: $h2-font-size;
-    color: $Black;
-    padding: 60px 6px 12px 55px;
-    display: flex;
-    align-items: flex-end;
+  .topic-title {
+    justify-content: flex-start;
+    align-items: center;
+    padding: 60px 0px 12px 55px;
 
     @include mobile {
       padding: 24px 0px 8px 0px;

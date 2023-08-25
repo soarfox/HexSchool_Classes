@@ -147,7 +147,19 @@ img {
 
 /* CSS Reset over */
 .container {
+  max-width: 1110px;
+  margin: 0 auto;
   padding-top: 80px;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 150px 15px 0px 15px;
+  }
+}
+@media (max-width: 767px) {
+  .container {
+    padding-top: 60px;
+  }
 }
 
 body {
@@ -298,7 +310,7 @@ body {
 
 .breadcrumb {
   display: flex;
-  padding: 60px 0px 40px 50px;
+  padding: 60px 0px 30px 0px;
 }
 .breadcrumb li {
   display: inline;
@@ -312,6 +324,61 @@ body {
 .breadcrumb li + li:before {
   padding: 8px;
   content: "/ ";
+}
+
+.banner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 36px;
+}
+.banner .title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+@media (max-width: 428px) {
+  .banner .title {
+    font-size: 1rem;
+  }
+}
+.banner .narrow-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 2.25rem;
+  background: none;
+  border: none;
+}
+.banner .narrow-button:hover {
+  color: #7F977B;
+}
+.banner .narrow-button:active {
+  color: #FF725E;
+}
+@media (max-width: 428px) {
+  .banner .narrow-button {
+    display: none;
+  }
+}
+.banner .left-narrow {
+  left: 0;
+}
+.banner .right-narrow {
+  right: 0;
 }
 
 .search-bar {
@@ -350,9 +417,27 @@ body {
 }
 @media (max-width: 767px) {
   .search-bar .select-category, .search-bar .keyword, .search-bar .search-button {
-    width: 90%;
+    width: 100%;
     margin: 7px 0px;
   }
+}
+
+.search-button {
+  font-size: 1.125rem;
+  font-family: "Noto Sans TC";
+  color: #FFFFFF;
+  background-color: #7F977B;
+  padding: 8px 24px;
+  border: 0px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 1.5rem;
+}
+.search-button:hover {
+  background-color: #E0DA48;
+}
+.search-button:active {
+  background-color: #FF725E;
 }
 
 .photo {
@@ -435,6 +520,35 @@ body {
   }
 }
 
+.topic-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+}
+@media (max-width: 428px) {
+  .topic-title {
+    padding-bottom: 0px;
+  }
+}
+.topic-title h4 {
+  font-size: 2.25rem;
+  font-weight: 300;
+}
+@media (max-width: 428px) {
+  .topic-title h4 {
+    font-size: 1.25rem;
+  }
+}
+.topic-title a {
+  color: #FF725E;
+  text-decoration: none;
+  font-weight: bold;
+}
+.topic-title a:hover {
+  color: #7F977B;
+}
+
 .list {
   display: flex;
   /* 做出scroll image/card的方式如下 */
@@ -452,7 +566,7 @@ body {
   display: flex;
   flex-direction: column;
   /* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
-  margin: 0px 15px;
+  margin-right: 15px;
 }
 @media (max-width: 428px) {
   .list .card {
@@ -497,232 +611,129 @@ body {
   background-color: #65895F;
   padding: 20px 0px;
 }
+@media (max-width: 767px) {
+  .copyright {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 .copyright span {
   color: #FFFFFF;
   font-weight: 400;
+  padding: 5px 15px;
 }
 
-@media (max-width: 428px) {
-  .copyright {
-    text-align: center;
-  }
-}
 header {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding-top: 80px;
+  /* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
 }
 @media (max-width: 767px) {
   header {
     padding-top: 100px;
   }
 }
-
-.intro {
+header .intro {
   padding: 82px 0px 57px 0px;
+  width: 50%;
 }
-.intro h2 {
+@media (max-width: 428px) {
+  header .intro {
+    width: 100%;
+  }
+}
+header .intro h2 {
   font-weight: 300;
   font-size: 3rem;
   color: #1E1E1E;
   line-height: 1.5;
 }
-.intro h2 .yellow_border {
+header .intro h2 .yellow_border {
   border-bottom: 3px solid #E0DA48;
 }
-.intro h3 {
+header .intro h3 {
   color: #646464;
   font-size: 1.25rem;
   font-weight: 400;
   padding-top: 17px;
   letter-spacing: 0.03em;
 }
-@media (max-width: 767px) {
-  .intro h3 {
-    font-size: 1rem;
+@media (max-width: 768px) {
+  header .intro h3 {
+    font-size: 1.125rem;
   }
 }
-.intro h3 .taiwan-location-icon {
+header .intro h3 .taiwan-location-icon {
   color: #E0DA48;
   padding-right: 5px;
 }
 @media (max-width: 767px) {
-  .intro {
+  header .intro {
     text-align: center;
     padding: 12px 0px;
   }
-  .intro h2 {
+  header .intro h2 {
     font-size: 1.75rem;
   }
 }
-
-.select-category {
+header .select-category {
   display: flex;
   flex-direction: column;
   padding: 101px 0px 0px 0px;
-  width: 35%;
+  width: 40%;
 }
 @media (max-width: 767px) {
-  .select-category {
-    padding-top: 33px;
+  header .select-category {
+    padding: 30px 0px;
     width: 90%;
   }
 }
-
-/* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
-.category,
-.search-keyword,
-.search-button {
+header .category,
+header .search-keyword {
   margin: 7px 0px;
   padding: 12px 30px;
   border: 1px solid #E6E6E6;
   color: #6E7D60;
   font-size: 1.125rem;
   /* 此字型源自於index.html的<head>內所引用的字體 */
-  font-family: Noto Sans TC;
+  font-family: "Noto Sans TC";
   border-radius: 5px;
 }
-
-.category {
+header .category {
   font-weight: 500;
 }
-
-.search-keyword {
+header .search-keyword {
   font-weight: 400;
-}
-
-.search-button {
-  background-color: #7F977B;
-  color: #FFFFFF;
-  padding: 8px 24px;
-  border: 0px;
-  border-radius: 6px;
-  font-weight: 700;
-  letter-spacing: 1.5rem;
-}
-.search-button:hover {
-  background-color: #E0DA48;
-}
-.search-button:active {
-  background-color: #FF725E;
 }
 
 .index-container {
   max-width: 1110px;
   margin: 0 auto;
 }
-.index-container .banner {
-  position: relative;
-  padding: 60px 0px 36px 0px;
-}
-.index-container .banner .container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.index-container .banner .container .title {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #FFFFFF;
-  font-size: 1.75rem;
-  font-weight: 700;
-}
-@media (max-width: 428px) {
-  .index-container .banner .container .title {
-    font-size: 1rem;
+@media (max-width: 768px) {
+  .index-container {
+    padding: 0px 15px;
   }
 }
-.index-container .banner .container .narrow-button {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  color: #FFFFFF;
-  font-size: 2.25rem;
-  background: none;
-  border: none;
-  padding-left: 30px;
-}
-.index-container .banner .container .narrow-button:hover {
-  color: #7F977B;
-}
-.index-container .banner .container .narrow-button:active {
-  color: #FF725E;
-}
-@media (max-width: 428px) {
-  .index-container .banner .container .narrow-button {
-    display: none;
-  }
-}
-.index-container .banner .container .left-narrow {
-  left: 0;
-}
-.index-container .banner .container .right-narrow {
-  right: 0;
-}
-.index-container .banner,
 .index-container .recent-activities,
 .index-container .hot-spots,
 .index-container .delicious-meal {
   padding-bottom: 36px;
 }
-.index-container .banner .location-icon,
 .index-container .recent-activities .location-icon,
 .index-container .hot-spots .location-icon,
 .index-container .delicious-meal .location-icon {
   padding-right: 5px;
   color: #646464;
 }
-.index-container .recent-activities .title,
-.index-container .hot-spots .title,
-.index-container .delicious-meal .title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.index-container .recent-activities .title h4,
-.index-container .hot-spots .title h4,
-.index-container .delicious-meal .title h4 {
-  font-size: 2.25rem;
-  font-weight: 300;
-  padding: 0px 0px 12px 0px;
-}
-@media (max-width: 428px) {
-  .index-container .recent-activities .title h4,
-  .index-container .hot-spots .title h4,
-  .index-container .delicious-meal .title h4 {
-    font-size: 1.25rem;
-  }
-}
-.index-container .recent-activities .title a,
-.index-container .hot-spots .title a,
-.index-container .delicious-meal .title a {
-  color: #FF725E;
-  text-decoration: none;
-  font-weight: bold;
-}
-.index-container .recent-activities .title a:hover,
-.index-container .hot-spots .title a:hover,
-.index-container .delicious-meal .title a:hover {
-  color: #7F977B;
-}
-.index-container .recent-activities .last-activities-list {
+.index-container .last-activities-list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
 }
-.index-container .recent-activities .last-activities-list .card {
+.index-container .last-activities-list .card {
   background-color: #F9F9F9;
   border: 1px solid #E5E5E5;
   margin: 1% 0px;
@@ -732,11 +743,11 @@ header {
   overflow: hidden;
 }
 @media (max-width: 767px) {
-  .index-container .recent-activities .last-activities-list .card {
+  .index-container .last-activities-list .card {
     width: 100%;
   }
 }
-.index-container .recent-activities .last-activities-list .card .container {
+.index-container .last-activities-list .card .container {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
@@ -744,18 +755,18 @@ header {
   justify-content: space-between;
   padding: 0px 15px;
 }
-.index-container .recent-activities .last-activities-list .card .container .date {
+.index-container .last-activities-list .card .container .date {
   display: block;
   color: #646464;
   padding-top: 16px;
   font-weight: 400;
 }
 @media (max-width: 428px) {
-  .index-container .recent-activities .last-activities-list .card .container .date {
+  .index-container .last-activities-list .card .container .date {
     font-size: 1rem;
   }
 }
-.index-container .recent-activities .last-activities-list .card .container .title {
+.index-container .last-activities-list .card .container .title {
   display: block;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -764,33 +775,33 @@ header {
   padding-top: 3px;
 }
 @media (max-width: 767px) {
-  .index-container .recent-activities .last-activities-list .card .container .title {
+  .index-container .last-activities-list .card .container .title {
     font-size: 1rem;
     padding-bottom: 10%;
   }
 }
 @media (max-width: 428px) {
-  .index-container .recent-activities .last-activities-list .card .container .title {
+  .index-container .last-activities-list .card .container .title {
     font-size: 1rem;
   }
 }
-.index-container .recent-activities .last-activities-list .card .container .location {
+.index-container .last-activities-list .card .container .location {
   padding-bottom: 18px;
   font-weight: 400;
   display: flex;
   justify-content: space-between;
 }
 @media (max-width: 767px) {
-  .index-container .recent-activities .last-activities-list .card .container .location {
+  .index-container .last-activities-list .card .container .location {
     font-size: 1rem;
   }
 }
-.index-container .recent-activities .last-activities-list .card .container .location a {
+.index-container .last-activities-list .card .container .location a {
   font-weight: 500;
   text-decoration: none;
   color: #7F977B;
 }
-.index-container .recent-activities .last-activities-list .card .container .location a:hover {
+.index-container .last-activities-list .card .container .location a:hover {
   color: #FF725E;
 }
 
@@ -799,23 +810,21 @@ header {
   display: flex;
   flex-direction: column;
 }
-.result-container .title {
-  font-size: 2.25rem;
-  color: #1E1E1E;
-  padding: 60px 6px 12px 55px;
-  display: flex;
-  align-items: flex-end;
+.result-container .topic-title {
+  justify-content: flex-start;
+  align-items: center;
+  padding: 60px 0px 12px 55px;
 }
 @media (max-width: 428px) {
-  .result-container .title {
+  .result-container .topic-title {
     padding: 24px 0px 8px 0px;
   }
 }
-.result-container .title .result-count {
+.result-container .topic-title .result-count {
   padding-left: 6px;
   font-size: 1.125rem;
 }
-.result-container .title .result-count .count {
+.result-container .topic-title .result-count .count {
   color: #FF725E;
 }
 .result-container .list {
@@ -860,4 +869,87 @@ header {
 }
 .result-container .result-null .null-text span {
   display: block;
+}
+
+.content {
+  padding-bottom: 120px;
+}
+@media (max-width: 768px) {
+  .content {
+    padding: 0px;
+  }
+}
+.content .title {
+  padding-bottom: 12px;
+  font-size: 2.25rem;
+  font-weight: 300;
+}
+.content .badge .badge-class2,
+.content .badge .badge-class3 {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: #BEA363;
+  border: 1px solid #BEA363;
+  border-radius: 20px;
+  padding: 3px 18px;
+  margin-right: 8px;
+}
+.content .description .title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 30px 0px 10px 0px;
+}
+.content .description p {
+  font-size: 1.125rem;
+  font-weight: 300;
+  line-height: 1.875;
+  padding-bottom: 60px;
+}
+@media (max-width: 768px) {
+  .content .description p {
+    padding-bottom: 30px;
+  }
+}
+.content .information-map {
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .content .information-map {
+    flex-direction: column;
+  }
+}
+.content .information-map .information {
+  width: 48%;
+  background-color: #F9F9F9;
+  padding: 30px 15px;
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 768px) {
+  .content .information-map .information {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+}
+.content .information-map .information li {
+  padding: 12px 0px;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+.content .information-map .information li span {
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+.content .information-map .map {
+  width: 48%;
+}
+@media (max-width: 768px) {
+  .content .information-map .map {
+    width: 100%;
+  }
+}
+.content .hot-spots {
+  padding: 30px 0px;
 }

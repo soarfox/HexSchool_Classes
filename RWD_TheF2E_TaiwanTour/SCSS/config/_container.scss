@@ -1,4 +1,14 @@
-// 為了不要讓四個主題分類的麵包屑內容被上方的navbar擋住, 故統一設定padding向上推擠一個高度
+// 整個瀏覽器是開版1200px, 但是從banner以下均為1110px;且為了不要讓四個主題分類的麵包屑內容被上方的navbar擋住, 故在電腦版解析度時, 統一設定padding向上推擠一個高度80px; 若在iPad(含)解析度以下時, 則統一向上推擠150px
 .container {
+  max-width: 1110px;
+  margin: 0 auto;
   padding-top: 80px;
+
+  @include iPad {
+    padding: 150px 15px 0px 15px;
+  }
+
+  @include tablet {
+    padding-top: 60px;
+  }
 }

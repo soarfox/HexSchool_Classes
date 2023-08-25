@@ -1,0 +1,58 @@
+.banner {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 36px;
+
+  .title {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $White;
+    font-size: $h3-font-size;
+    font-weight: 700;
+
+    @include mobile {
+      font-size: $h6-font-size;
+    }
+  }
+
+  .narrow-button {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    color: $White;
+    font-size: $h2-font-size;
+    background: none;
+    border: none;
+
+    &:hover {
+      color: $DeepGreen;
+    }
+
+    &:active {
+      color: $OrangeRed;
+    }
+
+    @include mobile {
+      display: none;
+    }
+  }
+
+  .left-narrow {
+    left: 0;
+  }
+
+  .right-narrow {
+    right: 0;
+  }
+}
