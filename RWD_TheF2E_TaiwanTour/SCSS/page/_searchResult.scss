@@ -37,14 +37,16 @@
       }
 
       @include tablet {
-        width: 26%;
-      }
-
-      @include mobile {
         width: 100%;
         padding: 6px 0px;
         margin: 0px;
       }
+
+      // @include mobile {
+      //   width: 100%;
+      //   padding: 6px 0px;
+      //   margin: 0px;
+      // }
     }
   }
 

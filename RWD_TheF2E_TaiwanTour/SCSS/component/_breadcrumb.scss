@@ -7,6 +7,10 @@
     font-size: $h6-font-size;
     color: $Gray;
 
+    @include tablet {
+      font-size: 0.75 * $h6-font-size;
+    }
+
     a {
       text-decoration: none;
       color: $Green;
@@ -17,5 +21,9 @@
     padding: 8px;
     // 使用CSS的content屬性將分隔符的內容設置為/字符，後方接著一個空格（\00a0是Unicode的不間斷空格字元）
     content: "/\00a0";
+
+    @include tablet {
+      padding: 2px;
+    }
   }
 }

@@ -40,10 +40,10 @@
         <img src="./images/icon/menu-mobile.svg" width="50" height="50" alt="背景是淺綠色, 前景是三條白色橫線, 由上至下分別是短、長、短, 代表著menu">
       </div>
       <ul class="menu">
-        <li><a href="./attractions.html">探索景點</a></li>
-        <li><a href="./activies.html">節慶活動</a></li>
-        <li><a href="./restaurants.html">品嚐美食</a></li>
-        <li><a href="./hotels.html">安心住宿</a></li>
+        <li><a href="./attractions.html" aria-label="前往探索景點的分類畫面">探索景點</a></li>
+        <li><a href="./activies.html" aria-label="前往節慶活動的分類畫面">節慶活動</a></li>
+        <li><a href="./restaurants.html" aria-label="前往品嚐美食的分類畫面">品嚐美食</a></li>
+        <li><a href="./hotels.html" aria-label="前往安心住宿的分類畫面">安心住宿</a></li>
       </ul>
     </nav>
     <header>
@@ -61,25 +61,27 @@
           <option value="hotel">安心住宿</option>
         </select>
         <input class="search-keyword" type="text" name="keyword" placeholder="您想去哪裡？請輸入關鍵字">
-        <button type="submit" class="search-button" name="search"><i
+        <button type="submit" class="search-button" name="search" aria-label="按下此按鈕進行搜尋"><i
             class="fa-solid fa-magnifying-glass"></i>搜尋</button>
       </label>
     </header>
     <main class="index-container">
       <div class="banner">
+        <a href="#" aria-label="查看更多有關這個景點的資料">
         <img src="./images/index/scenicSpotPhoto/cover.png" alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
         <div class="title">新北市 | 不厭亭</div>
-        <button class="narrow-button left-narrow">
+        </a>
+        <button class="narrow-button left-narrow" aria-label="查看前一張圖片">
           <i class="fa-solid fa-circle-chevron-left"></i>
         </button>
-        <button class="narrow-button right-narrow">
+        <button class="narrow-button right-narrow" aria-label="查看後一張圖片">
           <i class="fa-solid fa-circle-chevron-right"></i>
         </button>
       </div>
       <div class="recent-activities">
         <div class="topic-title">
           <h4>近期活動</h4>
-          <a href="./activies.html">查看更多活動 > </a>
+          <a href="./activies.html" aria-label="查看更多有關活動的資料">查看更多活動 > </a>
         </div>
         <ul class="last-activities-list">
           <li class="card">
@@ -95,7 +97,7 @@
                 <div>
                   <i class="fa-solid fa-location-dot location-icon">南投縣</i>
                 </div>
-                <a href="#">詳細介紹 > </a>
+                <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
             </div>
           </li>
@@ -112,7 +114,7 @@
                 <div>
                   <i class="fa-solid fa-location-dot location-icon">高雄市</i>
                 </div>
-                <a href="#">詳細介紹 > </a>
+                <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
           </li>
           <li class="card">
@@ -128,7 +130,7 @@
                 <div>
                   <i class="fa-solid fa-location-dot location-icon">新北市</i>
                 </div>
-                <a href="#">詳細介紹 > </a>
+                <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
             </div>
           </li>
@@ -145,7 +147,7 @@
                 <div>
                   <i class="fa-solid fa-location-dot location-icon">金門縣</i>
                 </div>
-                <a href="#">詳細介紹 > </a>
+                <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
             </div>
           </li>
@@ -154,11 +156,11 @@
       <div class="hot-spots">
         <div class="topic-title">
           <h4>熱門打卡景點</h4>
-          <a href="./attractions.html">查看更多景點 > </a>
+          <a href="./attractions.html" aria-label="查看更多景點的資料">查看更多景點 > </a>
         </div>
         <ul class="list">
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
               </div>
@@ -169,7 +171,7 @@
             </div>
           </li>
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/hotspotPhotos/高美濕地.png" alt="">
               </div>
@@ -180,7 +182,7 @@
             </div>
           </li>
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/hotspotPhotos/溪頭自然教育園區.png" alt="">
               </div>
@@ -191,7 +193,7 @@
             </div>
           </li>
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/hotspotPhotos/九份老街.png" alt="">
               </div>
@@ -206,11 +208,11 @@
       <div class="delicious-meal">
         <div class="topic-title">
           <h4>一再回訪美食</h4>
-          <a href="./restaurants.html">查看更多美食 > </a>
+          <a href="./restaurants.html" aria-label="查看更多美食的資料">查看更多美食 > </a>
         </div>
         <ul class="list">
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/mealPhotos/金都餐廳.png" alt="">
               </div>
@@ -221,7 +223,7 @@
             </div>
           </li>
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/mealPhotos/一中8兩碳烤雞排.png" alt="">
               </div>
@@ -232,7 +234,7 @@
             </div>
           </li>
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/mealPhotos/名根烤肉食材宅配外送.png" alt="">
               </div>
@@ -243,7 +245,7 @@
             </div>
           </li>
           <li class="card">
-            <a href="#">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
                 <img src="./images/index/mealPhotos/石桌羊肉店.png" alt="">
               </div>

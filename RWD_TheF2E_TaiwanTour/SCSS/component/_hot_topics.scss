@@ -11,7 +11,7 @@
     flex-wrap: wrap;
     padding: 0px 30px 120px 30px;
 
-    @include mobile {
+    @include tablet {
       padding: 0px 15px 60px 15px;
     }
 
@@ -21,7 +21,7 @@
       position: relative;
       overflow: hidden;
 
-      @include mobile {
+      @include tablet {
         width: 50%;
         padding: 5px 7px;
       }
@@ -30,7 +30,7 @@
         overflow: hidden;
         border-radius: 24px;
 
-        @include mobile {
+        @include tablet {
           border-radius: 16px;
           text-align: center;
         }
@@ -54,7 +54,7 @@
         font-size: $h4-font-size;
         text-align: center;
 
-        @include mobile {
+        @include tablet {
           font-size: $h6-font-size;
           font-weight: 700;
         }

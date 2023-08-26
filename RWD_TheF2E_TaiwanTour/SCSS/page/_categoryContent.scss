@@ -12,16 +12,30 @@
   }
 
   .badge {
+
     .badge-class2,
     .badge-class3 {
       display: inline-block;
+      color: $Badge;
       font-size: $h4-font-size;
       font-weight: 400;
-      color: $Badge;
       border: 1px solid $Badge;
       border-radius: 20px;
       padding: 3px 18px;
       margin-right: 8px;
+      text-decoration: none;
+
+      &:hover, &:active {
+        cursor: pointer;
+        background-color: $Green;
+        color: $White;
+      }
+
+      &:active {
+        background-color: $OrangeRed;
+      }
+
+
     }
   }
 
@@ -63,12 +77,13 @@
         width: 100%;
         margin-bottom: 40px;
       }
-  
+
 
       li {
-        padding:12px 0px;
+        padding: 12px 0px;
         font-size: $h4-font-size;
         font-weight: 700;
+        word-wrap: break-word;
 
         span {
           font-size: $h5-font-size;

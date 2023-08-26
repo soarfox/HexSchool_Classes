@@ -40,34 +40,34 @@
         <img src="./images/icon/menu-mobile.svg" width="50" height="50" alt="背景是淺綠色, 前景是三條白色橫線, 由上至下分別是短、長、短, 代表著menu">
       </div>
       <ul class="menu">
-        <li><a href="./attractions.html">探索景點</a></li>
-        <li><a href="./activies.html">節慶活動</a></li>
-        <li><a href="./restaurants.html">品嚐美食</a></li>
-        <li><a href="./hotels.html">安心住宿</a></li>
+        <li><a href="./attractions.html" aria-label="前往探索景點的分類畫面">探索景點</a></li>
+        <li><a href="./activies.html" aria-label="前往節慶活動的分類畫面">節慶活動</a></li>
+        <li><a href="./restaurants.html" aria-label="前往品嚐美食的分類畫面">品嚐美食</a></li>
+        <li><a href="./hotels.html" aria-label="前往安心住宿的分類畫面">安心住宿</a></li>
       </ul>
     </nav>
     <main class="container">
       <ul class="breadcrumb">
-        <li><a href="./index.html">首頁</a></li>
-        <li><a href="./attractions.html">探索景點</a></li>
-        <li><a href="./searchResult.html">宜蘭縣</a></li>
+        <li><a href="./index.html" aria-label="前往網站首頁">首頁</a></li>
+        <li><a href="./attractions.html" aria-label="前往探索景點的分類畫面">探索景點</a></li>
+        <li><a href="./searchResult.html" aria-label="前往探索景點且地點為宜蘭縣的分類畫面">宜蘭縣</a></li>
         <li>羅東林業文化園區</li>
       </ul>
       <div class="banner">
         <img src="./images/category_content/羅東林業文化園區.png" alt="">
         <!-- <div class="title">宜蘭縣 | 羅東林業文化園區</div> -->
-        <button class="narrow-button left-narrow">
+        <button class="narrow-button left-narrow" aria-label="查看前一張圖片">
           <i class="fa-solid fa-circle-chevron-left"></i>
         </button>
-        <button class="narrow-button right-narrow">
+        <button class="narrow-button right-narrow" aria-label="查看後一張圖片">
           <i class="fa-solid fa-circle-chevron-right"></i>
         </button>
       </div>
       <div class="content">
         <h2 class="title">羅東林業文化園區</h2>
         <h3 class="badge">
-          <div class="badge-class2"># 自然風景類</div>
-          <div class="badge-class3"># 林場類</div>
+          <a href="#" class="badge-class2" aria-label="前往標籤與自然風景類有關的資料畫面"># 自然風景類</a>
+          <a href="#" class="badge-class3" aria-label="前往標籤與林場類有關的資料畫面"># 林場類</a>
         </h3>
         <div class="description">
           <div class="title">景點介紹：</div>
@@ -79,11 +79,11 @@
           <ul class="information">
             <!-- 以下這些項目並非各筆資料都具有該項目, 請依API撈回的資料內容來呈現即可;如欲了解詳情, 可從TDX API官網的"活動類API"於filter欄位內, 輸入contains(ActivityName,'金門馬拉松'), 可得到類似下方的完整各項目資料 -->
             <li>開放時間：<span class="open-time">06:00-19:00</span></li>
-            <li>服務電話：<span class="phone"><a href="tel:+886-3-9545114">886-3-9545114</a></span></li>
+            <li>服務電話：<span class="phone"><a href="tel:+886-3-9545114" aria-label="撥打這隻電話號碼">886-3-9545114</a></span></li>
             <li>景點地址：<span class="address"><a href="https://maps.google.com?q=宜蘭縣265羅東鎮中正北路118號"
-                  target="_blank">宜蘭縣265羅東鎮中正北路118號</a></span></li>
+                  target="_blank" aria-label="所在地址">宜蘭縣265羅東鎮中正北路118號</a></span></li>
             <li>官方網站：<span class="website-url"><a href="https://www.facebook.com/lfcgexhibition/"
-                  target="_blank">https://www.facebook.com/lfcgexhibition/</a></span></li>
+                  target="_blank" aria-label="官方網站網址">https://www.facebook.com/lfcgexhibition/</a></span></li>
             <li>票價資訊：<span class="ticket-info">免費，露營活動另計。</span></li>
             <li>注意事項：<span class="remarks">1、愛護大自然生物，並請維護環境整潔。2、夏季日照與冬季寒風甚強，請預作防範</span></li>
           </ul>
@@ -96,7 +96,7 @@
         <div class="hot-spots">
           <div class="topic-title">
             <h4>還有這些不能錯過的景點</h4>
-            <a href="./attractions.html">
+            <a href="./attractions.html" aria-label="取得更多此縣市的資訊">
               更多<span>宜蘭縣</span>景點 >
             </a>
           </div>

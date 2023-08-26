@@ -45,7 +45,6 @@
   .card {
     display: flex;
     flex-direction: column;
-    /* 為避免圖片在滑鼠hover時放到1.1倍會造成瀏覽器出現x軸, 故設定margin預留一點空間 */
     margin-right: 15px;
 
     @include mobile {
@@ -71,18 +70,15 @@
     line-height: 1.5;
     font-weight: 700;
     padding-top: 10px;
+    /* 限定文字寬度, 使得各卡片大小統一 */
+    width: 150px;
+    /* 將超出此容器的文字隱藏起來, 且隱藏的文字使用省略號(ellipsis)表示 */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     @include tablet {
-      padding-top: 2%;
-      font-size: $h6-font-size;
-    }
-
-    @include mobile {
-      /* 限定文字寬度, 使得各卡片大小統一 */
       width: 100px;
-      /* 將超出此容器的文字隱藏起來, 且隱藏的文字使用省略號(ellipsis)表示 */
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   }
 }
