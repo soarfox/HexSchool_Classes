@@ -549,6 +549,11 @@ body {
   font-size: 2.25rem;
   font-weight: 300;
 }
+@media (max-width: 767px) {
+  .topic-title h4 {
+    padding-right: 30px;
+  }
+}
 @media (max-width: 428px) {
   .topic-title h4 {
     font-size: 1.25rem;
@@ -610,7 +615,7 @@ body {
 }
 @media (max-width: 767px) {
   .list .name {
-    width: 100px;
+    width: 80px;
   }
 }
 
