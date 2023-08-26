@@ -66,7 +66,7 @@ body {
 				// 設定一個高度, 以避免漢堡選單遮蔽了navbar
 				top: 108px;
 				// 寬度設左右均為0px, 如此可讓選單li項目的寬度完整呈現, 假設li項目寬度設定為100%, 則就能完整呈現出100%
-				left: 50%;
+				left: 0;
 				right: 0;
 				text-align: center;
 				display: block;
@@ -100,7 +100,7 @@ body {
 					position: relative;
 					display: block;
 
-					// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+					// 在iPad(不含)以下的平板電腦的解析度時, 取消原本的劃底線hover效果
 					@include tablet {
 						padding: 20px 0px;
 					}
@@ -108,11 +108,15 @@ body {
 					&:hover {
 						color: $Green;
 
-						// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+						// 在iPad(不含)以下的平板電腦的解析度時, 取消原本的劃底線hover效果
 						@include tablet {
 							background-color: $Green;
 							color: $White;
 						}
+					}
+
+					&:active {
+						background-color: $OrangeRed;
 					}
 
 					&::after {
@@ -127,7 +131,7 @@ body {
 						background-color: $DeepGreen;
 						transition: 0.3s;
 
-						// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+						// 在iPad(不含)以下的平板電腦的解析度時, 取消原本的劃底線hover效果
 						@include tablet {
 							content: none;
 						}
@@ -136,7 +140,7 @@ body {
 					&:hover::after {
 						width: 100%;
 
-						// 在非iPad的"平板電腦的解析度(例如:比手機大的平板)"時, 取消原本的劃底線hover效果
+						// 在iPad(不含)以下的平板電腦的解析度時, 取消原本的劃底線hover效果
 						@include tablet {
 							width: 0;
 						}
