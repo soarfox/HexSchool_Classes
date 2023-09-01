@@ -61,13 +61,19 @@
     }
 
     .photo {
+      // 為避免API回傳的圖片有大有小, 在此統一設定圖片外層div標籤的寬高, 且UI稿的圖片預設為width="255", height="200", 故圖片外層容器的寬高比例應為255:200, 兩者均可除以最大公因數(5)之後, 得到比例51:40, 使圖片完全填滿此容器大小且不變形; 至於圖片的寬高設定百分比請見檔案"./SCSS/component/_photo.scss"內的img設定值
       width: 100%;
+      aspect-ratio: 51 / 40;
       // UI稿的圖片本身自己已有border-radius效果, 故為了放大時不要出現邊緣的直角, 此處也需要設定border-radius效果
       border-radius: 20px;
     }
 
     .location {
       padding-top: 6px;
+
+      .location-name {
+        display: inline-block;
+      }
     }
   }
 

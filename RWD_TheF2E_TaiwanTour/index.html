@@ -28,6 +28,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./css/all.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
 </head>
 
 <body>
@@ -68,7 +69,7 @@
     <main class="index-container">
       <div class="banner">
         <a href="#" aria-label="查看更多有關這個景點的資料">
-        <img src="./images/index/scenicSpotPhoto/cover.png" alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+        <img src="./images/index/scenicSpotPhoto/cover.png" width="1140" height="400" alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
         <div class="title">新北市 | 不厭亭</div>
         </a>
         <button class="narrow-button left-narrow" aria-label="查看前一張圖片">
@@ -86,7 +87,7 @@
         <ul class="last-activities-list">
           <li class="card">
             <div class="photo">
-              <img src="./images/index/eventPhotos/2021 日月潭花火音樂嘉年華.png" alt="">
+              <img src="./images/index/eventPhotos/2021 日月潭花火音樂嘉年華.png" width="158" height="160" alt="">
             </div>
             <div class="container">
               <div class="event">
@@ -103,7 +104,7 @@
           </li>
           <li class="card">
             <div class="photo">
-              <img src="./images/index/eventPhotos/山城花語溫泉系列活動－寶來不老溫泉季.png" alt="">
+              <img src="./images/index/eventPhotos/山城花語溫泉系列活動－寶來不老溫泉季.png" width="158" height="160" alt="">
             </div>
             <div class="container">
               <div class="event">
@@ -119,7 +120,7 @@
           </li>
           <li class="card">
             <div class="photo">
-              <img src="./images/index/eventPhotos/新北市萬金石馬拉松.png" alt="">
+              <img src="./images/index/eventPhotos/新北市萬金石馬拉松.png" width="158" height="160" alt="">
             </div>
             <div class="container">
               <div class="event">
@@ -136,7 +137,7 @@
           </li>
           <li class="card">
             <div class="photo">
-              <img src="./images/index/eventPhotos/2021 金門坑道音樂節.png" alt="">
+              <img src="./images/index/eventPhotos/2021 金門坑道音樂節.png" width="158" height="160" alt="">
             </div>
             <div class="container">
               <div class="event">
@@ -162,45 +163,53 @@
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" alt="">
+                <img src="./images/index/hotspotPhotos/龜山島牛奶海.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">龜山島牛奶海</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">宜蘭縣</div>
+              </i>
             </div>
           </li>
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/高美濕地.png" alt="">
+                <img src="./images/index/hotspotPhotos/高美濕地.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">高美濕地(高美野生動...</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">臺中市</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">臺中市</div>
+              </i>
             </div>
           </li>
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/溪頭自然教育園區.png" alt="">
+                <img src="./images/index/hotspotPhotos/溪頭自然教育園區.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">溪頭自然教育園區</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">南投縣</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">南投縣</div>
+              </i>
             </div>
           </li>
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/hotspotPhotos/九份老街.png" alt="">
+                <img src="./images/index/hotspotPhotos/九份老街.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">九份老街</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">新北市</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">新北市</div>
+              </i>
             </div>
           </li>
         </ul>
@@ -214,45 +223,53 @@
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/mealPhotos/金都餐廳.png" alt="">
+                <img src="./images/index/mealPhotos/金都餐廳.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">金都餐廳</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">南投縣</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">南投縣</div>
+              </i>
             </div>
           </li>
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/mealPhotos/一中8兩碳烤雞排.png" alt="">
+                <img src="./images/index/mealPhotos/一中8兩碳烤雞排.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">一中8兩碳烤雞排</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">臺中市</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">臺中市</div>
+              </i>
             </div>
           </li>
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/mealPhotos/名根烤肉食材宅配外送.png" alt="">
+                <img src="./images/index/mealPhotos/名根烤肉食材宅配外送.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">名根烤肉食材宅配外送</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">新北市</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">新北市</div>
+              </i>
             </div>
           </li>
           <li class="card">
             <a href="#" aria-label="查看更多有關此資料的詳細內容">
               <div class="photo">
-                <img src="./images/index/mealPhotos/石桌羊肉店.png" alt="">
+                <img src="./images/index/mealPhotos/石桌羊肉店.png" width="255" height="200" alt="">
               </div>
             </a>
             <span class="name">石桌羊肉店</span>
             <div class="location">
-              <i class="fa-solid fa-location-dot location-icon">嘉義縣</i>
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">嘉義縣</div>
+              </i>
             </div>
           </li>
         </ul>
@@ -266,6 +283,8 @@
   <!-- 引用Font Awesome的圖示 -->
   <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
   <script src="./js/hamburger_menu.js"></script>
+  <!-- 因為有使用ES6的模組化語法(export和import), 故記得要加上type="module" -->
+  <script type="module" src="./js/index.js"></script>
 </body>
 
 </html>

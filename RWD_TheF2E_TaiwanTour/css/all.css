@@ -600,10 +600,14 @@ body {
 }
 .list .card .photo {
   width: 100%;
+  aspect-ratio: 51/40;
   border-radius: 20px;
 }
 .list .card .location {
   padding-top: 6px;
+}
+.list .card .location .location-name {
+  display: inline-block;
 }
 .list .name {
   font-size: 1.25rem;
