@@ -11,6 +11,8 @@
     transition: transform 0.3s ease-in-out;
     width: 100%;
     height: 100%;
+    // 確保圖片的寬高比例維持1:1, 讓直式圖片被拉伸或超出邊界
+    aspect-ratio: 1/1;
     // 按照圖片長寬比例延伸圖片且確保畫面不會有空白
     object-fit: cover;
 

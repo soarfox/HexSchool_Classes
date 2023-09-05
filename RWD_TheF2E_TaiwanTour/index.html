@@ -27,8 +27,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="./css/all.css">
+  <!-- 引用Swiper圖片輪播CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
+  <link rel="stylesheet" href="./css/all.css">
 </head>
 
 <body>
@@ -67,10 +69,89 @@
       </label>
     </header>
     <main class="index-container">
-      <div class="banner">
+      <!-- Swiper圖片自動輪播, 來源: https://swiperjs.com/demos#autoplay -->
+      <div class="swiper mySwiper narrowsAndPagination">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide banner">
+            <a href="#" aria-label="查看更多有關這個景點的資料">
+              <img class="banner-img" src="./images/index/scenicSpotPhoto/cover.png" width="1110" height="400"
+                alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+              <div class="title">
+                <span class="city-Name">新北市</span>　|　
+                <span class="scenicSpot-Name">不厭亭1</span>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide banner">
+            <a href="#" aria-label="查看更多有關這個景點的資料">
+              <img class="banner-img" src="./images/index/scenicSpotPhoto/cover.png" width="1110" height="400"
+                alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+              <div class="title">
+                <span class="city-Name">新北市</span>　|　
+                <span class="scenicSpot-Name">不厭亭2</span>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide banner">
+            <a href="#" aria-label="查看更多有關這個景點的資料">
+              <img class="banner-img" src="./images/index/scenicSpotPhoto/cover.png" width="1110" height="400"
+                alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+              <div class="title">
+                <span class="city-Name">新北市</span>　|　
+                <span class="scenicSpot-Name">不厭亭3</span>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide banner">
+            <a href="#" aria-label="查看更多有關這個景點的資料">
+              <img class="banner-img" src="./images/index/scenicSpotPhoto/cover.png" width="1110" height="400"
+                alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+              <div class="title">
+                <span class="city-Name">新北市</span>　|　
+                <span class="scenicSpot-Name">不厭亭4</span>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide banner">
+            <a href="#" aria-label="查看更多有關這個景點的資料">
+              <img class="banner-img" src="./images/index/scenicSpotPhoto/cover.png" width="1110" height="400"
+                alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+              <div class="title">
+                <span class="city-Name">新北市</span>　|　
+                <span class="scenicSpot-Name">不厭亭5</span>
+              </div>
+            </a>
+          </div>
+          <div class="swiper-slide banner">
+            <a href="#" aria-label="查看更多有關這個景點的資料">
+              <img class="banner-img" src="./images/index/scenicSpotPhoto/cover.png" width="1110" height="400"
+                alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+              <div class="title">
+                <span class="city-Name">新北市</span>　|　
+                <span class="scenicSpot-Name">不厭亭6</span>
+              </div>
+            </a>
+          </div>
+        </div>
+        <!-- 原本的左右按鈕 -->
+        <!-- <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> -->
+        <button class="narrow-button left-narrow" aria-label="查看前一張圖片">
+          <i class="fa-solid fa-circle-chevron-left"></i>
+        </button>
+        <button class="narrow-button right-narrow" aria-label="查看後一張圖片">
+          <i class="fa-solid fa-circle-chevron-right"></i>
+        </button>
+        <div class="swiper-pagination pagination-position"></div>
+      </div>
+
+
+
+      <!-- <div class="banner">
         <a href="#" aria-label="查看更多有關這個景點的資料">
-        <img src="./images/index/scenicSpotPhoto/cover.png" width="1140" height="400" alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
-        <div class="title">新北市 | 不厭亭</div>
+          <img src="./images/index/scenicSpotPhoto/cover.png" width="1140" height="400"
+            alt="俯瞰一座山頭, 其正中央開出一條雙向道柏油路, 沿著這條路開車將能夠一直往另一座山的側邊開過去">
+          <div class="title">新北市 | 不厭亭</div>
         </a>
         <button class="narrow-button left-narrow" aria-label="查看前一張圖片">
           <i class="fa-solid fa-circle-chevron-left"></i>
@@ -78,8 +159,9 @@
         <button class="narrow-button right-narrow" aria-label="查看後一張圖片">
           <i class="fa-solid fa-circle-chevron-right"></i>
         </button>
-      </div>
-      <div class="recent-activities">
+      </div> -->
+
+      <div class="recent-activity">
         <div class="topic-title">
           <h4>近期活動</h4>
           <a href="./activies.html" aria-label="查看更多有關活動的資料">查看更多活動 > </a>
@@ -91,13 +173,15 @@
             </div>
             <div class="container">
               <div class="event">
-                <div class="date">2021/10/30 - 2021/11/13</div>
+                <div class="date">
+                  <span class="startDate">2021/10/30</span> ~ <span class="endDate">2021/11/13</span>
+                </div>
                 <div class="title">2021 日月潭花火音樂嘉年華</div>
               </div>
               <div class="location">
-                <div>
-                  <i class="fa-solid fa-location-dot location-icon">南投縣</i>
-                </div>
+                <i class="fa-solid fa-location-dot location-icon">
+                  <span class="location-name">南投縣</span>
+                </i>
                 <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
             </div>
@@ -108,13 +192,15 @@
             </div>
             <div class="container">
               <div class="event">
-                <div class="date">2021/10/30 - 2022/02/08</div>
+                <div class="date">
+                  <span class="startDate">2021/10/30</span> ~ <span class="endDate">2022/02/08</span>
+                </div>
                 <div class="title">山城花語溫泉系列活動－寶來不老溫泉季</div>
               </div>
               <div class="location">
-                <div>
-                  <i class="fa-solid fa-location-dot location-icon">高雄市</i>
-                </div>
+                <i class="fa-solid fa-location-dot location-icon">
+                  <span class="location-name">高雄市</span>
+                </i>
                 <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
           </li>
@@ -124,13 +210,15 @@
             </div>
             <div class="container">
               <div class="event">
-                <div class="date">2021/11/21 - 2021/11/21</div>
+                <div class="date">
+                  <span class="startDate">2021/11/21</span> ~ <span class="endDate">2021/11/21</span>
+                </div>
                 <div class="title">新北市萬金石馬拉松</div>
               </div>
               <div class="location">
-                <div>
-                  <i class="fa-solid fa-location-dot location-icon">新北市</i>
-                </div>
+                <i class="fa-solid fa-location-dot location-icon">
+                  <span class="location-name">新北市</span>
+                </i>
                 <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
             </div>
@@ -141,13 +229,15 @@
             </div>
             <div class="container">
               <div class="event">
-                <div class="date">2021/11/27 - 2021/11/28</div>
+                <div class="date">
+                  <span class="startDate">2021/11/27</span> ~ <span class="endDate">2021/11/28</span>
+                </div>
                 <div class="title">2021 金門坑道音樂節</div>
               </div>
               <div class="location">
-                <div>
-                  <i class="fa-solid fa-location-dot location-icon">金門縣</i>
-                </div>
+                <i class="fa-solid fa-location-dot location-icon">
+                  <span class="location-name">金門縣</span>
+                </i>
                 <a href="#" aria-label="查看更多有關此資料的詳細內容">詳細介紹 > </a>
               </div>
             </div>
@@ -274,14 +364,85 @@
           </li>
         </ul>
       </div>
+      <div class="peaceful-living">
+        <div class="topic-title">
+          <h4>舒適放鬆旅宿</h4>
+          <a href="./restaurants.html" aria-label="查看更多旅宿的資料">查看更多住宿 > </a>
+        </div>
+        <ul class="list">
+          <li class="card">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
+              <div class="photo">
+                <img src="./images/index/hotelPhotos/南投縣_湖景渡假民宿.jpg" width="255" height="200" alt="">
+              </div>
+            </a>
+            <span class="name">湖景渡假民宿</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">南投縣</div>
+              </i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
+              <div class="photo">
+                <img src="./images/index/hotelPhotos/南投縣_杉林溪大飯店.jpg" width="255" height="200" alt="">
+              </div>
+            </a>
+            <span class="name">杉林溪大飯店</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">南投縣</div>
+              </i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
+              <div class="photo">
+                <img src="./images/index/hotelPhotos/臺東縣_海明威民宿.jpg" width="255" height="200" alt="">
+              </div>
+            </a>
+            <span class="name">海明威民宿</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">臺東縣</div>
+              </i>
+            </div>
+          </li>
+          <li class="card">
+            <a href="#" aria-label="查看更多有關此資料的詳細內容">
+              <div class="photo">
+                <img src="./images/index/hotelPhotos/南投縣_淳境景觀休閒山莊.jpg" width="255" height="200" alt="">
+              </div>
+            </a>
+            <span class="name">淳境景觀休閒山莊</span>
+            <div class="location">
+              <i class="fa-solid fa-location-dot location-icon">
+                <div class="location-name">南投縣</div>
+              </i>
+            </div>
+          </li>
+        </ul>
+      </div>
     </main>
     <footer class="copyright">
-      <span>台灣走走・Tai Tour ©</span>
-      <span>Code: Howard / Design: Breakfast</span>
+      <div class="website-declaration">
+        <a href="./index.html">台灣走走・Tai Tour</a>
+        <span class="website-owner">© Code: Howard / Design: Breakfast</span>
+      </div>
+      <div class="data-source">
+        <a href="https://tdx.transportdata.tw/" target="_blank">資料介接：交通部TDX平臺</a>
+        <!-- <a href="https://tdx.transportdata.tw/" target="_blank">
+          <img src="./images/icon/TDX_logo.png" width="367" height="68"
+            alt="左邊是TDX的大寫英文字母, 右邊有兩行黑色的文字, 上方那行用中文寫著運輸資料流通服務, 下方那行用英文寫著Transport Data eXchange">
+        </a> -->
+      </div>
     </footer>
   </div>
   <!-- 引用Font Awesome的圖示 -->
   <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
+  <!-- 引用Swiper圖片輪播 JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
   <script src="./js/hamburger_menu.js"></script>
   <!-- 因為有使用ES6的模組化語法(export和import), 故記得要加上type="module" -->
   <script type="module" src="./js/index.js"></script>
