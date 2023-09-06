@@ -51,6 +51,11 @@
       }
     }
 
+    // 將banner預設載入容器的背景色從黑色改成白色
+    .swiper-lazy-preloader-black {
+      --swiper-preloader-color: $White;
+    }
+
     .title {
       position: absolute;
       top: 0;

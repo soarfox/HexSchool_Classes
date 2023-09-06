@@ -1,11 +1,31 @@
 import { checkAPIToken } from './getAPIToken.js';
 import { getRandomNumber } from './randomNumber.js';
+import { getDate } from './getDate.js';
+import { keywordsToExclude } from './keywordsToExclude.js';
 
 let resData = [];
-let category = ['Activity', 'ScenicSpot', 'Restaurant', 'Hotel'];
+let category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
 // 將HTML上的class name寫在此處, 請記得加上前方的.號
-let categoryNameInHTML = ['.swiper-slide','.recent-activity', '.hot-spots', '.delicious-meal', '.peaceful-living'];
+let categoryNameInHTML = ['.swiper-slide', '.recent-activity', '.hot-spots', '.delicious-meal', '.peaceful-living'];
 let randomNumArray = [];
+
+// 引用套件--Swiper圖片輪播
+const swiper = new Swiper(".mySwiper", {
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplay: {
+    delay: 2500,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    prevEl: ".left-narrow",
+    nextEl: ".right-narrow",
+  },
+});
 
 // 取得指定主題的n項欄位內容
 async function callAllCategoriesAPI(api_token, category, urlStatement) {
@@ -45,28 +65,28 @@ function renderDataToBanner(categoryNameInHTML) {
   const list = document.querySelectorAll(`${categoryNameInHTML}`);
 
   // 把取回來的資料渲染到元素中
-  resData.forEach((data, index)=> {
+  resData.forEach((data, index) => {
     const bannerElement = list[index];
     let picUrl = '';
     let addressSlice = '';
-    
+
     //API回傳的某些資料內可能無提供圖片, 故需要在無圖片時為其加上預設圖片 
     try {
-      if (Object.keys(data.Picture).length !== 0){
+      if (Object.keys(data.Picture).length !== 0) {
         picUrl = data.Picture.PictureUrl1;
-      }else {
+      } else {
         picUrl = './images/index/none_pic.png';
       }
 
-    //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
-      if(data.hasOwnProperty('Address') !== false) {
+      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
+      if (data.hasOwnProperty('Address') !== false) {
         addressSlice = data.Address.slice(0, 3);
-      }else {
-        addressSlice = '未提供地址';
+      } else {
+        addressSlice = '未提供縣市名稱';
       }
     }
-    catch(error) {
-      console.log('Error:',error);
+    catch (error) {
+      console.log('Error:', error);
     }
     const cityElement = bannerElement.querySelector('.city-Name');
     const scenicSpotElement = bannerElement.querySelector('.scenicSpot-Name');
@@ -82,35 +102,35 @@ function renderDataToRecentActivity(categoryNameInHTML) {
   const list = document.querySelectorAll(`${categoryNameInHTML} .card`);
 
   // 把取回來的資料渲染到元素中
-  resData.forEach((data, index)=> {
+  resData.forEach((data, index) => {
     const cardElement = list[index];
     let picUrl = '';
     let addressSlice = '';
-    
+
     //API回傳的某些資料內可能無提供圖片, 故需要在無圖片時為其加上預設圖片 
     try {
-      if (Object.keys(data.Picture).length !== 0){
+      if (Object.keys(data.Picture).length !== 0) {
         picUrl = data.Picture.PictureUrl1;
-      }else {
+      } else {
         picUrl = './images/index/none_pic.png';
       }
 
-    //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
-      if(data.hasOwnProperty('Address') !== false) {
-        addressSlice = data.Address.slice(0, 3);
-      }else {
+      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
+      if (data.hasOwnProperty('Address') !== false) {
+        addressSlice = data.Address;
+      } else {
         addressSlice = '未提供地址';
       }
     }
-    catch(error) {
-      console.log('Error:',error);
+    catch (error) {
+      console.log('Error:', error);
     }
     const imgElement = cardElement.querySelector('img');
     const startTimeElement = cardElement.querySelector('.startDate');
     const endTimeElement = cardElement.querySelector('.endDate');
     const titleElement = cardElement.querySelector('.title');
     const locationElement = cardElement.querySelector('.location .location-name');
-  
+
     startTimeElement.textContent = data.StartTime.slice(0, 10);
     endTimeElement.textContent = data.EndTime.slice(0, 10);
     titleElement.textContent = data.ActivityName;
@@ -124,21 +144,28 @@ function renderData(category, categoryNameInHTML) {
   const list = document.querySelectorAll(`${categoryNameInHTML} .card`);
 
   // 把取回來的資料渲染到元素中
-  resData.forEach((data, index)=> {
+  resData.forEach((data, index) => {
     const cardElement = list[index];
     let picUrl = '';
-    
+    let addressSlice = '';
+
     //因為API裡有些資料並無提供圖片, 故需要自行判斷有無值, 並且在無圖片時需為其加上預設圖片 
     try {
-      if (Object.keys(data.Picture).length === 0){
+      if (Object.keys(data.Picture).length === 0) {
         picUrl = './images/index/none_pic.png';
-      }else {
+      } else {
         picUrl = data.Picture.PictureUrl1;
       }
-      // console.log('picUrl=',picUrl);
+      
+      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
+      if (data.hasOwnProperty('Address') !== false) {
+        addressSlice = data.Address.slice(0, 3);
+      } else {
+        addressSlice = '未提供縣市名稱';
+      }
     }
-    catch(error) {
-      console.log('Error:',error);
+    catch (error) {
+      console.log('Error:', error);
     }
     const nameElement = cardElement.querySelector('.name');
     const locationElement = cardElement.querySelector('.location .location-name');
@@ -153,24 +180,29 @@ function renderData(category, categoryNameInHTML) {
 };
 
 // 確認API token並且回傳各主題(觀光景點/餐廳/近期活動/住宿)API資料出去
-async function getAPIData () {
+async function getAPIData() {
   const getAPIToken = await checkAPIToken();
+  const today = getDate();
+
+  // 為了讓首頁各個項目撈出來的資料都必定有圖片, 故使用TDX API說明手冊的邏輯運算子語法($filter=Picture/PictureUrl1 ne null), 也就是在Picture屬性裡的PictureUrl1屬性內的值 不等於 null), 有符合者才會被撈出來, 藉此過濾掉無圖片的資料; 但若是切換到各縣市/各主題分頁, 則可以允許無圖片的項目出現, 避免有些縣市(如:屏東縣)因為該縣政府API完全沒提供景點圖片而沒有任何資料被撈回來
 
   // 撈出首頁banner景點標題與圖片網址(UpdateTime代表TDX平台更新資料的時間)
-  let urlStatement = `$select=${category[1]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=6&$skip=${randomNumArray[0]}&$orderby=UpdateTime desc&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken, category[1], urlStatement);
+  let keywordsExcludeStatement = keywordsToExclude(category[0]);
+  let urlStatement = `$select=${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=6&$skip=${randomNumArray[0]}&$orderby=UpdateTime desc&$format=JSON`;
+  resData = await callAllCategoriesAPI(getAPIToken, category[0], urlStatement);
   renderDataToBanner(categoryNameInHTML[0]);
 
-  // 撈出近期活動資料(固定選擇top4, 不加入隨機亂數)
-  urlStatement = `$select=${category[0]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null&$orderby=startTime desc&$top=4&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken ,category[0], urlStatement);
+  // 撈出近期活動資料(固定選擇top4, 不加入隨機亂數, 加入日期判定)
+  keywordsExcludeStatement = keywordsToExclude(category[1]);
+  urlStatement = `$select=${category[1]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$format=JSON`;
+  resData = await callAllCategoriesAPI(getAPIToken, category[1], urlStatement);
   renderDataToRecentActivity(categoryNameInHTML[1]);
 
-  // 使用TDX API說明手冊的邏輯運算子語法($filter=Picture/PictureUrl1 ne null), 也就是在Picture屬性裡的PictureUrl1屬性內的值 不等於 null), 有符合者才會被撈出來, 藉此過濾掉無圖片的資料, 讓首頁內各項目一定都是有圖片的狀態, 但如果是切換到各縣市/各主題分頁則可以允許無圖片的地點出現
   // 撈出景點資料
-  urlStatement = `$select=${category[1]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[1]}&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken, category[1], urlStatement);
-  renderData(category[1], categoryNameInHTML[2]);
+  keywordsExcludeStatement = keywordsToExclude(category[0]);
+  urlStatement = `$select=${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=4&$skip=${randomNumArray[1]}&$format=JSON`;
+  resData = await callAllCategoriesAPI(getAPIToken, category[0], urlStatement);
+  renderData(category[0], categoryNameInHTML[2]);
 
   // 撈出餐廳資料
   urlStatement = `$select=${category[2]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[2]}&$format=JSON`;
@@ -185,23 +217,7 @@ async function getAPIData () {
 
 // 每次從0~1000中隨機取得6個數字(假設為50,101,37,47,5,777), 並分別代入不同主題的API資料內, 成為各自要"skip的筆數", 然後再取其top 4筆/6筆資料, 藉此每次都能夠取得不同的資料(但這樣子取回的資料幾乎視同一個縣市的資料, 但因為找景點也一定是找相同縣市的景點, 故符合實際出遊邏輯)
 randomNumArray = getRandomNumber(6);
-console.log(randomNumArray);
+
 getAPIData();
 
-// 引用套件--Swiper圖片輪播
-const swiper = new Swiper(".mySwiper", {
-  spaceBetween: 30,
-  centeredSlides: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    prevEl: ".left-narrow",
-    nextEl: ".right-narrow",
-  },
-});
+

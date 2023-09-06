@@ -3,6 +3,7 @@
 @import "config/grid";
 @import "config/container";
 @import "layout/nav";
+@import "component/banner";
 @import "component/breadcrumb";
 @import "component/searchbar";
 @import "component/search_button";
@@ -13,4 +14,3 @@
 @import "page/index";
 @import "page/searchResult";
 @import "page/categoryContent";
-@import "component/banner";

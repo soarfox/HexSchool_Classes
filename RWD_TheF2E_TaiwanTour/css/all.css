@@ -311,6 +311,128 @@ body {
   }
 }
 
+.swiper {
+  width: 100%;
+  height: 100%;
+  margin-bottom: 36px;
+}
+
+.banner,
+.narrowsAndPagination {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner .swiper-slide,
+.narrowsAndPagination .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner .swiper-slide img,
+.narrowsAndPagination .swiper-slide img {
+  display: block;
+  aspect-ratio: 111/40;
+  border-radius: 24px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media (max-width: 767px) {
+  .banner .swiper-slide img,
+  .narrowsAndPagination .swiper-slide img {
+    border-radius: 16px;
+  }
+}
+.banner .swiper-pagination-bullet,
+.narrowsAndPagination .swiper-pagination-bullet {
+  width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 20px));
+  height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 20px));
+  background: var(--swiper-pagination-bullet-inactive-color, #ffffff);
+  opacity: none;
+}
+@media (max-width: 767px) {
+  .banner .swiper-pagination-bullet,
+  .narrowsAndPagination .swiper-pagination-bullet {
+    width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 12px));
+    height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 12px));
+  }
+}
+@media (max-width: 428px) {
+  .banner .swiper-pagination-bullet,
+  .narrowsAndPagination .swiper-pagination-bullet {
+    width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 8px));
+    height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 8px));
+  }
+}
+.banner .swiper-lazy-preloader-black,
+.narrowsAndPagination .swiper-lazy-preloader-black {
+  --swiper-preloader-color: $White;
+}
+.banner .title,
+.narrowsAndPagination .title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+@media (max-width: 428px) {
+  .banner .title,
+  .narrowsAndPagination .title {
+    font-size: 1rem;
+  }
+}
+
+.narrowsAndPagination .narrow-button {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 2.25rem;
+  background: none;
+  border: none;
+  z-index: 2;
+}
+.narrowsAndPagination .narrow-button:hover {
+  color: #7F977B;
+}
+.narrowsAndPagination .narrow-button:active {
+  color: #FF725E;
+}
+@media (max-width: 428px) {
+  .narrowsAndPagination .narrow-button {
+    display: none;
+  }
+}
+.narrowsAndPagination .left-narrow {
+  left: 0;
+}
+.narrowsAndPagination .right-narrow {
+  right: 0;
+}
+.narrowsAndPagination .pagination-position {
+  text-align: right;
+  padding: 0px 20px 10px 0px;
+}
+@media (max-width: 767px) {
+  .narrowsAndPagination .pagination-position {
+    padding: 0px 10px 0px 0px;
+  }
+}
+
 .breadcrumb {
   display: flex;
   padding: 60px 0px 30px 0px;
@@ -419,8 +541,10 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.photo img:hover {
+.photo img:hover, .photo img:active {
   transform: scale(1.1);
+  overflow: hidden;
+  border-radius: 20px;
 }
 
 .hot-topics .title {
@@ -945,122 +1069,4 @@ header .search-keyword {
 }
 .content .hot-spots {
   padding: 30px 0px;
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-  margin-bottom: 36px;
-}
-
-.banner,
-.narrowsAndPagination {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.banner .swiper-slide,
-.narrowsAndPagination .swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.banner .swiper-slide img,
-.narrowsAndPagination .swiper-slide img {
-  display: block;
-  aspect-ratio: 111/40;
-  border-radius: 24px;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-@media (max-width: 767px) {
-  .banner .swiper-slide img,
-  .narrowsAndPagination .swiper-slide img {
-    border-radius: 16px;
-  }
-}
-.banner .swiper-pagination-bullet,
-.narrowsAndPagination .swiper-pagination-bullet {
-  width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 20px));
-  height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 20px));
-  background: var(--swiper-pagination-bullet-inactive-color, #ffffff);
-  opacity: none;
-}
-@media (max-width: 767px) {
-  .banner .swiper-pagination-bullet,
-  .narrowsAndPagination .swiper-pagination-bullet {
-    width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 12px));
-    height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 12px));
-  }
-}
-@media (max-width: 428px) {
-  .banner .swiper-pagination-bullet,
-  .narrowsAndPagination .swiper-pagination-bullet {
-    width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 8px));
-    height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 8px));
-  }
-}
-.banner .title,
-.narrowsAndPagination .title {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #FFFFFF;
-  font-size: 1.75rem;
-  font-weight: 700;
-}
-@media (max-width: 428px) {
-  .banner .title,
-  .narrowsAndPagination .title {
-    font-size: 1rem;
-  }
-}
-
-.narrowsAndPagination .narrow-button {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  display: flex;
-  align-items: center;
-  color: #FFFFFF;
-  font-size: 2.25rem;
-  background: none;
-  border: none;
-  z-index: 2;
-}
-.narrowsAndPagination .narrow-button:hover {
-  color: #7F977B;
-}
-.narrowsAndPagination .narrow-button:active {
-  color: #FF725E;
-}
-@media (max-width: 428px) {
-  .narrowsAndPagination .narrow-button {
-    display: none;
-  }
-}
-.narrowsAndPagination .left-narrow {
-  left: 0;
-}
-.narrowsAndPagination .right-narrow {
-  right: 0;
-}
-.narrowsAndPagination .pagination-position {
-  text-align: right;
-  padding: 0px 20px 10px 0px;
-}
-@media (max-width: 767px) {
-  .narrowsAndPagination .pagination-position {
-    padding: 0px 10px 0px 0px;
-  }
 }

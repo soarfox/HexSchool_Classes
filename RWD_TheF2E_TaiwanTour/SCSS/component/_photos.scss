@@ -16,8 +16,10 @@
     // 按照圖片長寬比例延伸圖片且確保畫面不會有空白
     object-fit: cover;
 
-    &:hover {
+    &:hover, &:active {
       transform: scale(1.1);
+      overflow: hidden;
+      border-radius: 20px;
     }
   }
 }
