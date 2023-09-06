@@ -8,7 +8,8 @@
   }
 
   img {
-    transition: transform 0.3s ease-in-out;
+    // 使用transition:transform 0.3s;則會造成圖片周圍會出現原本的直角後又瞬間消失, 造成稍微閃爍的效果, 但這對使用者體驗不佳, 故直接改成transition: 0.3s;使得任何CSS屬性的變化, 都將在0.3秒內產生平滑過渡效果, 這樣就不會閃爍
+    transition: 0.3s;
     width: 100%;
     height: 100%;
     // 確保圖片的寬高比例維持1:1, 讓直式圖片被拉伸或超出邊界
