@@ -485,11 +485,11 @@ body {
   border: 1px solid #E6E6E6;
   border-radius: 5px;
 }
-.search-bar .keyword {
+.search-bar .keywords {
   width: 30%;
   margin-right: 15px;
 }
-.search-bar .keyword input {
+.search-bar .keywords input {
   width: 100%;
   font-size: 1rem;
   font-weight: 400;
@@ -499,7 +499,7 @@ body {
   background-color: #F9F9F9;
 }
 @media (max-width: 767px) {
-  .search-bar .select-category, .search-bar .keyword, .search-bar .search-button {
+  .search-bar .select-category, .search-bar .keywords, .search-bar .search-button {
     width: 100%;
     margin: 7px 0px;
   }
@@ -778,20 +778,20 @@ header .intro h3 .taiwan-location-icon {
     font-size: 1.75rem;
   }
 }
-header .select-category {
+header .search-block {
   display: flex;
   flex-direction: column;
   padding: 101px 0px 0px 0px;
   width: 40%;
 }
 @media (max-width: 767px) {
-  header .select-category {
+  header .search-block {
     padding: 30px 0px;
     width: 90%;
   }
 }
-header .category,
-header .search-keyword {
+header .category-selection,
+header .search-keywords {
   margin: 7px 0px;
   padding: 12px 30px;
   border: 1px solid #E6E6E6;
@@ -801,10 +801,10 @@ header .search-keyword {
   font-family: "Noto Sans TC";
   border-radius: 5px;
 }
-header .category {
+header .category-selection {
   font-weight: 500;
 }
-header .search-keyword {
+header .search-keywords {
   font-weight: 400;
 }
 

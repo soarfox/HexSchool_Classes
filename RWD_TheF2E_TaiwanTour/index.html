@@ -42,7 +42,7 @@
         <img src="./images/icon/menu-mobile.svg" width="50" height="50" alt="背景是淺綠色, 前景是三條白色橫線, 由上至下分別是短、長、短, 代表著menu">
       </div>
       <ul class="menu">
-        <li><a href="./attractions.html" aria-label="前往探索景點的分類畫面">探索景點</a></li>
+        <li><a href="./scenicSpot.html" aria-label="前往探索景點的分類畫面">探索景點</a></li>
         <li><a href="./activies.html" aria-label="前往節慶活動的分類畫面">節慶活動</a></li>
         <li><a href="./restaurants.html" aria-label="前往品嚐美食的分類畫面">品嚐美食</a></li>
         <li><a href="./hotels.html" aria-label="前往安心住宿的分類畫面">安心住宿</a></li>
@@ -54,18 +54,20 @@
           讓我們更親近這片土地</h2>
         <h3><i class="fa-solid fa-location-dot taiwan-location-icon"></i>台灣旅遊景點導覽 <span>Taiwan Travel Guide</span></h3>
       </div>
-      <label for="category" class="select-category">
-        <select class="category" name="category" id="category" aria-label="category">
-          <option value="">請選擇您想找尋的類別</option>
-          <option value="attractions">探索景點</option>
+      <form class="search-block" action="./searchResult.html" method="get">
+        <label for="category-selection" class="category"></label>
+        <select class="category-selection" name="category-selection" id="category-selection" aria-label="category-selection">
+          <option value="allCategory">請選擇您想找尋的類別</option>
+          <option value="scenicSpots">探索景點</option>
           <option value="activities">節慶活動</option>
           <option value="meals">品嚐美食</option>
-          <option value="hotel">安心住宿</option>
+          <option value="hotels">安心住宿</option>
         </select>
-        <input class="search-keyword" type="text" name="keyword" placeholder="您想去哪裡？請輸入關鍵字">
-        <button type="submit" class="search-button" name="search" aria-label="按下此按鈕進行搜尋"><i
-            class="fa-solid fa-magnifying-glass"></i>搜尋</button>
-      </label>
+        <input class="search-keywords" type="text" name="keywords" id="keywords" placeholder="您想去哪裡？請輸入關鍵字">
+        <button type="submit" class="search-button" name="search" aria-label="按下此按鈕進行搜尋">
+          <i class="fa-solid fa-magnifying-glass"></i>搜尋
+        </button>
+      </form>
     </header>
     <main class="index-container">
       <!-- Swiper圖片自動輪播, 來源: https://swiperjs.com/demos#autoplay -->
@@ -246,7 +248,7 @@
       <div class="hot-spots">
         <div class="topic-title">
           <h4>熱門打卡景點</h4>
-          <a href="./attractions.html" aria-label="查看更多景點的資料">查看更多景點 > </a>
+          <a href="./scenicSpot.html" aria-label="查看更多景點的資料">查看更多景點 > </a>
         </div>
         <ul class="list">
           <li class="card">

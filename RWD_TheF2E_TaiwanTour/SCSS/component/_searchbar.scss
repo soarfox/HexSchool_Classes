@@ -19,7 +19,7 @@
     border-radius: 5px;
   }
 
-  .keyword {
+  .keywords {
     width: 30%;
     margin-right: 15px;
 
@@ -34,7 +34,7 @@
     }
   }
 
-  .select-category, .keyword, .search-button {
+  .select-category, .keywords, .search-button {
     @include tablet {
       width: 100%;
       margin: 7px 0px;

@@ -55,7 +55,7 @@ header {
 		}
 	}
 
-	.select-category {
+	.search-block {
 		display: flex;
 		flex-direction: column;
 		padding: 101px 0px 0px 0px;
@@ -68,8 +68,8 @@ header {
 	}
 
 	/* 因表單元素 (select、input和button)會有瀏覽器預設的樣式, 其中也包含font-family, 因此會覆蓋掉原本繼承自div/body的 font-family設定, 故在此針對元素本身設定font-family即可套用到指定的字型 */
-	.category,
-	.search-keyword {
+	.category-selection,
+	.search-keywords {
 		margin: 7px 0px;
 		padding: 12px 30px;
 		border: 1px solid $White-Gray;
@@ -80,11 +80,11 @@ header {
 		border-radius: 5px;
 	}
 
-	.category {
+	.category-selection {
 		font-weight: 500;
 	}
 
-	.search-keyword {
+	.search-keywords {
 		font-weight: 400;
 	}
 }
@@ -97,37 +97,6 @@ header {
 	@include iPad {
 		padding: 0px 15px;
 	}
-
-	// // 引用套件--Swiper圖片輪播預設加入的css如下三項
-	// .swiper {
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	margin-bottom: 36px;
-	// }
-
-	// .swiper-slide {
-	// 	text-align: center;
-	// 	font-size: 18px;
-	// 	background: #fff;
-	// 	display: flex;
-	// 	justify-content: center;
-	// 	align-items: center;
-	// }
-
-	// .swiper-slide img {
-	// 	display: block;
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	object-fit: cover;
-	// }
-
-	// // 從index.html內引用的swiper.min.css內, 找到對應的內容複製過來並自行修改其大小(8px改成20px)
-	// .swiper-pagination-bullet {
-	// 	width: var(--swiper-pagination-bullet-width, var(--swiper-pagination-bullet-size, 20px));
-	// 	height: var(--swiper-pagination-bullet-height, var(--swiper-pagination-bullet-size, 20px));
-	// 	background: var(--swiper-pagination-bullet-inactive-color, #ffffff);
-	// 	opacity: none;
-	// }
 
 	.recent-activity,
 	.hot-spots,

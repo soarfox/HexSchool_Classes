@@ -3,6 +3,24 @@ import { getRandomNumber } from './randomNumber.js';
 import { getDate } from './getDate.js';
 import { keywordsToExclude } from './keywordsToExclude.js';
 
+document.addEventListener('DOMContentLoaded', function(){
+  const searchForm = document.querySelector('form');
+
+  searchForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    const category = document.getElementById('category-selection').value;
+    const keywords = document.getElementById('keywords').value;
+    console.log(category);
+    console.log(keywords);
+
+    // 將選中的值作為參數傳遞到搜尋畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免搜尋畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:天空&/), 則未使用該函式則只會解析出"天空", 但使用該函式後則可成功解析出"天空&/"
+    const redirectURL = './searchResult.html?category=' + category + '&keywords=' + encodeURIComponent(keywords);
+
+    // 跳轉到搜尋畫面
+    window.location.href = redirectURL;
+  })
+});
+
 let resData = [];
 let category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
 // 將HTML上的class name寫在此處, 請記得加上前方的.號
@@ -40,6 +58,7 @@ async function callAllCategoriesAPI(api_token, category, urlStatement) {
     // 過濾掉無圖片的資料(完整查詢語句)
     // https://tdx.transportdata.tw/api/basic/v2/Tourism/Activity?$select=ActivityName,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON
     const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?${urlStatement}`;
+    console.log(url);
 
     try {
       // 
@@ -159,7 +178,12 @@ function renderData(category, categoryNameInHTML) {
       
       //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
       if (data.hasOwnProperty('Address') !== false) {
-        addressSlice = data.Address.slice(0, 3);
+        //彰化縣的餐廳有很多都已包含前三碼郵遞區號, 例如Address: 510彰化縣員林市林厝里山腳路一段坡姜巷465號, 故需要判斷後取出正確的值
+        if(data.Address.slice(2, 3) !== '縣' && data.Address.slice(2, 3) !== '市'){
+          addressSlice = data.Address.slice(3, 6);
+        }else {
+          addressSlice = data.Address.slice(0, 3);
+        }
       } else {
         addressSlice = '未提供縣市名稱';
       }
@@ -174,7 +198,7 @@ function renderData(category, categoryNameInHTML) {
     // 用變數方式動態換上各個主題裡的屬性名稱(ScenicSpotName/RestaurantName等)
     const categoryName = `${category}Name`;
     nameElement.textContent = data[categoryName];
-    locationElement.textContent = data.Address.slice(0, 3);
+    locationElement.textContent = addressSlice;
     imgElement.src = picUrl;
   });
 };
@@ -190,34 +214,42 @@ async function getAPIData() {
   let keywordsExcludeStatement = keywordsToExclude(category[0]);
   let urlStatement = `$select=${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=6&$skip=${randomNumArray[0]}&$orderby=UpdateTime desc&$format=JSON`;
   resData = await callAllCategoriesAPI(getAPIToken, category[0], urlStatement);
+  console.log(resData);
   renderDataToBanner(categoryNameInHTML[0]);
 
   // 撈出近期活動資料(固定選擇top4, 不加入隨機亂數, 加入日期判定)
   keywordsExcludeStatement = keywordsToExclude(category[1]);
-  urlStatement = `$select=${category[1]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$format=JSON`;
+  urlStatement = `$select=${category[1]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) ge ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$format=JSON`;
   resData = await callAllCategoriesAPI(getAPIToken, category[1], urlStatement);
+  console.log(resData);
   renderDataToRecentActivity(categoryNameInHTML[1]);
 
   // 撈出景點資料
   keywordsExcludeStatement = keywordsToExclude(category[0]);
   urlStatement = `$select=${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=4&$skip=${randomNumArray[1]}&$format=JSON`;
   resData = await callAllCategoriesAPI(getAPIToken, category[0], urlStatement);
+  console.log(resData);
   renderData(category[0], categoryNameInHTML[2]);
 
   // 撈出餐廳資料
   urlStatement = `$select=${category[2]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[2]}&$format=JSON`;
   resData = await callAllCategoriesAPI(getAPIToken, category[2], urlStatement);
+  console.log(resData);
   renderData(category[2], categoryNameInHTML[3]);
 
   // 撈出旅館資料
   urlStatement = `$select=${category[3]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[3]}&$format=JSON`;
   resData = await callAllCategoriesAPI(getAPIToken, category[3], urlStatement);
+  console.log(resData);
   renderData(category[3], categoryNameInHTML[4]);
 }
 
 // 每次從0~1000中隨機取得6個數字(假設為50,101,37,47,5,777), 並分別代入不同主題的API資料內, 成為各自要"skip的筆數", 然後再取其top 4筆/6筆資料, 藉此每次都能夠取得不同的資料(但這樣子取回的資料幾乎視同一個縣市的資料, 但因為找景點也一定是找相同縣市的景點, 故符合實際出遊邏輯)
 randomNumArray = getRandomNumber(6);
+console.log('randomNumArray=',randomNumArray);
 
 getAPIData();
+
+
 
 
