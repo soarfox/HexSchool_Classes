@@ -26,6 +26,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700&display=swap"
     rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.4/axios.min.js"></script>
   <link rel="stylesheet" href="./css/all.css">
 </head>
 
@@ -113,11 +114,12 @@
         <div class="topic-title">
           <h4>搜尋結果</h4>
           <div class="result-count">共有
-            <span class="count">123</span> 筆
+            <span class="count" id="result-count">123</span> 筆
           </div>
         </div>
-        <ul class="list">
-          <li class="card">
+        <ul class="list" id="searchResult-list">
+          <!-- 下方各預設li為切版時使用, 正式串接API資料後, 需要將其註解掉, 由JS動態生成各筆li元素出來 -->
+          <!-- <li class="card">
             <a href="#" aria-label="查看這一筆資料的詳細內容">
               <div class="photo">
                 <img src="./images/icon/hotel_example.jpg" width="255" height="200" alt="">
@@ -237,7 +239,7 @@
             <div class="location">
               <i class="fa-solid fa-location-dot location-icon">宜蘭縣</i>
             </div>
-          </li>
+          </li> -->
         </ul>
         <div class="result-null">
           <img src="./images/searchResult/search_null.png" alt="背景是一份紙本資料, 前景是一隻放大鏡" width="80" height="80">
@@ -261,7 +263,7 @@
   <!-- 引用Font Awesome的圖示 -->
   <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
   <script src="./js/hamburger_menu.js"></script>
-  <script src="./js/searchResult.js"></script>
+  <script type="module" src="./js/searchResult.js"></script>
 </body>
 
 </html>

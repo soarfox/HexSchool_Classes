@@ -1,7 +1,8 @@
 import { checkAPIToken } from './getAPIToken.js';
 import { getRandomNumber } from './randomNumber.js';
-import { getDate } from './getDate.js';
 import { keywordsToExclude } from './keywordsToExclude.js';
+import { getDate } from './getDate.js';
+import { callCategoryDataAPI } from './callCategoryDataAPI.js';
 
 document.addEventListener('DOMContentLoaded', function(){
   const searchForm = document.querySelector('form');
@@ -45,39 +46,38 @@ const swiper = new Swiper(".mySwiper", {
   },
 });
 
-// 取得指定主題的n項欄位內容
-async function callAllCategoriesAPI(api_token, category, urlStatement) {
+// // 取得指定主題的n項欄位內容
+// async function callAllCategoriesAPI(api_token, category, urlStatement) {
 
-  if (api_token != undefined) {
-    // 加入關鍵字搜尋的語句
-    // const url = 'https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot?$filter=contains(ScenicSpotName, \'海\')&$top=4&$format=JSON';
+//   if (api_token != undefined) {
+//     // 加入關鍵字搜尋的語句
+//     // const url = 'https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot?$filter=contains(ScenicSpotName, \'海\')&$top=4&$format=JSON';
 
-    // 最廣泛適用, 但會把所有資料撈回來, 資料量較大 
-    // const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?$top=4&$format=JSON`;
+//     // 最廣泛適用, 但會把所有資料撈回來, 資料量較大 
+//     // const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?$top=4&$format=JSON`;
 
-    // 過濾掉無圖片的資料(完整查詢語句)
-    // https://tdx.transportdata.tw/api/basic/v2/Tourism/Activity?$select=ActivityName,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON
-    const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?${urlStatement}`;
-    console.log(url);
+//     // 過濾掉無圖片的資料(完整查詢語句)
+//     // https://tdx.transportdata.tw/api/basic/v2/Tourism/Activity?$select=ActivityName,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON
+//     const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?${urlStatement}`;
+//     console.log(url);
 
-    try {
-      // 
-      const response = await axios.get(url, {
-        headers: {
-          "authorization": "Bearer " + api_token
-        }
-      });
-      const tk2 = response.data;
+//     try {
+//       // 
+//       const response = await axios.get(url, {
+//         headers: {
+//           "authorization": "Bearer " + api_token
+//         }
+//       });
+//       return response.data;
 
-      return tk2;
-    } catch (error) {
-      console.error('getAPIData axios失敗:', error);
-    }
-  }
-  else {
-    console.log('您的api token為:undefined');
-  }
-};
+//     } catch (error) {
+//       console.error('getAPIData axios失敗:', error);
+//     }
+//   }
+//   else {
+//     console.log('您的api token為:undefined');
+//   }
+// };
 
 // 渲染banner資料到網頁上
 function renderDataToBanner(categoryNameInHTML) {
@@ -213,33 +213,33 @@ async function getAPIData() {
   // 撈出首頁banner景點標題與圖片網址(UpdateTime代表TDX平台更新資料的時間)
   let keywordsExcludeStatement = keywordsToExclude(category[0]);
   let urlStatement = `$select=${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=6&$skip=${randomNumArray[0]}&$orderby=UpdateTime desc&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken, category[0], urlStatement);
+  resData = await callCategoryDataAPI(getAPIToken, category[0], urlStatement);
   console.log(resData);
   renderDataToBanner(categoryNameInHTML[0]);
 
   // 撈出近期活動資料(固定選擇top4, 不加入隨機亂數, 加入日期判定)
   keywordsExcludeStatement = keywordsToExclude(category[1]);
   urlStatement = `$select=${category[1]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) ge ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken, category[1], urlStatement);
+  resData = await callCategoryDataAPI(getAPIToken, category[1], urlStatement);
   console.log(resData);
   renderDataToRecentActivity(categoryNameInHTML[1]);
 
   // 撈出景點資料
   keywordsExcludeStatement = keywordsToExclude(category[0]);
   urlStatement = `$select=${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=4&$skip=${randomNumArray[1]}&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken, category[0], urlStatement);
+  resData = await callCategoryDataAPI(getAPIToken, category[0], urlStatement);
   console.log(resData);
   renderData(category[0], categoryNameInHTML[2]);
 
   // 撈出餐廳資料
   urlStatement = `$select=${category[2]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[2]}&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken, category[2], urlStatement);
+  resData = await callCategoryDataAPI(getAPIToken, category[2], urlStatement);
   console.log(resData);
   renderData(category[2], categoryNameInHTML[3]);
 
   // 撈出旅館資料
   urlStatement = `$select=${category[3]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[3]}&$format=JSON`;
-  resData = await callAllCategoriesAPI(getAPIToken, category[3], urlStatement);
+  resData = await callCategoryDataAPI(getAPIToken, category[3], urlStatement);
   console.log(resData);
   renderData(category[3], categoryNameInHTML[4]);
 }
