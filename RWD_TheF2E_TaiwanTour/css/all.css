@@ -653,6 +653,7 @@ body {
   aspect-ratio: 51/40;
   overflow: hidden;
   border-radius: 20px;
+  transform: scale(1);
 }
 .list .card .photo img {
   transition: 0.3s;
@@ -845,6 +846,7 @@ header .search-keywords {
   aspect-ratio: 3/2;
   overflow: hidden;
   border-radius: 12px 0px 0px 12px;
+  transform: scale(1);
 }
 .index-container .last-activities-list .card .photo img {
   transition: 0.3s;

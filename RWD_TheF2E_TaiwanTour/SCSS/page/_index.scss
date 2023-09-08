@@ -138,6 +138,8 @@ header {
 				// 將圖片被hover時會放大的效果之超出框框的部分隱藏掉
 				overflow: hidden;
 				border-radius: 12px 0px 0px 12px;
+				// 因為手機的iOS系統在進行img的transform放大圖片行為, 圖片會短暫出現四周有直角的狀態, 故需要在img{...}元素的父層元素, 加入一個具有有效值的transform, 藉此讓border-radius能夠正常運作而不會出現圖片四周的直角
+				transform: scale(1);
 
 				img {
 					// 使用transition:transform 0.3s;則會造成圖片周圍會出現原本的直角後又瞬間消失, 造成稍微閃爍的效果, 但這對使用者體驗不佳, 故直接改成transition: 0.3s;使得任何CSS屬性的變化, 都將在0.3秒內產生平滑過渡效果, 這樣就不會閃爍
