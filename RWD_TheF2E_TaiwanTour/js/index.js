@@ -202,9 +202,9 @@ async function getAPIData() {
   console.log(resData);
   renderDataToBanner(categoryNameInHTML[0]);
 
-  // 撈出近期活動資料(固定選擇top4, 不加入隨機亂數, 加入日期判定)
+  // 撈出近期活動資料(加入隨機亂數(1~30), 且加入日期判定)
   keywordsExcludeStatement = keywordsToExclude(category[1]);
-  urlStatement = `$select=${category[1]}ID,${category[1]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) ge ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$format=JSON`;
+  urlStatement = `$select=${category[1]}ID,${category[1]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) ge ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$skip=${randomNumForActivity}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[1], urlStatement);
   console.log(resData);
   renderDataToRecentActivity(categoryNameInHTML[1]);
@@ -230,7 +230,8 @@ async function getAPIData() {
 }
 
 // 每次從0~1000中隨機取得6個數字(假設為50,101,37,47,5,777), 並分別代入不同主題的API資料內, 成為各自要"skip的筆數", 然後再取其top 4筆/6筆資料, 藉此每次都能夠取得不同的資料(但這樣子取回的資料幾乎視同一個縣市的資料, 但因為找景點也一定是找相同縣市的景點, 故符合實際出遊邏輯)
-randomNumArray = getRandomNumber(6);
+let randomNumForActivity = getRandomNumber(30, 1);
+randomNumArray = getRandomNumber(1000, 6);
 console.log('randomNumArray=', randomNumArray);
 
 getAPIData();

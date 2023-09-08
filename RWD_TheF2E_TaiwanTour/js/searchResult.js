@@ -82,9 +82,9 @@ function renderData() {
 
     // a標籤的部份
     const a = document.createElement('a');
-    a.href = '#';
+    a.href = './categoryContent.html';
     a.setAttribute('aria-label', '查看這一筆資料的詳細內容');
-
+    
     // div標籤 photo的部份
     const divPhoto = document.createElement('div');
     divPhoto.className = 'photo';
@@ -95,6 +95,9 @@ function renderData() {
     img.width = 255;
     img.height = 200;
     img.alt = item.Picture.PictureDescription1;
+    // 將該筆資料的分類及獨一無二的資料ID設為圖片的屬性與值, 以利使用者點擊圖片後, 將相關資料透過網址參數傳遞到詳細資料畫面內, 並對應API搜尋並呈現資料
+    img.setAttribute('data-category', `${selectedCategory}`);
+    img.setAttribute('data-id', item[`${selectedCategory}ID`]);
 
     // 將img標籤加入div內
     divPhoto.appendChild(img);
@@ -120,14 +123,46 @@ function renderData() {
     // 將li添加到ul內
     dataList.appendChild(li);
   });
+
+  // 當前述執行完畢後, 為ul元素加上監聽事件
+  addClickListenersToLinks();
 };
 
 async function getResultAndRender() {
   resData = await searchResult();
   console.log(resData);
-  //在sql語句上有限制為top 20筆, 待瞭解分頁如何設計後可再修改 
+  //在sql語句上有限制為top 20筆, 待瞭解分頁如何設計後可再修改
   document.getElementById('result-count').textContent = resData.length;
-  renderData();
+  if (resData.length !== 0) {
+    renderData();
+  } else {
+    document.getElementById('searchResult-list').style.display = 'none';
+    document.getElementById('result-null').style.display = 'block';
+  }
+}
+
+function addClickListenersToLinks() {
+  document.addEventListener('click', function (e) {
+    const clickedElement = e.target;
+
+    // 判斷點擊到的元素是否為img, 如是則進行組合網址參數並跳轉到詳細資料畫面; 此處IMG需為大寫, 才能正確抓到網頁中的ul清單內的img元素
+    if (clickedElement.tagName === 'IMG') {
+      e.preventDefault();
+      const dataCategory = clickedElement.getAttribute('data-category');
+      const dataId = clickedElement.getAttribute('data-id');
+      console.log('dataCategory=',dataCategory);
+      console.log('dataId=',dataId);
+
+      // 將選中的值作為參數傳遞到詳細資料畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免詳細資料畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:海港&/), 則未使用該函式則只會解析出"海港", 但使用該函式後則可成功解析出"海港&/"
+      const redirectURL = './categoryContent.html?category=' + dataCategory + '&id=' + encodeURIComponent(dataId);
+
+      // 跳轉到詳細資料畫面
+      window.location.href = redirectURL;
+    }
+  });
 }
 
 getResultAndRender();
+
+
+
