@@ -527,74 +527,51 @@ body {
   width: 18%;
 }
 
-.photo {
-  overflow: hidden;
-  width: 45%;
-}
-@media (max-width: 767px) {
-  .photo {
-    width: 50%;
-  }
-}
-.photo img {
-  transition: 0.3s;
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.photo img:hover, .photo img:active {
-  transform: scale(1.1);
-  overflow: hidden;
-  border-radius: 20px;
-}
-
-.hot-topics .title {
+.hot-topics-in-category .title {
   font-size: 1.75rem;
   color: #1E1E1E;
   font-weight: 300;
   padding: 60px 0px 12px 55px;
 }
-.hot-topics ul {
+.hot-topics-in-category ul {
   display: flex;
   flex-wrap: wrap;
   padding: 0px 30px 120px 30px;
 }
 @media (max-width: 767px) {
-  .hot-topics ul {
+  .hot-topics-in-category ul {
     padding: 0px 15px 60px 15px;
   }
 }
-.hot-topics ul .card {
+.hot-topics-in-category ul .card {
   width: 25%;
   padding: 6px 15px;
   position: relative;
   overflow: hidden;
 }
 @media (max-width: 767px) {
-  .hot-topics ul .card {
+  .hot-topics-in-category ul .card {
     width: 50%;
     padding: 5px 7px;
   }
 }
-.hot-topics ul .card .topic-photo {
+.hot-topics-in-category ul .card .topic-photo {
   overflow: hidden;
   border-radius: 24px;
 }
 @media (max-width: 767px) {
-  .hot-topics ul .card .topic-photo {
+  .hot-topics-in-category ul .card .topic-photo {
     border-radius: 16px;
     text-align: center;
   }
 }
-.hot-topics ul .card .topic-photo img {
+.hot-topics-in-category ul .card .topic-photo img {
   transition: transform 0.3s;
 }
-.hot-topics ul .card .topic-photo:hover img {
+.hot-topics-in-category ul .card .topic-photo:hover img {
   transform: scale(1.1);
 }
-.hot-topics ul .card .subtitle {
+.hot-topics-in-category ul .card .subtitle {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -604,7 +581,7 @@ body {
   text-align: center;
 }
 @media (max-width: 767px) {
-  .hot-topics ul .card .subtitle {
+  .hot-topics-in-category ul .card .subtitle {
     font-size: 1rem;
     font-weight: 700;
   }
@@ -674,7 +651,19 @@ body {
 .list .card .photo {
   width: 100%;
   aspect-ratio: 51/40;
+  overflow: hidden;
   border-radius: 20px;
+}
+.list .card .photo img {
+  transition: 0.3s;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.list .card .photo img:hover, .list .card .photo img:active {
+  transform: scale(1.1);
 }
 .list .card .location {
   padding-top: 6px;
@@ -853,6 +842,20 @@ header .search-keywords {
 }
 .index-container .last-activities-list .card .photo {
   width: 40%;
+  aspect-ratio: 3/2;
+  overflow: hidden;
+  border-radius: 12px 0px 0px 12px;
+}
+.index-container .last-activities-list .card .photo img {
+  transition: 0.3s;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.index-container .last-activities-list .card .photo img:hover, .index-container .last-activities-list .card .photo img:active {
+  transform: scale(1.1);
 }
 .index-container .last-activities-list .card .container {
   display: flex;

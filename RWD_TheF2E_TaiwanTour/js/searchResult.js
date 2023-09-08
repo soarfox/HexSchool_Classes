@@ -41,7 +41,7 @@ async function searchResult() {
 
   // 撈出景點資料
   const keywordsExcludeStatement = keywordsToExclude(selectedCategory);
-  let urlStatement = `$select=${selectedCategory}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} and contains(${selectedCategory}Name, '${keywords}') &$top=20&$orderby=UpdateTime desc&$format=JSON`;
+  let urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,Picture&$filter=contains(${selectedCategory}Name, '${keywords}') ${keywordsExcludeStatement} &$top=20&$orderby=UpdateTime desc&$format=JSON`;
 
   let res = await callCategoryDataAPI(getAPIToken, selectedCategory, urlStatement);
   return res;
@@ -54,13 +54,26 @@ function renderData() {
   // 將每一筆取回的資料都走一遍, 且動態生成每個li元素
   resData.forEach(item => {
 
+    let picUrl = '';
     let addressSlice = '';
 
-    //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
-    if (item.hasOwnProperty('Address') !== false) {
-      addressSlice = item.Address.slice(0, 3);
-    } else {
-      addressSlice = '未提供縣市名稱';
+    try {
+      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
+      if (item.hasOwnProperty('Address') !== false) {
+        addressSlice = item.Address.slice(0, 3);
+      } else {
+        addressSlice = '未提供縣市名稱';
+      }
+
+      //API回傳的某些資料內可能無提供圖片, 故需要在無圖片時為其加上預設圖片 
+      if (Object.keys(item.Picture).length !== 0) {
+        picUrl = item.Picture.PictureUrl1;
+      } else {
+        picUrl = './images/sharedImages/none_picture.png';
+      }
+    }
+    catch (error) {
+      console.log('判斷有無地址或有無圖片時出現錯誤:', error);
     }
 
     // 創建li標籤
@@ -78,7 +91,7 @@ function renderData() {
 
     // img標籤的部份
     const img = document.createElement('img');
-    img.src = item.Picture.PictureUrl1;
+    img.src = picUrl;
     img.width = 255;
     img.height = 200;
     img.alt = item.Picture.PictureDescription1;
