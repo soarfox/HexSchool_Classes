@@ -1,37 +1,16 @@
 import { checkAPIToken } from './getAPIToken.js';
 import { keywordsToExclude } from './keywordsToExclude.js';
-// import { getDate } from './getDate.js';
+import { getRegionOfAddress } from './getRegionOfAddress.js';
+import { checkPictureUrl } from './checkPictureUrl.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
+import { proxyOfURL } from './proxyOfURL.js';
 
 let resData = [];
-// 將HTML上的class name寫在此處, 請記得加上前方的.號
-// let categoryNameInHTML = ['.recent-activity'];
-const queryString = window.location.search;
-// console.log('queryString=',queryString);
-const searchParams = new URLSearchParams(queryString);
-// console.log('searchParams=',searchParams);
 
-const handler = {
-  // 攔截對物件屬性的讀取操作
-  get: function (obj, prop) {
-    if (obj.has(prop)) {
-      console.log(`訪問的屬性名稱為:${prop}`);
-      // console.log(`值為:`,obj.get(prop));
-      return obj.get(prop);
-    } else {
-      console.log(`屬性名稱:${prop}並不存在`);
-      // 返回 undefined 表示屬性不存在
-      return undefined;
-    }
-  },
-};
-
-// 建立一個代理對象(proxy), 藉此成為代理者並進行處理
-const proxy = new Proxy(searchParams, handler);
-
-// 透過使用屬性名稱來取得參數的值
-const selectedCategory = proxy.category;
-const keywords = proxy.keywords;
+// 透過使用屬性名稱來取得URL裡參數的值
+const category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
+const selectedCategory = proxyOfURL.category;
+const keywords = proxyOfURL.keywords;
 console.log('selectedCategory=', selectedCategory);
 console.log('keywords=', keywords);
 
@@ -39,9 +18,16 @@ async function searchResult() {
   const getAPIToken = await checkAPIToken();
   // const today = getDate();
 
-  // 撈出景點資料
   const keywordsExcludeStatement = keywordsToExclude(selectedCategory);
-  let urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,Picture&$filter=contains(${selectedCategory}Name, '${keywords}') ${keywordsExcludeStatement} &$top=20&$orderby=UpdateTime desc&$format=JSON`;
+  let urlStatement = '';
+  
+  // 組合出查詢語句, 節慶活動主題才有"City或Location"這兩個屬性, 景點主題並無該些屬性, 故需要分開判斷
+  if (selectedCategory === category[1]){
+    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Location,Picture&$filter=contains(${selectedCategory}Name, '${keywords}') ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
+  }else {
+    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,Picture&$filter=contains(${selectedCategory}Name, '${keywords}') ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
+  }
+
 
   let res = await callCategoryDataAPI(getAPIToken, selectedCategory, urlStatement);
   return res;
@@ -49,7 +35,7 @@ async function searchResult() {
 
 function renderData() {
   // 取得<ul>元素的id
-  const dataList = document.getElementById('searchResult-list');
+  const ulList = document.getElementById('searchResult-list');
 
   // 將每一筆取回的資料都走一遍, 且動態生成每個li元素
   resData.forEach(item => {
@@ -57,24 +43,20 @@ function renderData() {
     let picUrl = '';
     let addressSlice = '';
 
-    try {
-      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
-      if (item.hasOwnProperty('Address') !== false) {
-        addressSlice = item.Address.slice(0, 3);
-      } else {
-        addressSlice = '未提供縣市名稱';
-      }
+    // 判斷該筆資料是否擁有Address屬性或Location屬性(節慶活動類通常有這個屬性), 藉此取出該筆資料所屬的縣市並寫在麵包屑上
+    if (item.hasOwnProperty('Address') || item.hasOwnProperty('Location') || item.hasOwnProperty('City')) {
+      // 將該筆資料完整的倒入getRegionOfAddress()內, 解析其縣市名稱
+      addressSlice = getRegionOfAddress(item);
+    } else {
+      addressSlice = '詳情如內';
+    }
 
-      //API回傳的某些資料內可能無提供圖片, 故需要在無圖片時為其加上預設圖片 
-      if (Object.keys(item.Picture).length !== 0) {
-        picUrl = item.Picture.PictureUrl1;
-      } else {
-        picUrl = './images/sharedImages/none_picture.png';
-      }
-    }
-    catch (error) {
-      console.log('判斷有無地址或有無圖片時出現錯誤:', error);
-    }
+
+    // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
+    // addressSlice = getRegionOfAddress(item);
+
+    // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
+    picUrl = checkPictureUrl(item, 'thumbnail');
 
     // 創建li標籤
     const li = document.createElement('li');
@@ -82,9 +64,9 @@ function renderData() {
 
     // a標籤的部份
     const a = document.createElement('a');
-    a.href = './categoryContent.html';
+    a.href = './detailContent.html';
     a.setAttribute('aria-label', '查看這一筆資料的詳細內容');
-    
+
     // div標籤 photo的部份
     const divPhoto = document.createElement('div');
     divPhoto.className = 'photo';
@@ -121,7 +103,7 @@ function renderData() {
     li.appendChild(divLocation);
 
     // 將li添加到ul內
-    dataList.appendChild(li);
+    ulList.appendChild(li);
   });
 
   // 當前述執行完畢後, 為ul元素加上監聽事件
@@ -130,8 +112,8 @@ function renderData() {
 
 async function getResultAndRender() {
   resData = await searchResult();
-  console.log(resData);
-  //在sql語句上有限制為top 20筆, 待瞭解分頁如何設計後可再修改
+  //在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改
+  console.log('這是searchResult頁面, 在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改', resData);
   document.getElementById('result-count').textContent = resData.length;
   if (resData.length !== 0) {
     renderData();
@@ -150,11 +132,11 @@ function addClickListenersToLinks() {
       e.preventDefault();
       const dataCategory = clickedElement.getAttribute('data-category');
       const dataId = clickedElement.getAttribute('data-id');
-      console.log('dataCategory=',dataCategory);
-      console.log('dataId=',dataId);
+      console.log('dataCategory=', dataCategory);
+      console.log('dataId=', dataId);
 
       // 將選中的值作為參數傳遞到詳細資料畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免詳細資料畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:海港&/), 則未使用該函式則只會解析出"海港", 但使用該函式後則可成功解析出"海港&/"
-      const redirectURL = './categoryContent.html?category=' + dataCategory + '&id=' + encodeURIComponent(dataId);
+      const redirectURL = './detailContent.html?category=' + dataCategory + '&id=' + encodeURIComponent(dataId);
 
       // 跳轉到詳細資料畫面
       window.location.href = redirectURL;

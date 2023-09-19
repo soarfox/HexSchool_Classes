@@ -11,7 +11,7 @@ async function callCategoryDataAPI(api_token, category, urlStatement) {
     // 過濾掉無圖片的資料(完整查詢語句)
     // https://tdx.transportdata.tw/api/basic/v2/Tourism/Activity?$select=ActivityName,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON
     const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?${urlStatement}`;
-    console.log(url);
+    // console.log(url);
 
     try {
       // 

@@ -1,6 +1,8 @@
 import { checkAPIToken } from './getAPIToken.js';
 import { getRandomNumber } from './randomNumber.js';
 import { keywordsToExclude } from './keywordsToExclude.js';
+import { getRegionOfAddress } from './getRegionOfAddress.js';
+import { checkPictureUrl } from './checkPictureUrl.js';
 import { getDate } from './getDate.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
 
@@ -46,65 +48,27 @@ const swiper = new Swiper(".mySwiper", {
   },
 });
 
-// // 取得指定主題的n項欄位內容
-// async function callAllCategoriesAPI(api_token, category, urlStatement) {
-
-//   if (api_token != undefined) {
-//     // 加入關鍵字搜尋的語句
-//     // const url = 'https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot?$filter=contains(ScenicSpotName, \'海\')&$top=4&$format=JSON';
-
-//     // 最廣泛適用, 但會把所有資料撈回來, 資料量較大 
-//     // const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?$top=4&$format=JSON`;
-
-//     // 過濾掉無圖片的資料(完整查詢語句)
-//     // https://tdx.transportdata.tw/api/basic/v2/Tourism/Activity?$select=ActivityName,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null&$orderby=UpdateTime desc&$top=4&$format=JSON
-//     const url = `https://tdx.transportdata.tw/api/basic/v2/Tourism/${category}?${urlStatement}`;
-//     console.log(url);
-
-//     try {
-//       // 
-//       const response = await axios.get(url, {
-//         headers: {
-//           "authorization": "Bearer " + api_token
-//         }
-//       });
-//       return response.data;
-
-//     } catch (error) {
-//       console.error('getAPIData axios失敗:', error);
-//     }
-//   }
-//   else {
-//     console.log('您的api token為:undefined');
-//   }
-// };
-
 // 渲染banner資料到網頁上
 function renderDataToBanner(categoryNameInHTML) {
   const list = document.querySelectorAll(`${categoryNameInHTML}`);
 
   // 把取回來的資料渲染到元素中
-  resData.forEach((data, index) => {
+  resData.forEach((item, index) => {
     const bannerElement = list[index];
     let addressSlice = '';
+    let picUrl = '';
 
-    try {
-      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
-      if (data.hasOwnProperty('Address') !== false) {
-        addressSlice = data.Address.slice(0, 3);
-      } else {
-        addressSlice = '未提供縣市名稱';
-      }
-    }
-    catch (error) {
-      console.log('Error:', error);
-    }
+    // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
+    addressSlice = getRegionOfAddress(item);
+    // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
+    picUrl = checkPictureUrl(item, 'banner');
+
     const cityElement = bannerElement.querySelector('.city-Name');
     const scenicSpotElement = bannerElement.querySelector('.scenicSpot-Name');
     const imgElement = bannerElement.querySelector('.banner-img');
     cityElement.textContent = addressSlice;
-    scenicSpotElement.textContent = data.ScenicSpotName;
-    imgElement.src = data.Picture.PictureUrl1;
+    scenicSpotElement.textContent = item.ScenicSpotName;
+    imgElement.src = picUrl;
   });
 };
 
@@ -113,33 +77,28 @@ function renderDataToRecentActivity(categoryNameInHTML) {
   const list = document.querySelectorAll(`${categoryNameInHTML} .card`);
 
   // 把取回來的資料渲染到元素中
-  resData.forEach((data, index) => {
+  resData.forEach((item, index) => {
     const cardElement = list[index];
-    let picUrl = '';
     let addressSlice = '';
+    let picUrl = '';
 
-    try {
-      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
-      if (data.hasOwnProperty('Address') !== false) {
-        addressSlice = data.Address;
-      } else {
-        addressSlice = '未提供地址';
-      }
-    }
-    catch (error) {
-      console.log('判斷有無地址時出現錯誤:', error);
-    }
+    // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
+    addressSlice = getRegionOfAddress(item);
+
+    // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
+    picUrl = checkPictureUrl(item, 'thumbnail');
+
     const imgElement = cardElement.querySelector('img');
     const startTimeElement = cardElement.querySelector('.startDate');
     const endTimeElement = cardElement.querySelector('.endDate');
     const titleElement = cardElement.querySelector('.title');
     const locationElement = cardElement.querySelector('.location .location-name');
 
-    startTimeElement.textContent = data.StartTime.slice(0, 10);
-    endTimeElement.textContent = data.EndTime.slice(0, 10);
-    titleElement.textContent = data.ActivityName;
+    startTimeElement.textContent = item.StartTime.slice(0, 10);
+    endTimeElement.textContent = item.EndTime.slice(0, 10);
+    titleElement.textContent = item.ActivityName;
     locationElement.textContent = addressSlice;
-    imgElement.src = data.Picture.PictureUrl1;
+    imgElement.src = picUrl;
   });
 };
 
@@ -148,41 +107,24 @@ function renderData(category, categoryNameInHTML) {
   const list = document.querySelectorAll(`${categoryNameInHTML} .card`);
 
   // 把取回來的資料渲染到元素中
-  resData.forEach((data, index) => {
+  resData.forEach((item, index) => {
     const cardElement = list[index];
-    let picUrl = '';
     let addressSlice = '';
+    let picUrl = '';
 
-    //因為API裡有些資料並無提供圖片, 故需要自行判斷有無值, 並且在無圖片時需為其加上預設圖片 
-    try {
-      if (Object.keys(data.Picture).length === 0) {
-        picUrl = './images/index/none_pic.png';
-      } else {
-        picUrl = data.Picture.PictureUrl1;
-      }
+    // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
+    addressSlice = getRegionOfAddress(item);
 
-      //API回傳的某些資料內可能無地址, 故需要在無地址時加上註記文字 
-      if (data.hasOwnProperty('Address') !== false) {
-        //彰化縣的餐廳有很多都已包含前三碼郵遞區號, 例如Address: 510彰化縣員林市林厝里山腳路一段坡姜巷465號, 故需要判斷後取出正確的值
-        if (data.Address.slice(2, 3) !== '縣' && data.Address.slice(2, 3) !== '市') {
-          addressSlice = data.Address.slice(3, 6);
-        } else {
-          addressSlice = data.Address.slice(0, 3);
-        }
-      } else {
-        addressSlice = '未提供縣市名稱';
-      }
-    }
-    catch (error) {
-      console.log('Error:', error);
-    }
+    // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
+    picUrl = checkPictureUrl(item, 'thumbnail');
+
     const nameElement = cardElement.querySelector('.name');
     const locationElement = cardElement.querySelector('.location .location-name');
     const imgElement = cardElement.querySelector('img');
 
     // 用變數方式動態換上各個主題裡的屬性名稱(ScenicSpotName/RestaurantName等)
     const categoryName = `${category}Name`;
-    nameElement.textContent = data[categoryName];
+    nameElement.textContent = item[categoryName];
     locationElement.textContent = addressSlice;
     imgElement.src = picUrl;
   });
@@ -202,9 +144,9 @@ async function getAPIData() {
   console.log(resData);
   renderDataToBanner(categoryNameInHTML[0]);
 
-  // 撈出近期活動資料(加入隨機亂數(1~30), 且加入日期判定)
+  // 撈出近期活動資料(加入隨機亂數(1~30), 且加入日期判定; 除了Address之外, 亦加入Location, 有助於解析出活動地點的行政區域名稱)
   keywordsExcludeStatement = keywordsToExclude(category[1]);
-  urlStatement = `$select=${category[1]}ID,${category[1]}Name,StartTime,EndTime,Address,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) ge ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$skip=${randomNumForActivity}&$format=JSON`;
+  urlStatement = `$select=${category[1]}ID,${category[1]}Name,StartTime,EndTime,Address,Location,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) ge ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$skip=${randomNumForActivity}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[1], urlStatement);
   console.log(resData);
   renderDataToRecentActivity(categoryNameInHTML[1]);
@@ -234,7 +176,7 @@ let randomNumForActivity = getRandomNumber(30, 1);
 randomNumArray = getRandomNumber(1000, 6);
 console.log('randomNumArray=', randomNumArray);
 
-getAPIData();
+// getAPIData();
 
 
 
