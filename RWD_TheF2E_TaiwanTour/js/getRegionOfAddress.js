@@ -15,29 +15,9 @@ function checkRegion(place) {
   return false;
 }
 
-// function getRegionOfAddress (data){
-//   let placeSlice = '';
-
-//   if(data.hasOwnProperty('Address') && data.Address.trim() !== ''){
-//     placeSlice = checkRegion(data.Address);
-//     if(placeSlice !== false){
-//       return placeSlice;
-//     }
-//   }
-//   if(data.hasOwnProperty('Location') && data.Location.trim() !== ''){
-//     placeSlice = checkRegion(data.Location);
-//     if(placeSlice !== false){
-//       return placeSlice;
-//     }
-//   }
-//   if(placeSlice === '' || placeSlice === false){
-//     return '詳情如內';
-//   }
-// }
-
 function getRegionOfAddress (data){
   let placeSlice = '';
-  console.log(data);
+
   if(data.hasOwnProperty('City') && data.City.trim() !== ''){
     placeSlice = checkRegion(data.City);
   } else if(data.hasOwnProperty('Address') && data.Address.trim() !== ''){

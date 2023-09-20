@@ -33,7 +33,7 @@ function setTokenToCookie(token) {
     document.cookie = `apiToken=${token}; path=/;`;
   }
   catch (error) {
-    console.log('setTokenToCookie失敗:', error);
+    // console.log('setTokenToCookie失敗:', error);
     throw error;
   }
 };
@@ -69,55 +69,4 @@ async function checkAPIToken() {
   }
 }
 
-// export { GetAuthorizationHeader, setTokenToCookie, getTokenFromCookie };
 export { checkAPIToken };
-
-// async function GetApiResponse(api_token) {
-
-//   if (api_token != undefined) {
-//     const url = 'https://tdx.transportdata.tw/api/basic/v2/Tourism/ScenicSpot?$filter=contains(ScenicSpotName, \'海\')&$top=3&$format=JSON';
-
-//     try {
-//       // 
-//       const response = await axios.get(url, {
-//         headers: {
-//           "authorization": "Bearer " + api_token
-//         }
-//       });
-//       console.log('GetApiResponse成功取得回應');
-//       const tk2 = response.data;
-
-//       return tk2;
-//     } catch (error) {
-//       console.error('GetApiResponse axios失敗:', error);
-//     }
-//   }
-//   else {
-//     console.log('您的api token為:undefined');
-//   }
-// }
-
-// // 在網頁的DOM完素生成完畢後才能"依序"執行這兩個函式, 先取得token後, 才能call資料的API
-// document.addEventListener('DOMContentLoaded', function () {
-//   async function getAPIResult() {
-//     try {
-//       const token = await GetAuthorizationHeader();
-//       const saveToken = await setTokenToCookie(token);
-//       const ck = await getTokenFromCookie();
-//       // document.getElementById('accesstoken').textContent = ck;
-//       const res_data = await GetApiResponse(ck);
-
-//       // Object.values(res_data).forEach((item)=>{
-//       //     // 使用JSON.stringify將每個item物件轉成JSON字串, 藉此方便閱讀; JSON.stringify()內第二個參數是replacer函數, 指定如何轉換對象的函數, 使用null代表沒有額外的轉換; 第三個參數'2'代表在JSON字串中使用的空格數
-//       //     const itemString = JSON.stringify(item, null, 4);
-//       //     // 使用預先格式化標籤<pre>讓JSON字串的內容在網頁畫面呈現時, 保留文串內的空格, 換行和其他空白字元, 讓呈現出來的JSON或日誌內容更好閱讀
-//       //     document.getElementById('apireponse').innerHTML += `<pre>${itemString}</pre>`;
-//       // });
-//       console.log('取回的資料:', res_data);
-//     }
-//     catch (err) {
-//       console.log('Error Message:', err);
-//     }
-//   }
-//   getAPIResult();
-// });

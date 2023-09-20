@@ -438,6 +438,7 @@ body {
 
 .breadcrumb {
   display: flex;
+  flex-wrap: wrap;
   padding: 60px 0px 30px 0px;
 }
 .breadcrumb li {
@@ -447,7 +448,8 @@ body {
 }
 @media (max-width: 767px) {
   .breadcrumb li {
-    font-size: 0.75rem;
+    font-size: 1.25rem;
+    padding: 8px 0px;
   }
 }
 .breadcrumb li a {
@@ -596,6 +598,7 @@ body {
 @media (max-width: 428px) {
   .topic-title {
     padding-bottom: 0px;
+    flex-wrap: wrap;
   }
 }
 .topic-title h4 {
@@ -604,7 +607,7 @@ body {
 }
 @media (max-width: 767px) {
   .topic-title h4 {
-    padding-right: 30px;
+    padding: 0px 30px 12px 0px;
   }
 }
 @media (max-width: 428px) {
@@ -619,6 +622,11 @@ body {
 }
 .topic-title a:hover {
   color: #7F977B;
+}
+@media (max-width: 428px) {
+  .topic-title a {
+    font-size: 1.25rem;
+  }
 }
 
 .list {

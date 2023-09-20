@@ -8,6 +8,7 @@
 
   @include mobile {
     padding-bottom: 0px;
+    flex-wrap: wrap;
   }
 
   h4 {
@@ -15,7 +16,7 @@
     font-weight: 300;
 
     @include tablet {
-      padding-right: 30px;
+      padding: 0px 30px 12px 0px;
     }
 
     @include mobile {
@@ -30,6 +31,10 @@
 
     &:hover {
       color: $DeepGreen;
+    }
+
+    @include mobile {
+      font-size: $h4-font-size;
     }
   }
 }

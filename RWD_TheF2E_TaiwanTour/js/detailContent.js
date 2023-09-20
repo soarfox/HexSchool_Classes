@@ -20,7 +20,7 @@ const infoMapDiv = document.querySelector('.information-map');
 
 const categoryContrast = {
   ScenicSpot: '探索景點',
-  Activity: '節慶活動',
+  Activity: '近期活動',
   Restaurant: '品嚐美食',
   Hotel: '安心住宿'
 };
@@ -48,6 +48,27 @@ const ActivityInfoContrast = {
   ParkingInfo: '停車資訊',
   TravelInfo: '交通指引',
   Remarks: '注意事項'
+};
+
+const RestaurantInfoContrast = {
+  City: '縣市名稱',
+  OpenTime: '開放時間',
+  Phone: '商家電話',
+  Address: '詳細地址',
+  ParkingInfo: '停車資訊',
+  WebsiteUrl: '官方網站',
+};
+
+const HotelInfoContrast = {
+  City: '縣市名稱',
+  Address: '詳細地址',
+  Phone: '商家電話',
+  Fax: '傳真號碼',
+  Grade: '旅館星級',
+  Spec: '房間價位',
+  ParkingInfo: '停車資訊',
+  ServiceInfo: '相關服務',
+  WebsiteUrl: '官方網站'
 };
 // 引用套件--Swiper圖片輪播
 const swiper = new Swiper(".mySwiper", {
@@ -83,9 +104,11 @@ async function getAPIData() {
     // 組合出查詢語句(Activity主題適用)
     queryStatement = `$select=ActivityID,ActivityName,Picture,Class1,Class2,Description,Position,StartTime,EndTime,City,Organizer,Phone,Location,Address,WebsiteUrl,ParkingInfo,TravelInfo,Remarks&$filter=contains(${selectedCategory}ID, '${id}')&$format=JSON`;
   } else if (selectedCategory === category[2]) {
-    queryStatement = '';
+    // 組合出查詢語句(Restaurant主題適用)
+    queryStatement = `$select=RestaurantID,RestaurantName,Picture,Class,Description,Position,City,OpenTime,Phone,Address,ParkingInfo,WebsiteUrl&$filter=contains(${selectedCategory}ID, '${id}')&$format=JSON`;
   } else
-    queryStatement = '';
+    // 組合出查詢語句(Hotel主題適用)
+    queryStatement = `$select=HotelID,HotelName,Picture,Class,Description,Position,City,Address,Phone,Fax,Grade,Spec,ServiceInfo,ParkingInfo,WebsiteUrl&$filter=contains(${selectedCategory}ID, '${id}')&$format=JSON`;
 
   let res = await callCategoryDataAPI(getAPIToken, selectedCategory, queryStatement);
   return res;
@@ -118,9 +141,9 @@ function renderBreadcrumb() {
       breadcrumbList[1].textContent = categoryContrast[key];
       breadcrumbList[1].href = `./${key}.html`;
       categoryChineseName = categoryContrast[key];
-      
-      // 判斷該筆資料是否擁有Address屬性或Location屬性(節慶活動類通常有這個屬性), 藉此取出該筆資料所屬的縣市並寫在麵包屑上
-      if (resData[0].hasOwnProperty('Address') || resData[0].hasOwnProperty('Location')  || resData[0].hasOwnProperty('City')) {
+
+      // 判斷該筆資料是否擁有Address屬性或Location屬性(近期活動類通常有這個屬性), 藉此取出該筆資料所屬的縣市並寫在麵包屑上
+      if (resData[0].hasOwnProperty('Address') || resData[0].hasOwnProperty('Location') || resData[0].hasOwnProperty('City')) {
         // 將該筆資料完整的倒入getRegionOfAddress()內, 解析其縣市名稱
         const addressSlice = getRegionOfAddress(resData[0]);
         breadcrumbList[2].textContent = addressSlice;
@@ -256,13 +279,9 @@ function renderDetailIntro() {
   if (selectedCategory === category[0]) {
     //ScenicSpot主題適用
     descName = 'DescriptionDetail';
-  } else if (selectedCategory === category[1]) {
-    //Activity主題適用
-    descName = 'Description';
-  } else if (selectedCategory === category[2]) {
-    descName = '';
   } else {
-    descName = '';
+    //Activity, Restaurant及Hotel主題適用
+    descName = 'Description';
   }
   p.textContent = resData[0][`${descName}`];
   description.appendChild(p);
@@ -275,15 +294,13 @@ function renderInformation() {
   let infoContract = {};
 
   if (selectedCategory === category[0]) {
-    //ScenicSpot主題適用
     infoContract = ScenicSpotInfoContrast;
   } else if (selectedCategory === category[1]) {
-    //Activity主題適用
     infoContract = ActivityInfoContrast;
   } else if (selectedCategory === category[2]) {
-    infoContract = '';
+    infoContract = RestaurantInfoContrast;
   } else {
-    infoContract = '';
+    infoContract = HotelInfoContrast;
   }
 
   // 以分類主題所想要呈現的幾個重點項目為主, 若是從API撈回來的該筆資料內的該項目有值, 則將其顯示於畫面上
@@ -349,7 +366,7 @@ function renderMoreThings() {
   const a = document.createElement('a');
   a.href = `./${selectedCategory}.html?category=${selectedCategory}&keywords=${regionName}`;
   a.setAttribute('aria-label', '取得更多此縣市的資訊');
-  a.textContent = `更多${regionName}${categoryChineseName.slice(2, 4)}　>`;
+  a.textContent = `更多${regionName}${categoryChineseName.slice(2, 4)} >`;
   topicTitleDiv.appendChild(a);
 }
 
@@ -357,11 +374,11 @@ async function getSameCityData() {
   const keywordsExcludeStatement = keywordsToExclude(selectedCategory);
   let queryStatement = '';
 
-  // 只有主題為"節慶活動", 其API的資料內才有City這個屬性, 故找出City的值為相同縣市名稱(因為有些API資料內的Address寫得不完整, 但是City大多都寫得很正確, 故採用City為主), 但不包含當前這一筆資料的其他內容
+  // 只有主題為"近期活動", 其API的資料內才有City這個屬性, 故找出City的值為相同縣市名稱(因為有些API資料內的Address寫得不完整, 但是City大多都寫得很正確, 故採用City為主), 但不包含當前這一筆資料的其他內容
   if (selectedCategory === category[1] && resData[0].hasOwnProperty('City')) {
     queryStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,City,Location,Address,Picture&$filter=contains(City, '${resData[0].City.slice(0, 2)}') and not contains(${selectedCategory}ID,'${resData[0][`${selectedCategory}ID`]}') ${keywordsExcludeStatement}&$format=JSON`;
   }
-  // 若主題為"節慶活動"但不包含City, 或者主題為其他類, 則另外使用Address來找出相同縣市的資料, 一樣是不包含當前這一筆資料的其他內容(但如果當前這筆資料連Address屬性都沒有, 就不會找出任何相同縣市資料)
+  // 若主題為"近期活動"但不包含City, 或者主題為其他類, 則另外使用Address來找出相同縣市的資料, 一樣是不包含當前這一筆資料的其他內容(但如果當前這筆資料連Address屬性都沒有, 就不會找出任何相同縣市資料)
   else {
     queryStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,Picture&$filter=contains(Address, '${regionName}') and not contains(${selectedCategory}ID,'${resData[0][`${selectedCategory}ID`]}') ${keywordsExcludeStatement}&$format=JSON`;
   }
@@ -379,7 +396,7 @@ function renderSameCityData(randomNumArr) {
     let picUrl = '';
     let addressSlice = '';
 
-    // 檢查City(僅節慶活動主題才有)/Location(僅節慶活動主題才有)/Address有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
+    // 檢查City(僅近期活動主題才有)/Location(僅近期活動主題才有)/Address有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
     addressSlice = getRegionOfAddress(sameCityData[item]);
 
     // 檢查圖片網址是否存在, 且網址是否以為http作為開頭

@@ -1,5 +1,6 @@
 .breadcrumb {
   display: flex;
+  flex-wrap: wrap;
   padding: 60px 0px 30px 0px;
 
   li {
@@ -8,7 +9,8 @@
     color: $Gray;
 
     @include tablet {
-      font-size: 0.75 * $h6-font-size;
+      font-size: $h4-font-size;
+      padding: 8px 0px;
     }
 
     a {
