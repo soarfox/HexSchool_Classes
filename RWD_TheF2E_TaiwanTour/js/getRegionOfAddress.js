@@ -1,6 +1,6 @@
 // 取出地址內行政區的名稱, 若無包含任何行政區, 則網頁上將不顯示相同縣市(行政區)的任何景點/活動/餐廳/住宿資料, 直接隱藏該區域內容
 function checkRegion(place) {
-  const regions = ['縣','市','區','鄉','鎮','村','里','鄰'];
+  const regions = ['市','縣','區','鄉','鎮','村','里','鄰'];
   // 使用for迴圈藉此在找到資料時就能透過return中斷迴圈並將資料回傳出去; 若使用forEach, 則只會中斷該次迴圈, 並且繼續走下一個regions內容, 直到遍歷完所有內容後才會停止
   for(let item of regions) {
     const index = place.indexOf(item);

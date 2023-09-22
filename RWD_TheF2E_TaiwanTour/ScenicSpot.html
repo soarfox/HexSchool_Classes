@@ -50,70 +50,70 @@
         <li><a href="./index.html" aria-label="前往網站首頁">首頁</a></li>
         <li>探索景點</li>
       </ul>
-      <div class="search-bar">
+      <form class="search-bar" action="./searchResult.html" method="get">
         <label for="city" aria-label="請選擇縣市"></label>
         <select class="select-category" name="city" id="city" aria-label="city"
           aria-describedby="請從以下選項內選擇一個您想要去的縣市或選擇全部縣市">
           <option value="" disabled selected hidden>請選擇縣市</option>
-          <option value="allCities">全部縣市</option>
+          <option value="全部縣市">全部縣市</option>
           <optgroup label="北部地區">
-            <option value="Keelung">基隆市</option>
-            <option value="Taipei">臺北市</option>
-            <option value="NewTaipei">新北市</option>
-            <option value="Taoyuan">桃園市</option>
-            <option value="Hsinchu">新竹市</option>
-            <option value="HsinchuCounty">新竹縣</option>
-            <option value="MiaoliCounty">苗栗縣</option>
+            <option value="基隆市">基隆市</option>
+            <option value="臺北市">臺北市</option>
+            <option value="新北市">新北市</option>
+            <option value="桃園市">桃園市</option>
+            <option value="新竹市">新竹市</option>
+            <option value="新竹縣">新竹縣</option>
+            <option value="苗栗縣">苗栗縣</option>
           </optgroup>
           <optgroup label="中部地區">
-            <option value="Taichung">臺中市</option>
-            <option value="ChanghuaCounty">彰化縣</option>
-            <option value="NantouCounty">南投縣</option>
-            <option value="YunlinCounty">雲林縣</option>
-            <option value="ChiayiCounty">嘉義縣</option>
-            <option value="Chiayi">嘉義市</option>
+            <option value="臺中市">臺中市</option>
+            <option value="彰化縣">彰化縣</option>
+            <option value="南投縣">南投縣</option>
+            <option value="雲林縣">雲林縣</option>
+            <option value="嘉義縣">嘉義縣</option>
+            <option value="嘉義市">嘉義市</option>
           </optgroup>
           <optgroup label="南部地區">
-            <option value="Tainan">臺南市</option>
-            <option value="Kaohsiung">高雄市</option>
-            <option value="PingtungCounty">屏東縣</option>
+            <option value="臺南市">臺南市</option>
+            <option value="高雄市">高雄市</option>
+            <option value="屏東縣">屏東縣</option>
           </optgroup>
           <optgroup label="東部地區">
-            <option value="YilanCounty">宜蘭縣</option>
-            <option value="HualienCounty">花蓮縣</option>
-            <option value="TaitungCounty">臺東縣</option>
+            <option value="宜蘭縣">宜蘭縣</option>
+            <option value="花蓮縣">花蓮縣</option>
+            <option value="臺東縣">臺東縣</option>
           </optgroup>
           <optgroup label="外島地區">
-            <option value="PenghuCounty">澎湖縣</option>
-            <option value="KinmenCounty">金門縣</option>
-            <option value="LienchiangCounty">連江縣</option>
+            <option value="澎湖縣">澎湖縣</option>
+            <option value="金門縣">金門縣</option>
+            <option value="連江縣">連江縣</option>
           </optgroup>
         </select>
 
         <label for="topic" aria-label="請選擇主題"></label>
         <select class="select-category" name="topic" id="topic" aria-label="topic" aria-describedby="請從以下選項內選擇一個您搜尋的主題">
           <option value="" disabled selected hidden>請選擇主題</option>
-          <option value="allTopics">全部主題</option>
-          <option value="NaturalLandscapes">自然風景類</option>
-          <option value="TouristFactories">觀光工廠類</option>
-          <option value="Recreation">遊憩類</option>
-          <option value="LeisureFarming">休閒農業類</option>
-          <option value="Ecology">生態類</option>
-          <option value="HotSprings">溫泉類</option>
-          <option value="HistoricalSites">古蹟類</option>
+          <option value="">全部主題</option>
+          <option value="自然風景類">自然風景類</option>
+          <option value="觀光工廠類">觀光工廠類</option>
+          <option value="遊憩類">遊憩類</option>
+          <option value="休閒農業類">休閒農業類</option>
+          <option value="生態類">生態類</option>
+          <option value="溫泉類">溫泉類</option>
+          <option value="其他類">其他類</option>
         </select>
 
         <div class="keywords">
           <input type="text" aria-label="請輸入關鍵字" id="keywords" placeholder="請輸入關鍵字">
         </div>
 
-        <button class="search-button" type="submit" name="search-button" aria-label="按下此按鈕進行搜尋">
+        <button type="submit" class="search-button" name="search-button" aria-label="按下此按鈕進行搜尋">
           <i class="fa-solid fa-magnifying-glass"></i>搜尋
         </button>
-      </div>
+      </form>
       <div class="hot-topics-in-category">
         <div class="title">熱門主題</div>
-        <ul>
+        <ul id="hot-topics-list">
           <li class="card">
             <a href="#" aria-label="前往第一層熱門主題, 有關自然風景類的畫面">
               <div class="topic-photo">
@@ -163,11 +163,11 @@
             </a>
           </li>
           <li class="card">
-            <a href="#" aria-label="前往第一層熱門主題, 有關古蹟類的畫面">
+            <a href="#" aria-label="前往第一層熱門主題, 有關其他的畫面">
               <div class="topic-photo">
                 <img src="./images/ScenicSpot/topics/topic07.png" width="233" height="113" alt="">
               </div>
-              <div class="subtitle">古蹟類</div>
+              <div class="subtitle">其他</div>
             </a>
           </li>
         </ul>
@@ -186,6 +186,7 @@
   <!-- 引用Font Awesome的圖示 -->
   <script src="https://kit.fontawesome.com/e4d54ea5ca.js" crossorigin="anonymous"></script>
   <script src="./js/hamburger_menu.js"></script>
+  <script type="module" src="./js/ScenicSpot.js"></script>
 </body>
 
 </html>

@@ -6,10 +6,10 @@ import { checkPictureUrl } from './checkPictureUrl.js';
 import { getDate } from './getDate.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   const searchForm = document.querySelector('form');
 
-  searchForm.addEventListener('submit', function (e) {
+  searchForm.addEventListener('submit', e => {
     e.preventDefault();
     const category = document.getElementById('category-selection').value;
     const keywords = document.getElementById('keywords').value;
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
       alert('您尚未選擇想要搜尋的類別哦！');
     }else {
     // 將選中的值作為參數傳遞到搜尋畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免搜尋畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:天空&/), 則未使用該函式則只會解析出"天空", 但使用該函式後則可成功解析出"天空&/"
-    const redirectURL = './searchResult.html?category=' + category + '&keywords=' + encodeURIComponent(keywords);
+    const redirectURL = './searchResult.html?Category=' + category + '&Keywords=' + encodeURIComponent(keywords);
 
     // 跳轉到搜尋畫面
     window.location.href = redirectURL;
@@ -143,45 +143,42 @@ async function getAPIData() {
 
   // 撈出首頁banner景點標題與圖片網址(UpdateTime代表TDX平台更新資料的時間)
   let keywordsExcludeStatement = keywordsToExclude(category[0]);
-  let urlStatement = `$select=${category[0]}ID,${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=6&$skip=${randomNumArray[0]}&$orderby=UpdateTime desc&$format=JSON`;
+  let urlStatement = `$select=${category[0]}ID,${category[0]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=6&$skip=${randomNumArray[0]}&$orderby=UpdateTime desc&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[0], urlStatement);
   console.log(resData);
   renderDataToBanner(categoryNameInHTML[0]);
 
-  // 撈出近期活動資料(加入隨機亂數(1~30), 且加入日期判定; 除了Address之外, 亦加入Location, 有助於解析出活動地點的行政區域名稱)
+  // 撈出近期活動資料(加入隨機亂數(1~30), 且加入日期判定; 加入活動類獨有的Location屬性, 有助於解析出活動地點的行政區域名稱); 若是"近期活動"主題, 則活動結束日期必須大於今日日期(使用TDX提供的OData搜尋語法指令'gt'超過...)
   keywordsExcludeStatement = keywordsToExclude(category[1]);
-  urlStatement = `$select=${category[1]}ID,${category[1]}Name,StartTime,EndTime,Address,Location,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) ge ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$skip=${randomNumForActivity}&$format=JSON`;
+  urlStatement = `$select=${category[1]}ID,${category[1]}Name,StartTime,EndTime,City,Address,Location,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) gt ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$skip=${randomNumForActivity}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[1], urlStatement);
   console.log(resData);
   renderDataToRecentActivity(categoryNameInHTML[1]);
 
   // 撈出景點資料
   keywordsExcludeStatement = keywordsToExclude(category[0]);
-  urlStatement = `$select=${category[0]}ID,${category[0]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=4&$skip=${randomNumArray[1]}&$format=JSON`;
+  urlStatement = `$select=${category[0]}ID,${category[0]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=4&$skip=${randomNumArray[1]}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[0], urlStatement);
   console.log(resData);
   renderData(category[0], categoryNameInHTML[2]);
 
   // 撈出餐廳資料
-  urlStatement = `$select=${category[2]}ID,${category[2]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[2]}&$format=JSON`;
+  urlStatement = `$select=${category[2]}ID,${category[2]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[2]}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[2], urlStatement);
   console.log(resData);
   renderData(category[2], categoryNameInHTML[3]);
 
   // 撈出旅館資料
-  urlStatement = `$select=${category[3]}ID,${category[3]}Name,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[3]}&$format=JSON`;
+  urlStatement = `$select=${category[3]}ID,${category[3]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[3]}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[3], urlStatement);
   console.log(resData);
   renderData(category[3], categoryNameInHTML[4]);
 }
 
-// 每次從0~1000中隨機取得6個數字(假設為50,101,37,47,5,777), 並分別代入不同主題的API資料內, 成為各自要"skip的筆數", 然後再取其top 4筆/6筆資料, 藉此每次都能夠取得不同的資料(但這樣子取回的資料幾乎視同一個縣市的資料, 但因為找景點也一定是找相同縣市的景點, 故符合實際出遊邏輯)
+// 因為當前活動數量可能沒有很多, 故限定亂數取值的上限是30, 且只取出1個亂數值
 let randomNumForActivity = getRandomNumber(30, 1);
+// 每次從0~1000中隨機取得6個數字(假設為50,101,37,47,5,777), 並分別代入不同主題的API資料內, 成為各自要"skip的筆數", 然後再取其top 4筆/6筆資料, 藉此每次都能夠取得不同的資料(但這樣子取回的資location料幾乎視同一個縣市的資料, 但因為找景點也一定是找相同縣市的景點, 故符合實際出遊邏輯)
 randomNumArray = getRandomNumber(1000, 6);
 console.log('randomNumArray=', randomNumArray);
 
-getAPIData();
-
-
-
-
+// getAPIData();

@@ -1,103 +1,126 @@
+import { proxyOfURL } from './proxyOfURL.js';
 import { checkAPIToken } from './getAPIToken.js';
 import { keywordsToExclude } from './keywordsToExclude.js';
 import { getRegionOfAddress } from './getRegionOfAddress.js';
 import { checkPictureUrl } from './checkPictureUrl.js';
+import { getDate } from './getDate.js';
+import { checkCityInKeywords } from './checkCityInKeywords.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
-import { proxyOfURL } from './proxyOfURL.js';
 
 let resData = [];
 // 透過使用屬性名稱來取得URL裡參數的值
 const category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
+const categoryContrast = {
+  ScenicSpot: '探索景點',
+  Activity: '近期活動',
+  Restaurant: '品嚐美食',
+  Hotel: '安心住宿'
+};
 let keywordsArr = [];
-const cities = {
-  基隆: '基隆市',
-  臺北: '台北市, 臺北市',
-  新北: '新北市',
-  桃園: '桃園市',
-  新竹: '新竹市',
-  新竹縣: '新竹縣, 竹縣',
-  苗栗: '苗栗縣',
-  臺中: '台中市, 臺中市',
-  彰化: '彰化縣',
-  南投: '南投縣',
-  雲林: '雲林縣',
-  嘉義: '嘉義市',
-  嘉義縣: '嘉義縣, 嘉縣',
-  臺南: '台南市, 臺南市',
-  高雄: '高雄市',
-  屏東: '屏東縣',
-  宜蘭: '宜蘭縣',
-  花蓮: '花蓮縣',
-  臺東: '台東縣, 臺東縣',
-  澎湖: '澎湖縣',
-  金門: '金門縣',
-  連江: '連江縣'
-}
-const selectedCategory = proxyOfURL.category;
-const keywords = proxyOfURL.keywords;
-console.log('selectedCategory=', selectedCategory);
-console.log('keywords=', keywords);
 
-async function searchResult() {
+const today = getDate();
+const selectedCategory = proxyOfURL.Category;
+const cityName = proxyOfURL.City;
+const className = proxyOfURL.Class;
+const class1Name = proxyOfURL.Class1;
+const class2Name = proxyOfURL.Class2;
+const class3Name = proxyOfURL.Class3;
+const keywords = proxyOfURL.Keywords;
+let classNameObject = {};
+classNameObject.Class = className;
+classNameObject.Class1 = class1Name;
+classNameObject.Class2 = class2Name;
+classNameObject.Class3 = class3Name;
+
+console.log('selectedCategory=', selectedCategory);
+console.log('cityName999=', cityName);
+console.log('keywords=', keywords);
+console.log(classNameObject);
+
+// 渲染麵包屑內容
+function renderBreadcrumb() {
+  // 取得<ul>元素內的span元素
+  const breadcrumbSpan = document.querySelector('.breadcrumb span');
+  // 更新麵包屑的內容
+  Object.keys(categoryContrast).forEach(key => {
+    if (key === selectedCategory) {
+      breadcrumbSpan.textContent = categoryContrast[key];
+    }
+  });
+}
+
+async function getSearchResult() {
   const getAPIToken = await checkAPIToken();
-  // const today = getDate();
-  let cityInKeyword = '';
   let urlStatement = '';
-  let regionStatement = '';
+  let checkKeywordStatement = [];
   const keywordsExcludeStatement = keywordsToExclude(selectedCategory);
 
-  // 如果關鍵字不只一個, 則將關鍵字字串依空格逐一切割, 可得到多筆關鍵字詞
-  if (keywords.includes(' ')) {
-    keywordsArr = keywords.split(' ');
-
-    // 找出各筆關鍵字詞中, 是否有包含縣市名稱, 若有則返回正式的縣市名稱英文單字, 以利做為"各縣市API"搜尋使用
-    keywordsArr.forEach(item => {
-      cityInKeyword = Object.keys(cities).find(key => cities[key].includes(item));
-      if (cityInKeyword) {
-
-        // 若是"近期活動"主題, 則其基本上都有City屬性, 故搜尋近期活動時以City為主; 若非"近期活動類", 則以Address為主來搜尋
-        if (selectedCategory === category[1]) {
-          regionStatement = `contains(City, '${cityInKeyword}') and`;
-        } else {
-          regionStatement = `contains(Address, '${cityInKeyword}') and`;
-        }
-
-        // 抓出在關鍵字詞中, 該縣市名稱的index位置
-        const indexToRemove = keywordsArr.indexOf(item);
-
-        // 將縣市名稱從一串關鍵字當中移除掉, 避免影響搜尋結果
-        if (indexToRemove !== -1) {
-          keywordsArr.splice(indexToRemove, 1);
-        }
-      } else {
-        console.log('Not found.');
-      }
-    });
-  } else {
-    cityInKeyword = Object.keys(cities).find(key => cities[key].includes(keywords));
-    // 如果關鍵字只有一個, 但是在關鍵字內有抓出城市名稱(例如:屏東), 則cityInKeyword為屏東; 否則為undefined
-    if(cityInKeyword !== undefined){
-      // 若是"近期活動"主題, 則其基本上都有City屬性, 故搜尋近期活動時以City為主; 若非"近期活動類", 則以Address為主來搜尋
-      if (selectedCategory === category[1]) {
-        regionStatement = `contains(City, '${cityInKeyword}') and`;
-      } else {
-        regionStatement = `contains(Address, '${cityInKeyword}') and`;
-      }
-      // 因為關鍵字只有一個, 故在此將關鍵字陣列設為空字串, 以利下方組合查詢語句時可以直接帶入空字串(空字串將不影響查詢結果)
-      keywordsArr = '';
-    }else {
-      // 因為關鍵字只有一個, 且在關鍵字內並無縣市名稱, 則直接將keywords賦予給keywordsArr, 以利下方組合查詢語句時可以直接帶入使用
-      keywordsArr = keywords;
+  if (keywords !== undefined && keywords !== '') {
+    // 如果關鍵字是多個, 則依空格逐一進行切割, 得到多筆關鍵字詞
+    if (keywords.includes(' ')) {
+      keywordsArr = keywords.split(' ');
+      // 檢查每一筆關鍵字是否有包含縣市的中文名稱
+      keywordsArr.forEach(item => {
+        checkKeywordStatement.push(checkCityInKeywords(item, selectedCategory));
+      });
     }
+    // 如果關鍵字只有一個
+    else {
+      if (keywords !== '') {
+        // 找出該關鍵字中是否有包含縣市的中文名稱
+        checkKeywordStatement.push(checkCityInKeywords(keywords, selectedCategory));
+      } else {
+        checkKeywordStatement.push(`contains(${selectedCategory}Name, '')`);
+      }
+    }
+  } 
+  // // 若是點擊詳細資料畫面上的badge標籤名稱, 則就會是無關鍵字的情況(keywords為undefined)
+  // else {
+  //   // 視使用者點到哪一個badge標籤(className/class1Name/class2Name/class3Name), 就為其加上該項的查詢條件; 例如當使用者在詳細資料畫面點擊到的是class2(其他)的badge標籤時, 則本頁class所取得的內容會是{Class: undefined, Class1: undefined, Class2: '其他', Class3: undefined}
+  //   Object.keys(classNameObject).forEach(key => {
+  //     if (classNameObject[key] !== undefined){
+  //       checkKeywordStatement.push(`contains(${key}, '${classNameObject[key]}')`);
+  //     }else {
+  //       console.log(key,classNameObject[key]);
+  //     }
+  //   });
+  // }
+
+  //將網址列抓取到的縣市名稱一併納入搜尋條件內
+  if(cityName !== undefined && cityName !== ''){
+    checkKeywordStatement.push(`contains(City, '${cityName}')`);
   }
 
-  // 組合出查詢語句, "近期活動"主題才有City(或Location)這些屬性(且所填寫的資料較為正確), 而景點主題並無該些屬性, 故需要分開進行判斷
+  //將網址列抓取到的Class名稱(Class/Class1/Class2/Class3)一併納入搜尋條件內
+  Object.keys(classNameObject).forEach(key => {
+    if (classNameObject[key] !== undefined && classNameObject[key] !== ''){
+      checkKeywordStatement.push(`contains(${key}, '${classNameObject[key]}')`);
+    }else {
+      console.log(key,classNameObject[key]);
+    }
+  });
+
+  // 若是"近期活動"主題, 則活動結束日期必須大於今日日期(使用TDX提供的OData搜尋語法指令'gt'超過...)
   if (selectedCategory === category[1]) {
-    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Location,Picture&$filter=${regionStatement} contains(${selectedCategory}Name, '${keywordsArr}') ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
-  } else {
-    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,Picture&$filter=${regionStatement} contains(${selectedCategory}Name, '${keywordsArr}') ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
+    checkKeywordStatement.push(`date(EndTime) gt ${today}`);
   }
 
+  // 將所有的查詢語句用and組合起來
+  let combinedKeywordStatement = '';
+  checkKeywordStatement.forEach((item, index) => {
+    if (index + 1 < checkKeywordStatement.length) {
+      combinedKeywordStatement += item + ' and ';
+    } else {
+      combinedKeywordStatement += item;
+    }
+  });
+
+  // 若是"近期活動"主題, 則在select語句內多加入一個獨有欄位Location(因有些活動沒有Address, 但有Location)
+  if (selectedCategory === category[1]) {
+    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Location,Picture&$filter=${combinedKeywordStatement} ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
+  } else {
+    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Picture&$filter=${combinedKeywordStatement} ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
+  }
   let res = await callCategoryDataAPI(getAPIToken, selectedCategory, urlStatement);
   return res;
 }
@@ -112,17 +135,13 @@ function renderData() {
     let picUrl = '';
     let addressSlice = '';
 
-    // 判斷該筆資料是否擁有Address屬性或Location屬性(近期活動類通常有這個屬性), 藉此取出該筆資料所屬的縣市並寫在麵包屑上
-    if (item.hasOwnProperty('Address') || item.hasOwnProperty('Location') || item.hasOwnProperty('City')) {
+    // 判斷該筆資料是否擁有相關屬性, 藉此取出該筆資料所屬的縣市並寫在麵包屑上
+    if (item.hasOwnProperty('City') || item.hasOwnProperty('Address') || item.hasOwnProperty('Location')) {
       // 將該筆資料完整的倒入getRegionOfAddress()內, 解析其縣市名稱
       addressSlice = getRegionOfAddress(item);
     } else {
       addressSlice = '詳情如內';
     }
-
-
-    // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
-    // addressSlice = getRegionOfAddress(item);
 
     // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
     picUrl = checkPictureUrl(item, 'thumbnail');
@@ -176,11 +195,12 @@ function renderData() {
   });
 
   // 當前述執行完畢後, 為ul元素加上監聽事件
-  addClickListenersToLinks();
+  addClickListenerToUl();
 };
 
 async function getResultAndRender() {
-  resData = await searchResult();
+  renderBreadcrumb();
+  resData = await getSearchResult();
   //在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改
   console.log('這是searchResult頁面, 在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改');
   document.getElementById('result-count').textContent = resData.length;
@@ -192,18 +212,18 @@ async function getResultAndRender() {
   }
 }
 
-function addClickListenersToLinks() {
-  document.addEventListener('click', function (e) {
-    const clickedElement = e.target;
+function addClickListenerToUl() {
 
-    // 判斷點擊到的元素是否為img, 如是則進行組合網址參數並跳轉到詳細資料畫面; 此處IMG需為大寫, 才能正確抓到網頁中的ul清單內的img元素
-    if (clickedElement.tagName === 'IMG') {
+  // 因為在搜尋結果頁中可能一次會顯示相當多個搜尋結果, 故直接建立一個監聽事件(而不針對每一個搜尋結果都加上一個監聽事件), 如果被點擊的元素是圖片, 則產生後續行為
+  document.getElementById('searchResult-list').addEventListener('click', e => {
+    // e.target代表的是"觸發此click事件的HTML元素", 並判斷該元素是否為img, 如是, 進行組合網址參數並跳轉到詳細資料畫面(已實測此處IMG必需為大寫, 才能正確抓到網頁中的ul清單內的img元素, 若改成小寫img, 則會無法正確抓到所點擊的圖片元素資料而報錯)
+    if (e.target.tagName === 'IMG') {
       e.preventDefault();
-      const dataCategory = clickedElement.getAttribute('data-category');
-      const dataId = clickedElement.getAttribute('data-id');
+      const dataCategory = e.target.getAttribute('data-category');
+      const dataId = e.target.getAttribute('data-id');
 
       // 將選中的值作為參數傳遞到詳細資料畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免詳細資料畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:海港&/), 則未使用該函式則只會解析出"海港", 但使用該函式後則可成功解析出"海港&/"
-      const redirectURL = './detailContent.html?category=' + dataCategory + '&id=' + encodeURIComponent(dataId);
+      const redirectURL = './detailContent.html?Category=' + dataCategory + '&ID=' + encodeURIComponent(dataId);
 
       // 跳轉到詳細資料畫面
       window.location.href = redirectURL;

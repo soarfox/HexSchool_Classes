@@ -47,6 +47,8 @@ body {
 				height: 32px;
 
 				@include tablet {
+					margin: 0px;
+					text-align: center;
 					background-image: url(../images/icon/logo-mobile.svg);
 					width: 118px;
 					height: 30px;
@@ -63,8 +65,8 @@ body {
 				position: absolute;
 				// 當漢堡選單尚未打開時, 也就是高度尚未從0px變成400px之前, 先將ul選單內的所有內容都隱藏起來, 故使用overflow: hidden;將多餘的資料隱藏起來
 				overflow: hidden;
-				// 設定一個高度, 以避免漢堡選單遮蔽了navbar
-				top: 108px;
+				// 設定一個高度, 以避免漢堡選單打開後, 遮蔽了navbar本身
+				top: 80px;
 				// 寬度設左右均為0px, 如此可讓選單li項目的寬度完整呈現, 假設li項目寬度設定為100%, 則就能完整呈現出100%
 				left: 0;
 				right: 0;
