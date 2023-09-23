@@ -6,6 +6,7 @@ import { checkPictureUrl } from './checkPictureUrl.js';
 import { getDate } from './getDate.js';
 import { checkCityInKeywords } from './checkCityInKeywords.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
+import { setupSearchForm } from './setupImageClickAndSearchForm.js';
 
 let resData = [];
 // 透過使用屬性名稱來取得URL裡參數的值
@@ -25,17 +26,23 @@ const className = proxyOfURL.Class;
 const class1Name = proxyOfURL.Class1;
 const class2Name = proxyOfURL.Class2;
 const class3Name = proxyOfURL.Class3;
+const selectedDate = proxyOfURL.SelectedDate;
 const keywords = proxyOfURL.Keywords;
 let classNameObject = {};
 classNameObject.Class = className;
 classNameObject.Class1 = class1Name;
 classNameObject.Class2 = class2Name;
 classNameObject.Class3 = class3Name;
-
 console.log('selectedCategory=', selectedCategory);
-console.log('cityName999=', cityName);
-console.log('keywords=', keywords);
+console.log('cityName=', cityName);
 console.log(classNameObject);
+console.log('selectedDate=', selectedDate);
+console.log('keywords=', keywords);
+
+document.addEventListener('DOMContentLoaded', () => {
+  // 實作搜尋列的搜尋功能
+  setupSearchForm(selectedCategory);
+});
 
 // 渲染麵包屑內容
 function renderBreadcrumb() {
@@ -47,6 +54,105 @@ function renderBreadcrumb() {
       breadcrumbSpan.textContent = categoryContrast[key];
     }
   });
+}
+
+function renderSearchBar() {
+  const form = document.querySelector('.search-bar');
+
+  // 以動態方式生成當前主題的Class下拉式選單
+  const label = document.createElement('label');
+  label.for = 'topic';
+  label.setAttribute('aria-label', '請選擇主題');
+  form.appendChild(label);
+
+  const select = document.createElement('select');
+  select.className = 'select-category';
+  select.name = 'topic';
+  select.id = 'topic';
+  select.setAttribute('aria-label', '請選擇主題');
+  select.setAttribute('aria-describedby', '請從以下選項內選擇一個您搜尋的主題');
+  form.appendChild(select);
+
+  const fourCategoryClassNames = {
+    ScenicSpot: '自然風景類, 觀光工廠類, 遊憩類, 休閒農業類, 生態類, 溫泉類, 其他',
+    Activity: '節慶活動, 自行車活動, 遊憩活動, 產業文化活動, 年度活動, 四季活動',
+    Restaurant: '地方特產, 中式美食, 甜點冰品, 異國料理, 伴手禮, 素食',
+    Hotel: '一般旅館, 一般觀光旅館, 國際觀光旅館, 民宿'
+  };
+
+  const optionTopic = document.createElement('option');
+  optionTopic.value = '';
+  optionTopic.setAttribute('disabled', 'disabled');
+  optionTopic.setAttribute('selected', 'selected');
+  optionTopic.setAttribute('hidden', 'hidden');
+  optionTopic.textContent = '請選擇主題';
+  select.appendChild(optionTopic);
+
+  const optionAllClass = document.createElement('option');
+  optionAllClass.value = '';
+  optionAllClass.textContent = '全部主題';
+  select.appendChild(optionAllClass);
+
+  for (const category in fourCategoryClassNames) {
+    if (category === selectedCategory) {
+      const values = fourCategoryClassNames[category].split(', ');
+
+      values.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item;
+        option.textContent = item;
+        select.appendChild(option);
+      });
+    }
+  }
+
+  // 如果當前主題為近期活動, 以動態方式生成選擇日期欄位
+  if (selectedCategory === category[1]) {
+    const label = document.createElement('label');
+    label.for = 'datepicker';
+    label.setAttribute('aria-label', '請選擇日期');
+    form.appendChild(label);
+
+    const input = document.createElement('input');
+    input.className = 'select-category';
+    input.type = 'date';
+    input.name = 'datepicker';
+    input.id = 'datepicker';
+    form.appendChild(input);
+  }
+
+  // 以動態方式生成關鍵字搜尋欄位
+  const div = document.createElement('div');
+  div.className = 'keywords';
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.id = 'keywords';
+  input.placeholder = '請輸入關鍵字';
+  input.setAttribute('aria-label', '請輸入關鍵字');
+
+  div.appendChild(input);
+  form.appendChild(div);
+
+  // 以動態方式生成搜尋按鈕
+  const button = document.createElement('button');
+
+  if (selectedCategory === category[1]) {
+    button.className = 'search-button activity-search-button';
+  } else {
+    button.className = 'search-button';
+  }
+  button.type = 'submit';
+  button.name = 'search-button';
+  button.setAttribute('aria-label', '按下此按鈕進行搜尋');
+  button.textContent = '搜尋';
+
+  const i = document.createElement('i');
+  i.className = 'fa-solid fa-magnifying-glass';
+  button.appendChild(i);
+
+  form.appendChild(button);
+
 }
 
 async function getSearchResult() {
@@ -73,36 +179,27 @@ async function getSearchResult() {
         checkKeywordStatement.push(`contains(${selectedCategory}Name, '')`);
       }
     }
-  } 
-  // // 若是點擊詳細資料畫面上的badge標籤名稱, 則就會是無關鍵字的情況(keywords為undefined)
-  // else {
-  //   // 視使用者點到哪一個badge標籤(className/class1Name/class2Name/class3Name), 就為其加上該項的查詢條件; 例如當使用者在詳細資料畫面點擊到的是class2(其他)的badge標籤時, 則本頁class所取得的內容會是{Class: undefined, Class1: undefined, Class2: '其他', Class3: undefined}
-  //   Object.keys(classNameObject).forEach(key => {
-  //     if (classNameObject[key] !== undefined){
-  //       checkKeywordStatement.push(`contains(${key}, '${classNameObject[key]}')`);
-  //     }else {
-  //       console.log(key,classNameObject[key]);
-  //     }
-  //   });
-  // }
+  }
 
   //將網址列抓取到的縣市名稱一併納入搜尋條件內
-  if(cityName !== undefined && cityName !== ''){
+  if (cityName !== undefined && cityName !== '') {
     checkKeywordStatement.push(`contains(City, '${cityName}')`);
   }
 
   //將網址列抓取到的Class名稱(Class/Class1/Class2/Class3)一併納入搜尋條件內
   Object.keys(classNameObject).forEach(key => {
-    if (classNameObject[key] !== undefined && classNameObject[key] !== ''){
+    if (classNameObject[key] !== undefined && classNameObject[key] !== '') {
       checkKeywordStatement.push(`contains(${key}, '${classNameObject[key]}')`);
-    }else {
-      console.log(key,classNameObject[key]);
     }
   });
 
-  // 若是"近期活動"主題, 則活動結束日期必須大於今日日期(使用TDX提供的OData搜尋語法指令'gt'超過...)
+  // 若是"近期活動"主題, 如果使用者沒有選定一個日期, 則預設活動資料的結束日期必須大於今日日期(使用TDX提供的OData搜尋語法指令'gt'超過...); 否則, 活動資料的結束日期必須大於使用者所選定的日期(也有可能是過往的日期)
   if (selectedCategory === category[1]) {
-    checkKeywordStatement.push(`date(EndTime) gt ${today}`);
+    if(selectedDate === ''){
+      checkKeywordStatement.push(`date(EndTime) gt ${today}`);
+    }else {
+      checkKeywordStatement.push(`date(EndTime) gt ${selectedDate}`);
+    }
   }
 
   // 將所有的查詢語句用and組合起來
@@ -200,6 +297,7 @@ function renderData() {
 
 async function getResultAndRender() {
   renderBreadcrumb();
+  renderSearchBar();
   resData = await getSearchResult();
   //在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改
   console.log('這是searchResult頁面, 在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改');

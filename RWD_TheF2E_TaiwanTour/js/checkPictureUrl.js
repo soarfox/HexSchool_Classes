@@ -5,12 +5,14 @@ function includeSpecialUrl(url){
   // 以下這些近期活動的網址無法顯示出圖片但又包含http開頭, 故在此特別列出並且一旦遇到這些網域開頭的圖片網址, 就將其設為預設無圖片
   const substringsToCheck = [
     "https://www.eastcoast-nsa.gov.tw/zh-tw/",
-    "https://drive.google.com/file/",
+    "https://drive.google.com/",
     "https://www.facebook.com/",
-    "http://cloud.culture.tw/e_upload_ccacloud/festival/image/",
+    "http://cloud.culture.tw/",
     "http://www.northguan-nsa.gov.tw/",
     "https://2022.art-taipei.com/",
-    "https://www.taiwantourbus.com.tw/"
+    "https://www.taiwantourbus.com.tw/",
+    "https://2021.art-taipei.com/taipei/tw/",
+    "https://2020.art-taipei.com/taipei/tw/"
   ];
   for(let i=0; i < substringsToCheck.length; i++){
     if (url.includes(substringsToCheck[i])){

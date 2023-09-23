@@ -6,6 +6,17 @@ import { checkPictureUrl } from './checkPictureUrl.js';
 import { getDate } from './getDate.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
 
+let resData = [];
+const category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
+// 將HTML上的class name寫在此處, 請記得加上前方的.號
+const categoryNameInHTML = ['.recent-activity', '.hot-spots', '.delicious-meal', '.peaceful-living'];
+let randomNumArray = [];
+// 因為當前活動數量可能沒有很多, 故限定亂數取值的上限是30, 且只取出1個亂數值
+let randomNumForActivity = getRandomNumber(30, 1);
+// 每次從0~1000中隨機取得6個數字(假設為50,101,37,47,5,777), 並分別代入不同主題的API資料內, 成為各自要"skip的筆數", 然後再取其top 4筆/6筆資料, 藉此每次都能夠取得不同的資料(但這樣子取回的資location料幾乎視同一個縣市的資料, 但因為找景點也一定是找相同縣市的景點, 故符合實際出遊邏輯)
+randomNumArray = getRandomNumber(1000, 6);
+console.log('randomNumArray=', randomNumArray);
+
 document.addEventListener('DOMContentLoaded', () => {
   const searchForm = document.querySelector('form');
 
@@ -25,14 +36,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // 跳轉到搜尋畫面
     window.location.href = redirectURL;
     }
-  })
-});
+  });
 
-let resData = [];
-let category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
-// 將HTML上的class name寫在此處, 請記得加上前方的.號
-let categoryNameInHTML = ['.swiper-slide', '.recent-activity', '.hot-spots', '.delicious-meal', '.peaceful-living'];
-let randomNumArray = [];
+  // banner點擊測試
+  const banner = document.querySelector('.swiper');
+  banner.addEventListener('click', e => {
+    e.preventDefault();
+    console.log('您在banner區域點擊到的元素是:',e.target);
+  });
+});
 
 // 引用套件--Swiper圖片輪播
 const swiper = new Swiper(".mySwiper", {
@@ -52,27 +64,48 @@ const swiper = new Swiper(".mySwiper", {
   },
 });
 
-// 渲染banner資料到網頁上
-function renderDataToBanner(categoryNameInHTML) {
-  const list = document.querySelectorAll(`${categoryNameInHTML}`);
+// 將取回的景點資料逐一添加入創建的banner元素內
+function renderDataToBanner() {
+  const bannerAList = document.querySelectorAll('.swiper-slide a');
 
-  // 把取回來的資料渲染到元素中
+  // 把取回來的6筆景點資料逐一添加入創建的banner相關元素內
   resData.forEach((item, index) => {
-    const bannerElement = list[index];
-    let addressSlice = '';
-    let picUrl = '';
-
-    // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
-    addressSlice = getRegionOfAddress(item);
+    // 創建一個圖片元素, 把景點圖片添加進來
+    const img = document.createElement('img');
+    img.className = 'banner-img';
+    img.width = 1110;
+    img.height = 400;
+    if(item.Picture.PictureDescription1 !== undefined && item.Picture.PictureDescription1 !== ''){
+      img.alt = item.Picture.PictureDescription1;
+    }else {
+      img.alt = item[`${category[0]}Name`];
+    }
     // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
-    picUrl = checkPictureUrl(item, 'banner');
+    img.src = checkPictureUrl(item, 'banner');
+    // 將img元素添加到a元素身上
+    bannerAList[index].appendChild(img);
 
-    const cityElement = bannerElement.querySelector('.city-Name');
-    const scenicSpotElement = bannerElement.querySelector('.scenicSpot-Name');
-    const imgElement = bannerElement.querySelector('.banner-img');
-    cityElement.textContent = addressSlice;
-    scenicSpotElement.textContent = item.ScenicSpotName;
-    imgElement.src = picUrl;
+    // 創建一個div容器, 裡面盛裝景點分類, 該筆資料ID, 縣市名稱及景點名稱資料
+    const div = document.createElement('div');
+    div.className = 'title';
+    // // 將該筆資料的分類及獨一無二的資料ID設為圖片的屬性與值, 以利使用者點擊圖片後, 將相關資料透過網址參數傳遞到詳細資料畫面內, 並對應API搜尋並呈現資料
+    div.setAttribute('data-category', category[0]);
+    div.setAttribute('data-id', item[`${category[0]}ID`]);
+
+    // 創建景點縣市的span元素
+    const span = document.createElement('span');
+    span.className = 'city-Name';
+    // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
+    span.textContent = getRegionOfAddress(item) + '　|　';
+    div.appendChild(span);
+
+    // 創建景點名稱的span元素
+    const span2 = document.createElement('span');
+    span2.className = 'scenicSpot-Name';
+    span2.textContent = item[`${category[0]}Name`];
+    div.appendChild(span2);
+    // 將div元素添加到a元素身上
+    bannerAList[index].appendChild(div);
   });
 };
 
@@ -146,39 +179,33 @@ async function getAPIData() {
   let urlStatement = `$select=${category[0]}ID,${category[0]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=6&$skip=${randomNumArray[0]}&$orderby=UpdateTime desc&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[0], urlStatement);
   console.log(resData);
-  renderDataToBanner(categoryNameInHTML[0]);
+  renderDataToBanner();
 
   // 撈出近期活動資料(加入隨機亂數(1~30), 且加入日期判定; 加入活動類獨有的Location屬性, 有助於解析出活動地點的行政區域名稱); 若是"近期活動"主題, 則活動結束日期必須大於今日日期(使用TDX提供的OData搜尋語法指令'gt'超過...)
   keywordsExcludeStatement = keywordsToExclude(category[1]);
   urlStatement = `$select=${category[1]}ID,${category[1]}Name,StartTime,EndTime,City,Address,Location,Picture&$filter=Picture/PictureUrl1 ne null and date(EndTime) gt ${today} ${keywordsExcludeStatement} &$orderby=startTime desc&$top=4&$skip=${randomNumForActivity}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[1], urlStatement);
   console.log(resData);
-  renderDataToRecentActivity(categoryNameInHTML[1]);
+  renderDataToRecentActivity(categoryNameInHTML[0]);
 
   // 撈出景點資料
   keywordsExcludeStatement = keywordsToExclude(category[0]);
   urlStatement = `$select=${category[0]}ID,${category[0]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null ${keywordsExcludeStatement} &$top=4&$skip=${randomNumArray[1]}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[0], urlStatement);
   console.log(resData);
-  renderData(category[0], categoryNameInHTML[2]);
+  renderData(category[0], categoryNameInHTML[1]);
 
   // 撈出餐廳資料
   urlStatement = `$select=${category[2]}ID,${category[2]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[2]}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[2], urlStatement);
   console.log(resData);
-  renderData(category[2], categoryNameInHTML[3]);
+  renderData(category[2], categoryNameInHTML[2]);
 
   // 撈出旅館資料
   urlStatement = `$select=${category[3]}ID,${category[3]}Name,City,Address,Picture&$filter=Picture/PictureUrl1 ne null&$top=4&$skip=${randomNumArray[3]}&$format=JSON`;
   resData = await callCategoryDataAPI(getAPIToken, category[3], urlStatement);
   console.log(resData);
-  renderData(category[3], categoryNameInHTML[4]);
+  renderData(category[3], categoryNameInHTML[3]);
 }
 
-// 因為當前活動數量可能沒有很多, 故限定亂數取值的上限是30, 且只取出1個亂數值
-let randomNumForActivity = getRandomNumber(30, 1);
-// 每次從0~1000中隨機取得6個數字(假設為50,101,37,47,5,777), 並分別代入不同主題的API資料內, 成為各自要"skip的筆數", 然後再取其top 4筆/6筆資料, 藉此每次都能夠取得不同的資料(但這樣子取回的資location料幾乎視同一個縣市的資料, 但因為找景點也一定是找相同縣市的景點, 故符合實際出遊邏輯)
-randomNumArray = getRandomNumber(1000, 6);
-console.log('randomNumArray=', randomNumArray);
-
-// getAPIData();
+getAPIData();
