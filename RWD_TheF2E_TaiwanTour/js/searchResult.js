@@ -40,6 +40,11 @@ console.log('selectedDate=', selectedDate);
 console.log('keywords=', keywords);
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  // 因為會先執行setupSearchForm()函式來更新搜尋列的內容(包括日期), 故由它那邊自動將日期設為預設日期(今日); 但假如使用者在本頁有選定日期並按下搜尋按鈕, 則網址列上會出現已選定的日期, 故將該日期抓下來並更新到畫面上
+  const defaultDate = document.getElementById('datepicker');
+  defaultDate.value = selectedDate;
+
   // 實作搜尋列的搜尋功能
   setupSearchForm(selectedCategory);
 });

@@ -271,7 +271,7 @@ function renderBadge() {
     if (classLevel !== '') {
       const a = document.createElement('a');
       a.className = 'badge-class';
-      a.href = `./searchResult.html?Category=${selectedCategory}&City=${regionName}&${classLevel}=${badgeContent}`;
+      a.href = `./searchResult.html?Category=${selectedCategory}&City=${regionName}&${classLevel}=${badgeContent}&SelectedDate=${today}`;
       a.textContent = `# ${badgeContent}`;
       a.setAttribute('aria-label', `前往標籤與${badgeContent}有關的資料畫面`);
       h3.appendChild(a);
@@ -395,7 +395,7 @@ function renderMoreThings() {
   topicTitleDiv.appendChild(h4);
 
   const a = document.createElement('a');
-  a.href = `./searchResult.html?Category=${selectedCategory}&City=${regionName}`;
+  a.href = `./searchResult.html?Category=${selectedCategory}&City=${regionName}&SelectedDate=${today}`;
   a.setAttribute('aria-label', '取得更多此縣市的資訊');
   a.textContent = `更多${regionName}${categoryChineseName.slice(2, 4)} >`;
   topicTitleDiv.appendChild(a);
