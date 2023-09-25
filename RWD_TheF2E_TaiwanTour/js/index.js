@@ -6,6 +6,7 @@ import { checkPictureUrl } from './checkPictureUrl.js';
 import { getDate } from './getDate.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
 
+const today = getDate();
 let resData = [];
 const category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
 // 將HTML上的class name寫在此處, 請記得加上前方的.號
@@ -22,19 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   searchForm.addEventListener('submit', e => {
     e.preventDefault();
-    const category = document.getElementById('category-selection').value;
-    const keywords = document.getElementById('keywords').value;
-    console.log(category);
-    console.log(keywords);
+    let redirectURL = '';
+    const searchCategory = document.getElementById('category-selection').value;
+    const searchKeywords = document.getElementById('keywords').value;
+    console.log(searchCategory);
+    console.log(searchKeywords);
 
-    if(category === '請選擇您想搜尋的類別'){
+    if (searchCategory === '請選擇您想搜尋的類別') {
       alert('您尚未選擇想要搜尋的類別哦！');
-    }else {
-    // 將選中的值作為參數傳遞到搜尋畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免搜尋畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:天空&/), 則未使用該函式則只會解析出"天空", 但使用該函式後則可成功解析出"天空&/"
-    const redirectURL = './searchResult.html?Category=' + category + '&Keywords=' + encodeURIComponent(keywords);
-
-    // 跳轉到搜尋畫面
-    window.location.href = redirectURL;
+    } else if (searchCategory === category[1]) {
+      console.log('searchCategory === category[1]');
+      // 將選中的值作為參數傳遞到搜尋畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免搜尋畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:天空&/), 則未使用該函式則只會解析出"天空", 但使用該函式後則可成功解析出"天空&/"
+      redirectURL = `./searchResult.html?Category=${searchCategory}&SelectedDate=${today}&Keywords=${encodeURIComponent(searchKeywords)}`;
+      // 跳轉到搜尋結果頁
+      window.location.href = redirectURL;
+    } else {
+      redirectURL = `./searchResult.html?Category=${searchCategory}&Keywords=${encodeURIComponent(searchKeywords)}`;
+      // 跳轉到搜尋結果頁
+      window.location.href = redirectURL;
     }
   });
 
@@ -42,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const banner = document.querySelector('.swiper');
   banner.addEventListener('click', e => {
     e.preventDefault();
-    console.log('您在banner區域點擊到的元素是:',e.target);
+    console.log('您在banner區域點擊到的元素是:', e.target);
   });
 });
 
@@ -75,9 +81,9 @@ function renderDataToBanner() {
     img.className = 'banner-img';
     img.width = 1110;
     img.height = 400;
-    if(item.Picture.PictureDescription1 !== undefined && item.Picture.PictureDescription1 !== ''){
+    if (item.Picture.PictureDescription1 !== undefined && item.Picture.PictureDescription1 !== '') {
       img.alt = item.Picture.PictureDescription1;
-    }else {
+    } else {
       img.alt = item[`${category[0]}Name`];
     }
     // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
@@ -170,7 +176,7 @@ function renderData(category, categoryNameInHTML) {
 // 確認API token並且回傳各主題(觀光景點/餐廳/近期活動/住宿)API資料出去
 async function getAPIData() {
   const getAPIToken = await checkAPIToken();
-  const today = getDate();
+
 
   // 為了讓首頁各個項目撈出來的資料都必定有圖片, 故使用TDX API說明手冊的邏輯運算子語法($filter=Picture/PictureUrl1 ne null), 也就是在Picture屬性裡的PictureUrl1屬性內的值 不等於 null), 有符合者才會被撈出來, 藉此過濾掉無圖片的資料; 但若是切換到各縣市/各主題分頁, 則可以允許無圖片的項目出現, 避免有些縣市(如:屏東縣)因為該縣政府API完全沒提供景點圖片而沒有任何資料被撈回來
 

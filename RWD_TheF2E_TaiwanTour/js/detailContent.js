@@ -149,7 +149,7 @@ function renderBreadcrumb() {
         // 將該筆資料完整的倒入getRegionOfAddress()內, 解析其縣市名稱
         const addressSlice = getRegionOfAddress(resData[0]);
         breadcrumbList[2].textContent = addressSlice;
-        breadcrumbList[2].href = `./searchResult.html?Category=${selectedCategory}&City=${addressSlice}`;
+        breadcrumbList[2].href = `./searchResult.html?Category=${selectedCategory}&City=${addressSlice}&SelectedDate=${today}`;
       } else {
         breadcrumbList[2].textContent = '詳情如內';
         breadcrumbList[2].href = `./${key}.html`;
