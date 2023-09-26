@@ -818,26 +818,26 @@ header .search-keywords {
   }
 }
 .index-container .recent-activity,
-.index-container .hot-spots,
-.index-container .delicious-meal,
-.index-container .peaceful-living {
+.index-container .scenicSpots,
+.index-container .restaurants,
+.index-container .hotels {
   padding-bottom: 36px;
 }
 .index-container .recent-activity .location-icon,
-.index-container .hot-spots .location-icon,
-.index-container .delicious-meal .location-icon,
-.index-container .peaceful-living .location-icon {
+.index-container .scenicSpots .location-icon,
+.index-container .restaurants .location-icon,
+.index-container .hotels .location-icon {
   display: inline-block;
   padding-right: 5px;
   color: #646464;
 }
-.index-container .last-activities-list {
+.index-container .activity-list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   padding-top: 8px;
 }
-.index-container .last-activities-list .card {
+.index-container .activity-list .card {
   background-color: #F9F9F9;
   border: 1px solid #E5E5E5;
   margin-bottom: 12px;
@@ -847,18 +847,18 @@ header .search-keywords {
   overflow: hidden;
 }
 @media (max-width: 767px) {
-  .index-container .last-activities-list .card {
+  .index-container .activity-list .card {
     width: 100%;
   }
 }
-.index-container .last-activities-list .card .photo {
+.index-container .activity-list .card .photo {
   width: 40%;
   aspect-ratio: 3/2;
   overflow: hidden;
   border-radius: 12px 0px 0px 12px;
   transform: scale(1);
 }
-.index-container .last-activities-list .card .photo img {
+.index-container .activity-list .card .photo img {
   transition: 0.3s;
   width: 100%;
   height: 100%;
@@ -866,10 +866,10 @@ header .search-keywords {
   -o-object-fit: cover;
      object-fit: cover;
 }
-.index-container .last-activities-list .card .photo img:hover, .index-container .last-activities-list .card .photo img:active {
+.index-container .activity-list .card .photo img:hover, .index-container .activity-list .card .photo img:active {
   transform: scale(1.1);
 }
-.index-container .last-activities-list .card .container {
+.index-container .activity-list .card .container {
   display: flex;
   flex-wrap: wrap;
   width: 60%;
@@ -877,18 +877,18 @@ header .search-keywords {
   justify-content: space-between;
   padding: 0px 15px;
 }
-.index-container .last-activities-list .card .container .date {
+.index-container .activity-list .card .container .date {
   display: block;
   color: #646464;
   padding-top: 16px;
   font-weight: 400;
 }
 @media (max-width: 428px) {
-  .index-container .last-activities-list .card .container .date {
+  .index-container .activity-list .card .container .date {
     font-size: 1rem;
   }
 }
-.index-container .last-activities-list .card .container .title {
+.index-container .activity-list .card .container .title {
   display: block;
   font-size: 1.25rem;
   line-height: 1.5;
@@ -897,38 +897,38 @@ header .search-keywords {
   padding-top: 3px;
 }
 @media (max-width: 767px) {
-  .index-container .last-activities-list .card .container .title {
+  .index-container .activity-list .card .container .title {
     font-size: 1rem;
     padding-bottom: 10%;
   }
 }
 @media (max-width: 428px) {
-  .index-container .last-activities-list .card .container .title {
+  .index-container .activity-list .card .container .title {
     font-size: 1rem;
   }
 }
-.index-container .last-activities-list .card .container .location {
+.index-container .activity-list .card .container .location {
   padding: 17px 0px 18px 0px;
   font-weight: 400;
   display: flex;
   justify-content: space-between;
 }
 @media (max-width: 767px) {
-  .index-container .last-activities-list .card .container .location {
+  .index-container .activity-list .card .container .location {
     font-size: 1rem;
   }
 }
-.index-container .last-activities-list .card .container .location a {
+.index-container .activity-list .card .container .location a {
   font-weight: 500;
   text-decoration: none;
   color: #7F977B;
 }
 @media (max-width: 428px) {
-  .index-container .last-activities-list .card .container .location a {
+  .index-container .activity-list .card .container .location a {
     display: none;
   }
 }
-.index-container .last-activities-list .card .container .location a:hover {
+.index-container .activity-list .card .container .location a:hover {
   color: #FF725E;
 }
 

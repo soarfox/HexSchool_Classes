@@ -99,9 +99,9 @@ header {
 	}
 
 	.recent-activity,
-	.hot-spots,
-	.delicious-meal,
-	.peaceful-living {
+	.scenicSpots,
+	.restaurants,
+	.hotels {
 		padding-bottom: 36px;
 
 		.location-icon {
@@ -111,7 +111,7 @@ header {
 		}
 	}
 
-	.last-activities-list {
+	.activity-list {
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
@@ -223,5 +223,5 @@ header {
 		}
 	}
 
-	// 首頁內的".hot-spots .list"和".delicious-meal .list"的基礎樣式寫在./SCSS/component/_list_cards.scss內, 該scss與搜尋結果頁的".list .card{...}"共用
+	// 首頁內的".scenicSpots .list", ".restaurants .list"和".hotels .list"的基礎樣式寫在./SCSS/component/_list_cards.scss內, 該scss與搜尋結果頁的".list .card{...}"共用
 }

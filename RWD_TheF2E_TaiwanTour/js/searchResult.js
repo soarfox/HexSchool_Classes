@@ -9,7 +9,6 @@ import { callCategoryDataAPI } from './callCategoryDataAPI.js';
 import { setupSearchForm } from './setupImageClickAndSearchForm.js';
 
 const selectedCategory = proxyOfURL.Category;
-const cityName = proxyOfURL.City;
 const selectedDate = proxyOfURL.SelectedDate;
 const className = proxyOfURL.Class;
 const class1Name = proxyOfURL.Class1;
@@ -17,6 +16,8 @@ const class2Name = proxyOfURL.Class2;
 const class3Name = proxyOfURL.Class3;
 const keywords = proxyOfURL.Keywords;
 const today = getDate();
+// 如果使用者在縣市的下拉式選單選擇為"全部縣市", 則為了要讓查詢語句的cityName為空字串, 故需要設定cityName的值為空字串, 故在此使用let關鍵字宣告
+let cityName = proxyOfURL.City;
 let resData = [];
 let keywordsArr = [];
 let classNameObject = {};
@@ -59,10 +60,16 @@ function renderBreadcrumb() {
 async function renderSearchBar() {
   const form = document.querySelector('.search-bar');
 
-  // 因為縣市下拉式選單是HTML已寫好的內容, 而如果使用者已經有選擇過任一縣市選項, 則按下搜尋按鈕後, 仍需把該值設為縣市下拉式選單的值
-  if (cityName !== undefined) {
-    const citySelection = document.getElementById('city');
+  // 因為縣市下拉式選單是HTML已寫好的內容, 如果使用者完全沒選擇過縣市名稱, 則預設的值就是undefined; 而如果使用者已經有選擇過任一縣市選項, 則按下搜尋按鈕後, 仍需把該值設為縣市下拉式選單的值
+  let citySelection = document.getElementById('city');
+  if (cityName === '全部縣市') {
+    // 設為空字串, 讓搜尋語句能夠尋找所有縣市的資料
+    cityName = '';
+    // 在畫面上仍需要呈現使用者選擇的是'全部縣市'的選項
+    citySelection.value = '全部縣市';
+  }else if (cityName !== undefined){
     citySelection.value = cityName;
+  }else {
   }
 
   // 以動態方式生成當前主題的Class下拉式選單
