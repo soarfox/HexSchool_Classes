@@ -24,7 +24,7 @@
 
   // 基礎樣式寫在./SCSS/component/_list_cards.scss內, 此處針對需修改處做微調
   .list {
-    margin: 0px 30px 100px 30px;
+    margin: 0px 30px 0px 30px;
     // 下方這行使得下方的.card能以一張卡片佔滿一整行方式呈現, 如果拿掉此行, 則會跟首頁的手機版一樣呈現左右滑動方式呈現
     flex-wrap: wrap;
 
@@ -69,5 +69,38 @@
         display: block;
       }
     }
+  }
+}
+
+.pagination-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 0px 120px 0px;
+
+  li {
+    font-size: $h6-font-size;
+    padding: 10px 12px;
+    margin: 0px 8px;
+    border: 1px solid $LittleGray;
+    border-radius: 4px;
+    color: $Gray;
+    font-weight: 700px;
+  }
+
+  .NextPage {
+    background-color: $DeepGreen;
+    border: 1px solid $LittleGray;
+    color: $White;
+  }
+
+  .active, .master {
+    color: $Footer;
+    border: 1px solid $DeepGreen;
+  }
+
+  .disable {
+    color: $Footer;
+    background-color: $LittleGray;
   }
 }

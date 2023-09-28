@@ -6,6 +6,7 @@ import { checkPictureUrl } from './checkPictureUrl.js';
 import { getDate } from './getDate.js';
 import { checkCityInKeywords } from './checkCityInKeywords.js';
 import { callCategoryDataAPI } from './callCategoryDataAPI.js';
+import { pagination } from './pagination.js';
 import { setupSearchForm } from './setupImageClickAndSearchForm.js';
 
 const selectedCategory = proxyOfURL.Category;
@@ -15,7 +16,10 @@ const class1Name = proxyOfURL.Class1;
 const class2Name = proxyOfURL.Class2;
 const class3Name = proxyOfURL.Class3;
 const keywords = proxyOfURL.Keywords;
+const page = proxyOfURL.Page;
+const pageUrl = window.location.href;
 const today = getDate();
+
 // 如果使用者在縣市的下拉式選單選擇為"全部縣市", 則為了要讓查詢語句的cityName為空字串, 故需要設定cityName的值為空字串, 故在此使用let關鍵字宣告
 let cityName = proxyOfURL.City;
 let resData = [];
@@ -30,6 +34,10 @@ console.log('cityName=', cityName);
 console.log('selectedDate=', selectedDate);
 console.log(classNameObject);
 console.log('keywords=', keywords);
+console.log('page=', page);
+
+const paginationList = document.querySelector('.pagination-list');
+const searchResultList = document.getElementById('searchResult-list');
 
 // 透過使用屬性名稱來取得URL裡參數的值
 const category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
@@ -42,6 +50,148 @@ const categoryContrast = {
 
 document.addEventListener('DOMContentLoaded', () => {
   allFuncs();
+
+  // 假如使用者是按下首頁的搜尋按鈕後進來此搜尋結果頁, 則網址本身預設是不會包含&Page=參數(故proxy取回的page值為undefined), 在此主動在網址末端補上'&Page=1'且立刻修改當前網址, 並將此網址資訊儲存在瀏覽器的記錄內, 以利稍後使用者如果按下瀏覽器的回上一頁時, 可以立刻在網址上呈現&Page=1並渲染出對應資料在畫面上
+  if (pageUrl.indexOf('&Page=') === -1) {
+    console.log('---第一次進來此搜尋結果頁, 將自動補上網址&Page=並記錄下來----');
+    //當第一次進入搜尋結果頁時, 自動幫網址補上尾字'&Page=1', 並需要紀錄該頁的網址等項目
+    const state = { page: 'firstPage' };
+    const title = null;
+    const url = window.location.href + '&Page=1';
+    // 將相關資訊記錄在瀏覽器的歷史記錄內
+    history.pushState(state, title, url);
+  }
+
+  // 分頁元件的監聽事件
+  paginationList.addEventListener('click', e => {
+    console.log('---已點擊任一分頁按鈕, 此處負責處理----');
+    e.preventDefault();
+    const previousPage = document.getElementById('previousPage');
+    const nextPage = document.getElementById('nextPage');
+    const finalPage = document.getElementById('finalPage');
+
+    // 假如點擊到的網頁元素是分頁區塊的前一頁按鈕且前一頁的值不為null
+    if ((e.target.id === 'previousButton' && previousPage !== null) || (e.target.id === 'previousPage')) {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+      
+      removeChildNodes();
+
+      // 將字串轉成10進位數字
+      const intPreviousNumber = parseInt(previousPage.textContent, 10);
+      // 把新的頁碼傳給渲染資料函式, 藉此切割出所需的資料並渲染在畫面上
+      renderData({ pageNumber: intPreviousNumber })
+      // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
+      pagination({ dataCount: resData.length, currentPage: intPreviousNumber });
+
+      const currentURL = window.location.href;
+      // 修改網址內容
+      if (intPreviousNumber !== null) {
+        // 修改 URL並新增新的歷史記錄項目
+        const newState = { page: 'previousPage' };
+        const newTitle = null;
+        let newURL = '';
+        if (currentURL.indexOf('&Page=')) {
+          const splitUrl = currentURL.split('&Page=');
+          newURL = splitUrl[0] + `&Page=${intPreviousNumber}`;
+        }
+        // 此時瀏覽器的URL已經變更成新的網址, 且可以在歷史記錄中找到該狀態和標題
+        history.pushState(newState, newTitle, newURL);
+      }
+      
+    } else if ((e.target.id === 'nextButton' && (nextPage !== null || finalPage !== null)) || (e.target.id === 'nextPage')) {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+
+      removeChildNodes();
+
+      let intNextNumber = 0;
+      // 如果nextPage數字不存在, 則代表下一個分頁頁碼就是finalPage了, 故此時nextPage不會被產生出來, 只會產生出finalPage, 因此如果nextPage不存在, 則以finalPage數字代替, 成為要更新的下一頁數字頁碼
+      if (nextPage !== null) {
+        intNextNumber = parseInt(nextPage.textContent, 10);
+      } else {
+        intNextNumber = parseInt(finalPage.textContent, 10);
+      }
+
+      // 把新的頁碼傳給渲染資料函式, 藉此切割出所需的資料並渲染在畫面上
+      renderData({ pageNumber: intNextNumber })
+
+      // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
+      pagination({ dataCount: resData.length, currentPage: intNextNumber });
+
+      if (intNextNumber !== null) {
+        const newState = { page: 'nextPage' };
+        const newTitle = null;
+        const currentUrl = window.location.href;
+
+        // 修改網址內容並在瀏覽器上新增瀏覽記錄
+        if (currentUrl.indexOf('&Page=')) {
+          const splitUrl = currentUrl.split('&Page=');
+          const newUrl = splitUrl[0] + `&Page=${intNextNumber}`;
+          // 此時瀏覽器的URL已經變更成新的網址, 且可以在歷史記錄中找到該狀態和標題
+          history.pushState(newState, newTitle, newUrl);
+        }
+      }
+     
+    } else if (e.target.id === 'finalPage') {
+      window.scroll({ top: 0, left: 0, behavior: 'smooth' });
+
+      removeChildNodes();
+
+      // 將字串轉成10進位數字
+      const intFinalNumber = parseInt(finalPage.textContent, 10);
+      // 把新的頁碼傳給渲染資料函式, 藉此切割出所需的資料並渲染在畫面上
+      renderData({ pageNumber: intFinalNumber })
+
+      // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
+      pagination({ dataCount: resData.length, currentPage: intFinalNumber });
+
+      if (intFinalNumber !== null) {
+        const newState = { page: 'finalPage' };
+        const newTitle = null;
+        const currentUrl = window.location.href;
+
+        // 修改網址內容並在瀏覽器上新增瀏覽記錄
+        if (currentUrl.indexOf('&Page=')) {
+          const splitUrl = currentUrl.split('&Page=');
+          const newUrl = splitUrl[0] + `&Page=${intFinalNumber}`;
+          // 此時瀏覽器的URL已經變更成新的網址, 且可以在歷史記錄中找到該狀態和標題
+          history.pushState(newState, newTitle, newUrl);
+        }
+      }
+      
+    } else {
+      console.log('因為點擊的是當前頁碼, 故沒有任何效果');
+    }
+  });
+
+  // 當使用者按下瀏覽器的上一頁/下一頁按鈕時(才會觸發此popstate事件)
+  window.addEventListener('popstate', function (event) {
+    console.log('---已點瀏覽器的上/下一頁按鈕, 此處負責處理----');
+    const state = event.state;
+    const currentURL = window.location.href;
+    console.log('state=', state);
+
+    // 當state不為null代表已經有'搜尋結果頁'的相關瀏覽記錄, 也就是使用者剛剛已有瀏覽過搜尋結果的內容, 故會留下瀏覽器的相關記錄; 否則, 若是無最近的瀏覽記錄, 則代表該情境是'第一次進來本分頁的時候', 而現在使用者按了瀏覽器本身的回上一頁按鈕, 因此會直接跳轉回首頁
+    if (state === null) {
+      // 跳轉到首頁
+      window.location.href = './index.html';
+    } else {
+      
+
+      removeChildNodes();
+
+      // 將網址尾字的頁碼數字取出來
+      const pageNumber = currentURL.split('&Page=');
+
+      // 將字串轉成10進位數字
+      const intPage = parseInt(pageNumber[1], 10);
+
+      // 把新的頁碼傳給渲染資料函式, 藉此切割出所需的資料並渲染在畫面上
+      renderData({ pageNumber: intPage })
+
+      // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
+      pagination({ dataCount: resData.length, currentPage: intPage });
+    }
+  });
 });
 
 // 渲染麵包屑內容
@@ -67,9 +217,9 @@ async function renderSearchBar() {
     cityName = '';
     // 在畫面上仍需要呈現使用者選擇的是'全部縣市'的選項
     citySelection.value = '全部縣市';
-  }else if (cityName !== undefined){
+  } else if (cityName !== undefined) {
     citySelection.value = cityName;
-  }else {
+  } else {
   }
 
   // 以動態方式生成當前主題的Class下拉式選單
@@ -187,11 +337,11 @@ async function renderSearchBar() {
 // 呼叫API及渲染資料
 async function getResultAndRender() {
   resData = await getSearchResult();
-  //在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改
-  console.log('這是searchResult頁面, 在sql語句上有限制為top 17筆, 待瞭解分頁如何設計後可再修改');
+  console.log('這是searchResult頁面, 在sql語句的top限制已拿掉');
   document.getElementById('result-count').textContent = resData.length;
   if (resData.length !== 0) {
-    renderData();
+    // 預設渲染第一頁(至多20筆資料)即可, 故可以不用寫{}內的屬性和值(pageNumber: 1), 因為當無傳入屬性和值時, 函式本身會使用函式宣告的預設值(pageNumber = 1)
+    renderData({});
   } else {
     document.getElementById('searchResult-list').style.display = 'none';
     document.getElementById('result-null').style.display = 'block';
@@ -202,6 +352,7 @@ async function getResultAndRender() {
 async function getSearchResult() {
   const getAPIToken = await checkAPIToken();
   let urlStatement = '';
+
   let checkKeywordStatement = [];
   const keywordsExcludeStatement = keywordsToExclude(selectedCategory);
 
@@ -258,9 +409,9 @@ async function getSearchResult() {
 
   // 若是"近期活動"主題, 則在select語句內多加入一個獨有的Location欄位(因有些活動沒有Address欄位的值, 但有Location欄位的值)
   if (selectedCategory === category[1]) {
-    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Location,Picture&$filter=${combinedKeywordStatement} ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
+    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Location,Picture&$filter=${combinedKeywordStatement} ${keywordsExcludeStatement}&$orderby=UpdateTime desc&$format=JSON`;
   } else {
-    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Picture&$filter=${combinedKeywordStatement} ${keywordsExcludeStatement} &$top=17&$orderby=UpdateTime desc&$format=JSON`;
+    urlStatement = `$select=${selectedCategory}ID,${selectedCategory}Name,Address,City,Picture&$filter=${combinedKeywordStatement} ${keywordsExcludeStatement}&$orderby=UpdateTime desc&$format=JSON`;
   }
   let res = await callCategoryDataAPI(getAPIToken, selectedCategory, urlStatement);
   return res;
@@ -273,12 +424,15 @@ function isOnlySpaces(str) {
 }
 
 // 渲染資料到畫面上
-function renderData() {
+function renderData({ pageNumber = 1 }) {
   // 取得<ul>元素的id
   const ulList = document.getElementById('searchResult-list');
 
+  // 因為index是從0開始, 在此取得第(pageNumber-1)*20 ~ pageNumber*20筆資料, 單頁至多20筆資料
+  const dataSlice = resData.slice((pageNumber - 1) * 20, pageNumber * 20);
+
   // 將每一筆取回的資料都走一遍, 且動態生成每個li元素
-  resData.forEach(item => {
+  dataSlice.forEach(item => {
 
     let picUrl = '';
     let addressSlice = '';
@@ -365,6 +519,19 @@ function addClickListenerToUl() {
   });
 }
 
+// 移除'搜尋結果ul'及'分頁ul'兩者的所有子結點
+function removeChildNodes() {
+  // 移除現有的所有"分頁ul"的子元素, 以利後續重新生成新的分頁子元素
+  while (paginationList.firstChild) {
+    paginationList.removeChild(paginationList.firstChild);
+  }
+
+  // 移除現有的所有"搜尋結果ul"的子元素, 以利後續重新生成新的分頁子元素
+  while (searchResultList.firstChild) {
+    searchResultList.removeChild(searchResultList.firstChild);
+  }
+}
+
 // 彙整所有函式且依序逐步執行
 async function allFuncs() {
   renderBreadcrumb();
@@ -376,4 +543,25 @@ async function allFuncs() {
 
   // 實現搜尋功能(引用js檔)
   setupSearchForm(selectedCategory);
+
+
+  // 此處判斷是否為首次進來搜尋結果頁並進行對應處理; 如果proxy抓取到page變數的值為undefined, 則代表是從首頁按下搜尋按鈕後, 首次進來此搜尋結果頁; 否則, 則代表是從詳細資料畫面按瀏覽器的上一頁按鈕, 返回到此搜尋結果頁, 也就是符合page !== undefined的情形
+  if (page === undefined) {
+    console.log('---首次進來此搜尋結果頁, 此處負責處理----');
+    // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
+    pagination({ dataCount: resData.length, currentPage: 1 });
+  } else {
+    console.log('---已成功捕捉到網址尾字的頁碼數字, 此處負責處理----');
+
+    removeChildNodes();
+
+    // 將字串轉成10進位數字
+    const intPage = parseInt(page, 10);
+
+    // 把新的頁碼傳給渲染資料函式, 藉此切割出所需的資料並渲染在畫面上
+    renderData({ pageNumber: intPage })
+
+    // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
+    pagination({ dataCount: resData.length, currentPage: intPage });
+  }
 }

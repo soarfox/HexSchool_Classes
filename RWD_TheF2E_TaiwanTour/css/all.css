@@ -955,7 +955,7 @@ header .search-keywords {
   color: #FF725E;
 }
 .result-container .list {
-  margin: 0px 30px 100px 30px;
+  margin: 0px 30px 0px 30px;
   flex-wrap: wrap;
 }
 .result-container .list .card {
@@ -991,6 +991,35 @@ header .search-keywords {
 }
 .result-container .result-null .null-text span {
   display: block;
+}
+
+.pagination-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 80px 0px 120px 0px;
+}
+.pagination-list li {
+  font-size: 1rem;
+  padding: 10px 12px;
+  margin: 0px 8px;
+  border: 1px solid #E5E5E5;
+  border-radius: 4px;
+  color: #646464;
+  font-weight: 700px;
+}
+.pagination-list .NextPage {
+  background-color: #7F977B;
+  border: 1px solid #E5E5E5;
+  color: #FFFFFF;
+}
+.pagination-list .active, .pagination-list .master {
+  color: #65895F;
+  border: 1px solid #7F977B;
+}
+.pagination-list .disable {
+  color: #65895F;
+  background-color: #E5E5E5;
 }
 
 .content {
