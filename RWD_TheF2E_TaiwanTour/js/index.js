@@ -1,3 +1,4 @@
+import { loadingAnimation } from './loadingAnimation.js';
 import { checkAPIToken } from './getAPIToken.js';
 import { getRandomNumber } from './randomNumber.js';
 import { keywordsToExclude } from './keywordsToExclude.js';
@@ -18,6 +19,8 @@ let randomNumForActivity = getRandomNumber(30, 1);
 randomNumArray = getRandomNumber(1000, 6);
 
 document.addEventListener('DOMContentLoaded', () => {
+  allFunc();
+
   const searchForm = document.querySelector('form');
 
   searchForm.addEventListener('submit', e => {
@@ -242,29 +245,6 @@ function renderData(category, categoryNameInHTML) {
     divLocation.appendChild(i);
     li.appendChild(divLocation);
   });
-
-  // // 把取回來的資料渲染到元素中
-  // resData.forEach((item, index) => {
-  //   const cardElement = list[index];
-  //   let addressSlice = '';
-  //   let picUrl = '';
-
-  //   // 檢查Address和Location有無包含縣市名稱(因有些資料就無包含Address和Location, 例如:烏來瀑布)
-  //   addressSlice = getRegionOfAddress(item);
-
-  //   // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
-  //   picUrl = checkPictureUrl(item, 'thumbnail');
-
-  //   const nameElement = cardElement.querySelector('.name');
-  //   const locationElement = cardElement.querySelector('.location .location-name');
-  //   const imgElement = cardElement.querySelector('img');
-
-  //   // 用變數方式動態換上各個主題裡的屬性名稱(ScenicSpotName/RestaurantName等)
-  //   const categoryName = `${category}Name`;
-  //   nameElement.textContent = item[categoryName];
-  //   locationElement.textContent = addressSlice;
-  //   imgElement.src = picUrl;
-  // });
 };
 
 // 確認API token並且回傳各主題(觀光景點/餐廳/近期活動/住宿)API資料出去
@@ -307,4 +287,8 @@ async function getAPIData() {
   renderData(category[3], categoryNameInHTML[2]);
 }
 
-getAPIData();
+async function allFunc() {
+  await getAPIData();
+  loadingAnimation();
+}
+

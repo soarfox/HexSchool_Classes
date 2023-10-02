@@ -1,0 +1,35 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $White;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: 1;
+	// 遮罩層保持多久之後消失
+  transition: opacity 2.5s ease-in-out;
+
+	.loader {
+		width: 100px;
+		height: 100px;
+		// 動畫icon旋轉一圈的時間為多長
+		animation: spin 2s linear infinite;
+		margin: 0 auto;
+		// 動畫icon從透明度為完全不透明到消失的時間長度為多久
+		opacity: 1;
+		transition: opacity 2.5s ease-in-out;
+	}
+
+	@keyframes spin {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+}

@@ -2,11 +2,12 @@ import { getDate } from './getDate.js';
 
 const today = getDate();
 const category = ['ScenicSpot', 'Activity', 'Restaurant', 'Hotel'];
-const fourCategoryClassNames = {
+// 此處是將各Class(Class1)名稱綁定到各主題頁裡的各張圖卡的a連結身上, 而搜尋結果頁顯現的各主題的完整Class(Class1)下拉式選單內容, 則寫在searchResult.js內
+const categoryClassNameForImg = {
   ScenicSpot: '自然風景類, 觀光工廠類, 遊憩類, 休閒農業類, 生態類, 溫泉類, 其他',
-  Activity: '節慶活動, 自行車活動, 遊憩活動, 產業文化活動, 年度活動, 四季活動',
+  Activity: '節慶活動, 遊憩活動, 四季活動, 年度活動, 自行車活動, 產業文化活動',
   Restaurant: '地方特產, 中式美食, 甜點冰品, 異國料理, 伴手禮, 素食',
-  Hotel: '一般旅館, 一般觀光旅館, 國際觀光旅館, 民宿'
+  Hotel: '民宿, 一般旅館, 一般觀光旅館, 國際觀光旅館'
 };
 
 // 實現搜尋列的搜尋功能
@@ -28,7 +29,6 @@ function setupSearchForm(categoryName) {
     e.preventDefault();
     const city = document.getElementById('city').value;
     const topic = document.getElementById('topic').value;
-
     const keywords = document.getElementById('keywords').value;
     // 如果是活動分類則抓取日期欄位的資料, 才需要抓取datepicker元素
     if (categoryName === category[1]) {
@@ -47,6 +47,7 @@ function setupSearchForm(categoryName) {
   });
 }
 
+// 實現各主題頁內各圖卡的搜尋功能
 function setupImageClickHandlers(categoryName) {
   let redirectURL = '';
   let categoryClassNames = [];
@@ -62,9 +63,9 @@ function setupImageClickHandlers(categoryName) {
   // 以下實作畫面上各圖卡的點擊與跳轉搜尋頁的效果, 因為各圖片外層是用a標籤包著, 故直接抓取那些a標籤
   const imgElementList = document.querySelectorAll('ul .card a');
 
-  for (const category in fourCategoryClassNames) {
+  for (const category in categoryClassNameForImg) {
     if (category === categoryName) {
-      categoryClassNames = fourCategoryClassNames[category].split(', ');
+      categoryClassNames = categoryClassNameForImg[category].split(', ');
     }
   }
 

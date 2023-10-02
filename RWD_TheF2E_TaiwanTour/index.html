@@ -34,6 +34,9 @@
 
 <body>
   <div class="wrap">
+    <div class="overlay" id="overlay">
+      <img class="loader" id="loader" src="./images/icon/loading-icon.svg" alt="Loading Animation" />
+    </div>
     <nav class="navbar">
       <a class="logo" href="index.html">
         <h1>台灣走走・Tai Tour</h1>
@@ -56,7 +59,8 @@
       </div>
       <form class="search-block" action="./searchResult.html" method="get">
         <label for="category-selection" class="category"></label>
-        <select class="category-selection" name="category-selection" id="category-selection" aria-label="category-selection">
+        <select class="category-selection" name="category-selection" id="category-selection"
+          aria-label="category-selection">
           <option selected disabled>請選擇您想搜尋的類別</option>
           <option value="ScenicSpot">探索景點</option>
           <option value="Activity">近期活動</option>

@@ -1,3 +1,4 @@
+import { loadingAnimation } from './loadingAnimation.js';
 import { proxyOfURL } from './proxyOfURL.js';
 import { checkAPIToken } from './getAPIToken.js';
 import { keywordsToExclude } from './keywordsToExclude.js';
@@ -48,6 +49,7 @@ const categoryContrast = {
   Hotel: '安心住宿'
 };
 
+// 此處執行進入本頁面時要執行的functions且處理對應的分頁內容
 document.addEventListener('DOMContentLoaded', () => {
   allFuncs();
 
@@ -175,8 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
       // 跳轉到首頁
       window.location.href = './index.html';
     } else {
-      
-
       removeChildNodes();
 
       // 將網址尾字的頁碼數字取出來
@@ -236,11 +236,12 @@ async function renderSearchBar() {
   select.setAttribute('aria-describedby', '請從以下選項內選擇一個您搜尋的主題');
   form.appendChild(select);
 
+  // 各主題頁裡的完整Class(Class1)下拉式選單內容
   const fourCategoryClassNames = {
-    ScenicSpot: '自然風景類, 觀光工廠類, 遊憩類, 休閒農業類, 生態類, 溫泉類, 其他',
-    Activity: '節慶活動, 自行車活動, 遊憩活動, 產業文化活動, 年度活動, 四季活動',
-    Restaurant: '地方特產, 中式美食, 甜點冰品, 異國料理, 伴手禮, 素食',
-    Hotel: '一般旅館, 一般觀光旅館, 國際觀光旅館, 民宿'
+    ScenicSpot: '其他, 藝術類, 林場類, 遊憩類, 文化類, 溫泉類, 古蹟類, 生態類, 觀光類, 體育健身類, 都會公園類, 國家公園類, 休閒農業類, 自然風景類, 觀光工廠類, 小吃/特產類, 森林遊樂區類, 國家風景區類',
+    Activity: '其他, 藝文活動, 活動快報, 節慶活動, 遊憩活動, 四季活動, 年度活動, 自行車活動, 產業文化活動',
+    Restaurant: '其他, 素食, 伴手禮, 夜市小吃, 火烤料理, 地方特產, 中式美食, 甜點冰品, 異國料理',
+    Hotel: '民宿, 一般旅館, 一般觀光旅館, 國際觀光旅館'
   };
 
   const optionTopic = document.createElement('option');
@@ -533,7 +534,7 @@ function removeChildNodes() {
 }
 
 // 彙整所有函式且依序逐步執行
-async function allFuncs() {
+async function getAPIData() {
   renderBreadcrumb();
 
   // 搜尋結果頁面採動態生成搜尋列方式; 若是4大主題頁面則搜尋列式預設用HTML寫好的, 則不需動態生成; 但不論如何都必須要先等搜尋列方式已經確定生成後, 才進一步使用setupSearchForm函式實現搜尋功能
@@ -564,4 +565,9 @@ async function allFuncs() {
     // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
     pagination({ dataCount: resData.length, currentPage: intPage });
   }
+}
+
+async function allFuncs() {
+  await getAPIData();
+  loadingAnimation();
 }
