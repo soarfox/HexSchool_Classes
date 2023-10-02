@@ -30,12 +30,12 @@ classNameObject.Class = className;
 classNameObject.Class1 = class1Name;
 classNameObject.Class2 = class2Name;
 classNameObject.Class3 = class3Name;
-console.log('selectedCategory=', selectedCategory);
-console.log('cityName=', cityName);
-console.log('selectedDate=', selectedDate);
-console.log(classNameObject);
-console.log('keywords=', keywords);
-console.log('page=', page);
+// console.log('selectedCategory=', selectedCategory);
+// console.log('cityName=', cityName);
+// console.log('selectedDate=', selectedDate);
+// console.log(classNameObject);
+// console.log('keywords=', keywords);
+// console.log('page=', page);
 
 const paginationList = document.querySelector('.pagination-list');
 const searchResultList = document.getElementById('searchResult-list');
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 假如使用者是按下首頁的搜尋按鈕後進來此搜尋結果頁, 則網址本身預設是不會包含&Page=參數(故proxy取回的page值為undefined), 在此主動在網址末端補上'&Page=1'且立刻修改當前網址, 並將此網址資訊儲存在瀏覽器的記錄內, 以利稍後使用者如果按下瀏覽器的回上一頁時, 可以立刻在網址上呈現&Page=1並渲染出對應資料在畫面上
   if (pageUrl.indexOf('&Page=') === -1) {
-    console.log('---第一次進來此搜尋結果頁, 將自動補上網址&Page=並記錄下來----');
+    // console.log('---第一次進來此搜尋結果頁, 將自動補上網址&Page=並記錄下來----');
     //當第一次進入搜尋結果頁時, 自動幫網址補上尾字'&Page=1', 並需要紀錄該頁的網址等項目
     const state = { page: 'firstPage' };
     const title = null;
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 分頁元件的監聽事件
   paginationList.addEventListener('click', e => {
-    console.log('---已點擊任一分頁按鈕, 此處負責處理----');
+    // console.log('---已點擊任一分頁按鈕, 此處負責處理----');
     e.preventDefault();
     const previousPage = document.getElementById('previousPage');
     const nextPage = document.getElementById('nextPage');
@@ -161,16 +161,16 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
     } else {
-      console.log('因為點擊的是當前頁碼, 故沒有任何效果');
+      // console.log('因為點擊的是當前頁碼, 故沒有任何效果');
     }
   });
 
   // 當使用者按下瀏覽器的上一頁/下一頁按鈕時(才會觸發此popstate事件)
   window.addEventListener('popstate', function (event) {
-    console.log('---已點瀏覽器的上/下一頁按鈕, 此處負責處理----');
+    // console.log('---已點瀏覽器的上/下一頁按鈕, 此處負責處理----');
     const state = event.state;
     const currentURL = window.location.href;
-    console.log('state=', state);
+    // console.log('state=', state);
 
     // 當state不為null代表已經有'搜尋結果頁'的相關瀏覽記錄, 也就是使用者剛剛已有瀏覽過搜尋結果的內容, 故會留下瀏覽器的相關記錄; 否則, 若是無最近的瀏覽記錄, 則代表該情境是'第一次進來本分頁的時候', 而現在使用者按了瀏覽器本身的回上一頁按鈕, 因此會直接跳轉回首頁
     if (state === null) {
@@ -338,7 +338,7 @@ async function renderSearchBar() {
 // 呼叫API及渲染資料
 async function getResultAndRender() {
   resData = await getSearchResult();
-  console.log('這是searchResult頁面, 在sql語句的top限制已拿掉');
+
   document.getElementById('result-count').textContent = resData.length;
   if (resData.length !== 0) {
     // 預設渲染第一頁(至多20筆資料)即可, 故可以不用寫{}內的屬性和值(pageNumber: 1), 因為當無傳入屬性和值時, 函式本身會使用函式宣告的預設值(pageNumber = 1)
@@ -548,11 +548,11 @@ async function getAPIData() {
 
   // 此處判斷是否為首次進來搜尋結果頁並進行對應處理; 如果proxy抓取到page變數的值為undefined, 則代表是從首頁按下搜尋按鈕後, 首次進來此搜尋結果頁; 否則, 則代表是從詳細資料畫面按瀏覽器的上一頁按鈕, 返回到此搜尋結果頁, 也就是符合page !== undefined的情形
   if (page === undefined) {
-    console.log('---首次進來此搜尋結果頁, 此處負責處理----');
+    // console.log('---首次進來此搜尋結果頁, 此處負責處理----');
     // 使用解構賦值方式, 只傳入一個參數{}(物件), 且在pagination.js檔案內有分別給予預設值 
     pagination({ dataCount: resData.length, currentPage: 1 });
   } else {
-    console.log('---已成功捕捉到網址尾字的頁碼數字, 此處負責處理----');
+    // console.log('---已成功捕捉到網址尾字的頁碼數字, 此處負責處理----');
 
     removeChildNodes();
 

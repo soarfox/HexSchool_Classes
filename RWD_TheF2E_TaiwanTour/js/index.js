@@ -28,13 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let redirectURL = '';
     const searchCategory = document.getElementById('category-selection').value;
     const searchKeywords = document.getElementById('keywords').value;
-    console.log(searchCategory);
-    console.log(searchKeywords);
+    // console.log(searchCategory);
+    // console.log(searchKeywords);
 
     if (searchCategory === '請選擇您想搜尋的類別') {
       alert('您尚未選擇想要搜尋的類別哦！');
     } else if (searchCategory === category[1]) {
-      console.log('searchCategory === category[1]');
+      // console.log('searchCategory === category[1]');
       // 將選中的值作為參數傳遞到搜尋畫面, 使用encodeURIComponent()函式進行編碼, 將可對'&'及'/'等符號進行編碼, 避免搜尋畫面在解析網址時, 因為某些特殊符號而造成解析有問題(例如關鍵字為:天空&/), 則未使用該函式則只會解析出"天空", 但使用該函式後則可成功解析出"天空&/"
       redirectURL = `./searchResult.html?Category=${searchCategory}&SelectedDate=${today}&Keywords=${encodeURIComponent(searchKeywords)}`;
       // 跳轉到搜尋結果頁

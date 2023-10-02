@@ -90,34 +90,7 @@ function pagination({ dataCount = 100, currentPage = 1, countInOnePage = 20 }) {
     finalPage = '';
   }
 
-  console.log(`dataCount=${dataCount}, previousPage=${previousPage}, currentPage=${currentPage}, nextPage=${nextPage}, finalPage=${finalPage}`);
+  // console.log(`dataCount=${dataCount}, previousPage=${previousPage}, currentPage=${currentPage}, nextPage=${nextPage}, finalPage=${finalPage}`);
 }
-
-// 以下暫時不使用
-// // 修改 URL並新增新的歷史記錄項目
-// const newState = { page: 'previous page' };
-// const newTitle = 'previous page777';
-// let newURL = currentURL + `&Page=${previousPage}`;
-// console.log(newURL);
-
-// // 取得上一次的網址並去掉尾巴的'`&Page=x'內容後, 補上本次新分頁的數字, 設為新的網址
-// if(currentURL.indexOf('&Page=')){
-//   newURL = newURL.split('&Page=') 
-//   newURL[0] = newURL[0] + `&Page=${previousPage}`;
-//   console.log(newURL[0]);
-// }
-
-// history.pushState(newState, newTitle, newURL[0]);
-// // 現在瀏覽器的URL變為newURL內容, 並且可以在歷史記錄中找到新的狀態對象和標題
-
-// // 下方僅適用於當使用者按下瀏覽器的上一頁/下一頁才會被觸發; 透過上述單純更新網址時, 並不會觸發以下監聽事件
-// window.addEventListener('popstate', function(event) {
-//   //檢查 state 是否與預期的一致
-//   const state = event.state;
-//   if (state) {
-//     console.log('State information:', state);
-//   }
-// });
-
 
 export { pagination };

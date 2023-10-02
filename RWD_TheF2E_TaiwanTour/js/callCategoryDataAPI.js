@@ -23,11 +23,12 @@ async function callCategoryDataAPI(api_token, category, urlStatement) {
       return response.data;
 
     } catch (error) {
-      console.error('getAPIData axios失敗:', error);
+      // console.error('getAPIData axios失敗:', error);
+      throw error;
     }
   }
   else {
-    console.log('您的api token為:undefined');
+    // console.log('您的api token為:undefined');
   }
 };
 
