@@ -16,7 +16,6 @@
       padding: 52px 0px 16px 18px;
     }
 
-
     .text {
       font-size: $h3-font-size;
       padding-bottom: 16px;
@@ -92,7 +91,7 @@
       .magnifying:active {
         color: $orange;
       }
-      
+
 
       .cart {
         display: flex;
@@ -107,44 +106,31 @@
           font-size: $h2-font-size;
         }
 
-        .checkout {
-          padding: 0px 12px;
-          border-right: 1px solid $brown;
-          text-decoration: none;
-          font-weight: bold;
-        }
-
-        .checkout:hover,
-        .checkout:active {
-          background-color: $orange;
-          color: $white;
-        }
-
         .shopping-cart {
           font-size: $h2-font-size;
           color: $brown;
-          padding: 0px 8px;
           position: relative;
-        }
 
-        .shopping-cart:hover,
-        .shopping-cart:active {
-          background-color: $orange;
-          color: $white;
-        }
 
-        .shopping-cart::after {
-          /* 這裡是要顯示的小數字 */
-          content: "5";
-          position: absolute;
-          top: -8px;
-          right: -8px;
-          background-color: $orange;
-          color: $white;
-          border-radius: 50%;
-          border: 1px solid $white;
-          padding: 3px 5px;
-          font-size: $h6-font-size;
+          &:hover,
+          &:active {
+            background-color: $orange;
+            color: $white;
+          }
+
+          &::after {
+            /* 這裡是要顯示的小數字 */
+            content: "5";
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: $orange;
+            color: $white;
+            border-radius: 50%;
+            border: 1px solid $white;
+            padding: 3px 5px;
+            font-size: $h6-font-size;
+          }
         }
       }
     }

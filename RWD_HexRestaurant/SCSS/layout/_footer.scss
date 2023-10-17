@@ -1,33 +1,35 @@
-
 .footer {
   display: flex;
   justify-content: space-between;
   color: $brown;
-  padding: 50px 42px;
+  padding: 50px 40px;
 
   @include tablet {
     flex-direction: column;
     flex-wrap: wrap;
+    padding: 20px;
   }
 
   .about-contact {
     display: flex;
+    width: 70%;
 
     @include tablet {
       flex-direction: column;
+      width: 100%;
     }
-  
-    .about, .contact {
-      max-width: 250px;
+
+    .about,
+    .contact {
       line-height: 1.5rem;
       padding-bottom: 30px;
 
       @include iPad {
-        padding:0px 30px 30px 0px;
+        padding: 0px 30px 30px 0px;
       }
 
       @include tablet {
-        padding:0px 0px 30px 0px;
+        padding: 0px 0px 30px 0px;
       }
 
       .title {
@@ -35,62 +37,71 @@
         padding-bottom: 1rem;
       }
     }
-  }
 
-  .contact {
-    .info {
-      list-style-type: disc;
-      margin-left: 21px;
-      // 透過下方實現文字超出容器寬度時, 將會自動斷行的效果
-      overflow-wrap: break-word;
+    .about {
+      padding-right: 60px;
 
-      li a {
-        text-decoration: none;
-        color: $brown;
+      @include iPad {
+        padding-right: 0px;
+      }
+    }
+
+    .contact {
+      .info {
+        list-style-type: disc;
+        margin-left: 20px;
+        // 透過下方實現文字超出容器寬度時, 將會自動斷行的效果
+        overflow-wrap: break-word;
+
+        li a {
+          text-decoration: none;
+          color: $brown;
+        }
       }
     }
   }
 
-  .brand-social .title {
-    font-weight: bold;
+  .brand-social {
+    width: 30%;
 
-    img {
+    .title {
+      font-weight: bold;
+      text-align: right;
+    }
+
+    .social-media {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-top: 20px;
+
       @include tablet {
-        max-width: 50%;
+        justify-content: flex-start;
       }
-    }
-  }
 
-  .social-media {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding-top: 22px;
+      .google-plus,
+      .twitter,
+      .facebook {
+        border-radius: 4px;
+        margin: 0px 5px;
+      }
 
-    @include tablet {
-      justify-content:flex-start;
-    }
+      .google-plus {
+        color: $google-red;
+        font-size: $h1-font-size;
+      }
 
-    .google-plus, .twitter, .facebook {
-      border-radius: 4px;
-      margin: 0px 6px;
-    }
+      .twitter {
+        background-color: $twitter-blue;
+        padding: 6px;
+        color: $white;
+        font-size: $h3-font-size;
+      }
 
-    .google-plus {
-      color: $google-red;
-      font-size: $h1-font-size;
-    }
-
-    .twitter {
-      background-color: $twitter-blue;
-      padding: 6px;
-      color: $white;
-      font-size: $h3-font-size;
-    }
-
-    .facebook {
-      color: $facebook-blue;
-      font-size: $h1-font-size;
+      .facebook {
+        color: $facebook-blue;
+        font-size: $h1-font-size;
+      }
     }
   }
 }
