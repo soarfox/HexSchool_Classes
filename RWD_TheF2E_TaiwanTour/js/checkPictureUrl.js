@@ -23,14 +23,14 @@ function includeSpecialUrl(url){
 
 function checkPictureUrl(data, image_type) {
 
-  // 若資料內的Picture裡的屬性數量不為0(代表有圖片資料), 則使用正規表達式(/^(http)/i)及其方法test來進行判斷, 正規表達式的前後必有一個/號, ^號代表著"匹配開頭", 即代表是以http為開頭的字串, 而i代表不分英文字母的大小寫; 若資料的Picture裡的屬性數量為0(代表無圖片資料), 或是第一筆圖片資料內的網址內容並不包含http開頭文字, 則預設為無圖片的路徑
+  // 若資料內的Picture裡的屬性數量不為0(代表有圖片資料), 則使用正規表達式(/^(http)/i)及其方法test來進行判斷, 正規表達式的前後必有一個/號, ^號代表著"匹配開頭", ?號代表著"前方一個文字是具有可選擇性, 也就是前方的文字為s, 則"s?"代表著可匹配0個或1個前方文字為s的字串, 表示可以匹配"http"或"https"(因彰化縣的餐廳圖片近期已改採https), 而i代表不分英文字母的大小寫; 若資料的Picture裡的屬性數量為0(代表無圖片資料), 或是第一筆圖片資料內的網址內容並不包含http開頭文字, 則預設為無圖片的路徑
   if (Object.keys(data.Picture).length !== 0) {
     // hasOwnProperty內的屬性名稱請記得加上''號
-    if(data.Picture.hasOwnProperty('PictureUrl1') && /^(http)/i.test(data.Picture.PictureUrl1) && includeSpecialUrl(data.Picture.PictureUrl1) !== true) {
+    if(data.Picture.hasOwnProperty('PictureUrl1') && /^https?/i.test(data.Picture.PictureUrl1) && includeSpecialUrl(data.Picture.PictureUrl1) !== true) {
       picUrl = data.Picture.PictureUrl1;
-    } else if (data.Picture.hasOwnProperty('PictureUrl2') &&/^(http)/i.test(data.Picture.PictureUrl2) && includeSpecialUrl(data.Picture.PictureUrl2) !== true) {
+    } else if (data.Picture.hasOwnProperty('PictureUrl2') &&/^https?/i.test(data.Picture.PictureUrl2) && includeSpecialUrl(data.Picture.PictureUrl2) !== true) {
       picUrl = data.Picture.PictureUrl2;
-    } else if (data.Picture.hasOwnProperty('PictureUrl3') &&/^(http)/i.test(data.Picture.PictureUrl3) && includeSpecialUrl(data.Picture.PictureUrl3) !== true) {
+    } else if (data.Picture.hasOwnProperty('PictureUrl3') &&/^https?/i.test(data.Picture.PictureUrl3) && includeSpecialUrl(data.Picture.PictureUrl3) !== true) {
       picUrl = data.Picture.PictureUrl3;
     } else  {
       if(image_type === 'thumbnail'){
