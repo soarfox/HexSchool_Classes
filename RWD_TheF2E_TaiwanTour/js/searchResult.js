@@ -467,6 +467,7 @@ function renderData({ pageNumber = 1 }) {
     img.src = picUrl;
     img.width = 255;
     img.height = 200;
+    img.loading = 'lazy';
     img.alt = item.Picture.PictureDescription1;
     // 將該筆資料的分類及獨一無二的資料ID設為圖片的屬性與值, 以利使用者點擊圖片後, 將相關資料透過網址參數傳遞到詳細資料畫面內, 並對應API搜尋並呈現資料
     img.setAttribute('data-category', `${selectedCategory}`);

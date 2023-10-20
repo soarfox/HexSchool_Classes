@@ -133,6 +133,7 @@ function renderDataToRecentActivity() {
     const img = document.createElement('img');
     img.width = 158;
     img.height = 160;
+    img.loading = 'lazy';
     // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
     img.src = checkPictureUrl(item, 'thumbnail');
     // 檢查圖片是否有描述內容
@@ -214,6 +215,7 @@ function renderData(category, categoryNameInHTML) {
     const img = document.createElement('img');
     img.width = 255;
     img.height = 200;
+    img.loading = 'lazy';
     // 檢查圖片網址是否存在, 且網址是否以為http作為開頭
     img.src = checkPictureUrl(item, 'thumbnail');
     // 檢查圖片是否有描述內容
