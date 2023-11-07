@@ -11,6 +11,8 @@ async function GetAuthorizationHeader() {
   const config = {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
+      // 設定Accept-Encoding為TDX官方所指定的值('br,gzip'), 藉此向伺服器表明我希望接收經過br和gzip壓縮演算法壓縮之後的回應資料
+      'Accept-Encoding': 'br,gzip',
     },
   };
 
